@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -34,103 +35,130 @@ const Home = () => {
   }
 
   return (
-    <div className="top-0 left-24">
-      <div className="w-[1248px] h-[512px] mx-auto mt-[123px] bg-[#C1DCDC] rounded-[24px] relative">
-        <div className="relative top-[48px] left-[48px] w-[599px] h-[339px] flex flex-col items-start gap-[48px]">
-          <div className="w-full h-[227px] flex flex-col items-start gap-[24px]">
-            <div className="mt-[-20px] w-full h-[128px] font-poppins font-extrabold text-[55px] leading-[64px] text-[#000000]">
-              Barriere Bewertungen
-            </div>
-            <div className="mt-[-20px] w-full h-[128px] font-poppins font-extrabold text-[55px] leading-[64px] text-[#000000]">
-              für Locations
-            </div>
-            <div className="flex items-center gap-[48px] w-full h-[75px]">
-              <div className="flex flex-col items-start w-[121px] h-[75px]">
-                <div className="w-[85px] h-[48px] font-poppins font-medium text-[32px] leading-[48px] text-[#1E1E1E]">
-                  500+
-                </div>
-                <div className="w-[121px] h-[27px] font-poppins font-medium text-[18px] leading-[27px] text-[#1E1E1E]">
-                  Bewertungen
-                </div>
-              </div>
-              <div className="w-[64px] h-[0px] border border-[#1E1E1E] rotate-90"></div>
-              <div className="flex flex-col items-start w-[80px] h-[75px]">
-                <div className="w-[76px] h-[48px] font-poppins font-medium text-[32px] leading-[48px] text-[#1E1E1E]">
-                  100+
-                </div>
-                <div className="w-[80px] h-[27px] font-poppins font-medium text-[18px] leading-[27px] text-[#1E1E1E]">
-                  Benutzer
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="w-[449px] h-[64px] bg-[#FFFFFF] rounded-[12px] flex items-center justify-start relative">
-            <div className="absolute left-[18px] top-[18px] font-poppins font-medium text-[18px] leading-[27px] text-[rgba(30, 30, 30, 0.5)]">
+<div className="flex flex-col md:flex-row items-top justify-center p-4">
+  <div className="flex flex-col md:flex-row items-center justify-center">
+    
+  </div>
+  <div className="container mx-auto w-full h-[432px] bg-[#C1DCDC] rounded-[24px] relative">
+   
+ <div className="w-full text-left p-8">
+      <h1 className="font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black">
+        Barriere Bewertungen <br />
+        für Locations 
+      </h1>
+    </div>
+
+<div className="flex flex-col md:flex-row items-center justify-left ml-8 mt-[-24]">
+  {/* Erste Box */}
+  <div className="flex flex-col items-center text-center p-4 w-[85px] h-[75px] font-poppins font-medium text-[32px] leading-[48px] text-[#1E1E1E]">
+    <div className="text-[32px] leading-[48px]">
+      500+
+    </div>
+    <div className="text-[18px] leading-[27px] mt-2 ml-8">
+      Bewertungen
+    </div>
+  </div>
+
+  {/* Strich */}
+  <div className="w-[64px] h-[0px] border border-[#1E1E1E] rotate-90 mx-6 mt-10"></div>
+
+  {/* Zweite Box */}
+  <div className="flex flex-col items-center text-center p-4 w-[80px] h-[75px] font-poppins font-medium text-[32px] leading-[48px] text-[#1E1E1E]">
+    <div className="text-[32px] leading-[48px]">
+      100+
+    </div>
+    <div className="text-[18px] leading-[27px] mt-2">
+      Benutzer
+    </div>
+  </div>
+</div>
+
+{/* Filter Städte  */}
+<div className="ml-8 mt-16 w-[449px] h-[64px] bg-[#FFFFFF] rounded-[12px] flex items-center justify-start relative">
+           
+            <div className="ml-4 left-[18px] top-[18px] font-poppins font-medium text-[18px] leading-[27px] text-[rgba(30, 30, 30, 0.5)]">
               Filter Städte
             </div>
-            <div className="absolute left-[393px] top-[8px] w-[48px] h-[48px] bg-[#C1DCDC] rounded-[12px]"></div>
-            <div className="absolute left-[407px] top-[22px] w-[20px] h-[20px]">
-              {/* <MagnifyingGlassIcon className="w-full h-full text-gray-600" /> */}
-            </div>
-          </div>
-        </div>
-        <div className="absolute left-[726px] top-[101px] w-[450px] h-[400px] bg-[#FFD700] rounded-[200px_200px_0px_200px]"></div>
-        <div className="absolute w-[112.54px] h-[154.41px] left-[1137.24px] top-[13px] border-5 border-[#FFD700] [transform:matrix(0.95,0.31,-0.34,0.94,0,0)]"></div>
 
-        <div className="absolute w-[298px] h-[294px] left-[841px] top-[200px] bg-[url('../images/Icon_Rollstuhl.png')] bg-cover"></div>
-        <div className="absolute left-[841px] top-[200px] w-[298px] h-[294px] bg-cover bg-[url('../images/image.png')]"></div>
-        <div className="absolute left-[1137.24px] top-[13px] w-[112.54px] h-[154.41px] border-5 border-[#FFD700] transform matrix-[0.95,0.31,-0.34,0.94,0,0]"></div>
+         <div className="ml-60 relative flex justify-center items-center p-4">
+      {/* Kasten */}
+      <div className="w-[48px] h-[48px] bg-[#C1DCDC] rounded-[12px] flex items-center justify-center">
+             </div>
+      {/* Lupe */}
+      <div className="absolute flex items-center justify-center">
+        <MagnifyingGlassIcon className="w-1/2 h-1/2 text-gray-600" />
       </div>
+</div>
+</div>
 
-      <div className="absolute w-[1440px] h-[12px] left-0 top-[683px] bg-white">
-
-
-        <div className="absolute w-[1257px] h-[550px] left-[108px] top-0 flex flex-col items-center gap-[48px]">
-
-          <div className="w-[1257px] h-[243px] flex flex-col items-center gap-[12px] ml-[-200px]">
-            <p className="w-[1257px] h-[243px] text-[18px] leading-[27px] font-poppins font-medium text-[rgba(30,30,30,0.5)]">
+{/* Beschreibungstext */}
+            <p className="mt-20 font-medium font-poppins text-[rgba(30,30,30,0.5)]">
               InclusiveTRIP hilft Ihnen, öffentliche Orte wie Restaurants, Kinos, Geschäfte und vieles mehr hinsichtlich ihrer Barrierefreiheit zu bewerten und passende Locations zu finden. Unsere App ermöglicht es Ihnen, Orte zu entdecken und zu bewerten, um anderen Menschen mit ähnlichen Bedürfnissen zu helfen, barrierefreie Orte zu finden.
               <br />
               <br />
               Egal, ob Sie Rollstuhlfahrer sind, eine Hörbehinderung haben oder mit einem Kinderwagen unterwegs sind – InclusiveTRIP gibt Ihnen die Werkzeuge, um sicherzustellen, dass Ihre Umgebung zugänglich und inklusiv ist. Ihre Bewertungen und Erfahrungen tragen dazu bei, eine Gemeinschaft zu schaffen, die Barrierefreiheit zur Priorität macht. Entdecken, bewerten und teilen Sie barrierefreie Orte mit InclusiveTRIP!
             </p>
-          </div>
+          
 
-          <div className="flex flex-row items-center p-0 gap-3 ml-[-200px] h-[92px] ">
-            <div className="flex flex-col items-center p-0 gap-3 w-[400px] h-[213px] flex-none order-0 flex-grow-0">
-              <img className="w-[66px] h-[66px]" src="../images/Icon_Barrierefilter.png" alt="Logo" />
-              <p className="w-[118px] h-[27px] font-poppins font-bold text-[18px] leading-[27px] text-[#000000] flex-none order-1 flex-grow-0">Barrierefilter</p>
-              <p className="w-[290px] h-[54px] font-poppins font-medium text-[rgba(30,30,30,0.5)] leading-[27px] text-[rgba(30, 30, 30, 0.5)] text-center flex-none order-1 flex-grow-0">Filter nach deiner Barriere und finde den optimalen Ort für deinen Ausflug.</p>
-            </div>
+{/* Icons */}
+<div className="flex flex-col md:flex-row items-center justify-center mt-8 p-4 gap-6">
+  {/* Erste Icon Box */}
+  <div className="flex flex-col items-center p-4 gap-3 w-full md:w-[400px] h-auto bg-white rounded-lg shadow-md">
+    <img className="w-[66px] h-[66px]" src="../images/Icon_Barrierefilter.png" alt="Barrierefilter" />
+    <p className="font-poppins font-bold text-[18px] text-[#000000]">Barrierefilter</p>
+    <p className="font-poppins font-medium text-[rgba(30,30,30,0.5)] text-center">
+      Filter nach deiner Barriere und finde den optimalen Ort für deinen Ausflug.
+    </p>
+  </div>
 
-            <div className="flex flex-col items-center p-0 gap-3 w-[400px] h-[213px] flex-none order-0 flex-grow-0">
-              <img className="w-[66px] h-[66px]" src="../images/Icon_Umkreissuche.png" alt="Logo" />
-              <p className="w-[118px] h-[27px] font-poppins font-bold text-[18px] leading-[27px] text-[#000000] flex-none order-1 flex-grow-0">Umkreissuche</p>
-              <p className="w-[290px] h-[54px] font-poppins font-medium text-[rgba(30,30,30,0.5)] leading-[27px] text-[rgba(30, 30, 30, 0.5)] text-center flex-none order-1 flex-grow-0">Egal in welcher Stadt in Deutschland du unterwegs bist, finde Bewertungen.</p>
-            </div>
+  {/* Zweite Icon Box */}
+  <div className="flex flex-col items-center p-4 gap-3 w-full md:w-[400px] h-auto bg-white rounded-lg shadow-md">
+    <img className="w-[66px] h-[66px]" src="../images/Icon_Umkreissuche.png" alt="Umkreissuche" />
+    <p className="font-poppins font-bold text-[18px] text-[#000000]">Umkreissuche</p>
+    <p className="font-poppins font-medium text-[rgba(30,30,30,0.5)] text-center">
+      Egal in welcher Stadt in Deutschland du unterwegs bist, finde Bewertungen.
+    </p>
+  </div>
 
-            <div className="flex flex-col items-center p-0 gap-3 w-[400px] h-[213px] flex-none order-0 flex-grow-0">
-              <img className="w-[66px] h-[66px]" src="../images/Icon_Locationfilter.png" alt="Logo" />
-              <p className="w-[118px] h-[27px] font-poppins font-bold text-[18px] leading-[27px] text-[#000000] flex-none order-1 flex-grow-0">Locationsfilter</p>
-              <p className="w-[290px] h-[54px] font-poppins font-medium text-[rgba(30,30,30,0.5)] leading-[27px] text-[rgba(30, 30, 30, 0.5)] text-center flex-none order-1 flex-grow-0">Suche nach der Location, woran du heute Spaß hast.</p>
-            </div>
+  {/* Dritte Icon Box */}
+  <div className="flex flex-col items-center p-4 gap-3 w-full md:w-[400px] h-auto bg-white rounded-lg shadow-md">
+    <img className="w-[66px] h-[66px]" src="../images/Icon_Locationfilter.png" alt="Locationfilter" />
+    <p className="font-poppins font-bold text-[18px] text-[#000000]">Locationsfilter</p>
+    <p className="font-poppins font-medium text-[rgba(30,30,30,0.5)] text-center">
+      Suche nach der Location, woran du heute Spaß hast.
+    </p>
+  </div>
+</div>
 
-          </div>
+{/* Überschrift Blockeinträge */}
 
-          <div className="absolute top-[400px] w-[595px] h-[87px] left-[472px] top-0 flex flex-col items-center gap-12">
-            <div className="w-[595px] h-[87px] flex flex-col items-center gap-12">
-              <p className="w-[218px] h-[48px] text-[32px] leading-[48px] font-poppins font-bold text-[#1E1E1E]">
-                Blog Einträge
-              </p>
-              <p className="w-[595px] h-[27px] text-[18px] leading-[27px] font-poppins font-medium text-[rgba(30,30,30,0.5)]">
-                Informiere dich über aktuelle Themen rund um das Thema Barriere
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+<h1 className="font-poppins font-bold text-[18px] text-center pt-12 text-[#000000]">Blog Einträge</h1>
+<p className="font-poppins font-medium text-[rgba(30,30,30,0.5)] text-center pt-2"> Informiere dich über aktuelle Themen rund um das Thema Barriere.</p>
+
+{/* erster Blockeintrag*/}
+
+  <div className="container mx-auto w-full  bg-[#C1DCDC] rounded-[24px]  mt-8">
+    <div className="w-full text-left p-8">
+       <p className="font-poppins font-medium text-[rgba(30,30,30,0.5)] text-left">
+       Hier kommt der Fetch vom Blockeintrag. aktuelles Thema: neues Modell Rollstuhl: Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per inceptos. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per inceptos. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per incep mehr lesen ...
+    </p>
     </div>
-  );
-};
+</div>
+
+{/* zweiter Blockeintrag*/}
+
+  <div className="container mx-auto w-full bg-[#C1DCDC] rounded-[24px] mt-8">
+    <div className="w-full text-left p-8">
+       <p className="font-poppins font-medium text-[rgba(30,30,30,0.5)] text-left">
+       Hier kommt der Fetch vom Blockeintrag. aktuelles Thema: neues Modell Rollstuhl: Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per inceptos. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per inceptos. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per incep mehr lesen ...
+    </p>
+    </div>
+</div>
+</div>
+</div>
+
+
+      );
+}
 
 export default Home;
