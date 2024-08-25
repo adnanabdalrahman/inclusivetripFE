@@ -14,7 +14,6 @@ export default function Header() {
                 <div className="flex items-center">
                     <NavLink to="/" href="index.html">
                         <img className="w-[206px] h-[44px]" src="./images/Logo.png" alt="Logo" />
-
                     </NavLink>
                 </div>
                 {userInfo && (

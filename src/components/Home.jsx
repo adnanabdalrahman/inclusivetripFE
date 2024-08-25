@@ -39,7 +39,7 @@ const Home = () => {
       <div className="flex flex-col md:flex-row items-center justify-center">
 
       </div>
-      <div className="container mx-auto w-full h-[432px] bg-[#C1DCDC] rounded-[24px] relative">
+      <div className="container mx-auto w-full bg-[#C1DCDC] rounded-[24px] relative">
 
         <div className="w-full text-left p-8">
           <h1 className="font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black">
@@ -85,7 +85,7 @@ const Home = () => {
             <div className="w-[48px] h-[48px] bg-[#C1DCDC] rounded-[12px] flex items-center justify-center">
             </div>
             {/* Lupe */}
-            <div className="absolute flex items-center justify-center">
+            <div className=" flex items-center justify-center">
               <MagnifyingGlassIcon className="w-1/2 h-1/2 text-gray-600" />
             </div>
           </div>

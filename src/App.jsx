@@ -12,6 +12,7 @@ import NotFound from "./components/NotFound";
 import { AuthProvider, AuthContext } from "./components/AuthContext";
 import Signup from "./components/Signup";
 import MainLayout from "./components/MainLayout";
+import Map from "./components/Map";
 
 
 const Protected = () => {
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<MainLayout />}>
       <Route index element={<Home />} />
       <Route path="ratings" element={<Ratings />} />
+      <Route path="map" element={<Map />} />
       <Route path="user" element={<User />} />
       <Route path="create" element={<CreateRating />} />
       <Route path="login" element={<Login />} />
