@@ -18,22 +18,22 @@ export const AuthProvider = ({ children }) => {
   const [shouldFetch, setShouldFetch] = useState(false);
   const navigate = useNavigate();
 
-
   useEffect(() => {
     const token = Cookies.get('token');
     console.log("AuthContext.jsx: token: ", token);
-
+    console.log(shouldFetch);
     if (token) {
-      axios
-        .get(authMeUrl, {
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`,
-          },
-        })
+      axios.get(authMeUrl, {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        withCredentials: true,
+      })
         .then((res) => {
-          console.log("AuthContext.jsx: res.data: ", res.data);
+          console.log("recieved data ", res.data);
           setUserInfo(res.data);
+          navigate('/');
         })
         .catch((err) => {
           console.log(err);
@@ -41,8 +41,31 @@ export const AuthProvider = ({ children }) => {
     }
   }, [shouldFetch]);
 
-  function logout() {
+  useEffect(() => {
+    console.log("shouldFetch changed:", shouldFetch);
+    // Any other logic you want to execute when shouldFetch changes
+  }, [shouldFetch]);
 
+
+  function login(loginData) {
+    axios
+      .post(loginUrl, loginData, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        // setUserInfo(res.data.user);
+        setShouldFetch(true);
+      })
+      .catch((err) => {
+        console.log(err);
+        Cookies.remove('token');
+        setUserInfo(null);
+      });
+  }
+
+
+
+  function logout() {
     console.log("AuthContext - logout");
     Cookies.remove('token', { path: '/' });
     Cookies.remove('userData');
@@ -57,7 +80,7 @@ export const AuthProvider = ({ children }) => {
       .post(signupUrl, userData)
       .then((res) => {
         // console.log("Cookies after signup:", document.cookie);
-        console.log(res.data);
+        // console.log(res.data);
         navigate('/login');
       })
       .catch((err) => {
@@ -66,25 +89,9 @@ export const AuthProvider = ({ children }) => {
       });
   }
 
-  function login(loginData) {
-    // console.log({ login, password });
-    axios
-      .post(loginUrl, loginData, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        console.log(res.data);
-        // console.log("Cookies after signup:", document.cookie);
-        // setUserInfo(res.data.user);
-        setShouldFetch(true);
-        console.log(shouldFetch);
-      })
-      .catch((err) => {
-        console.log(err);
-        Cookies.remove('token');
-        setUserInfo(null);
-      });
-  }
+
+
+
 
   return (
     <AuthContext.Provider

@@ -7,7 +7,13 @@ export default function SignupForm() {
   const { signup, userInfo } = useContext(AuthContext);
   const [error, setError] = useState(false);
 
-  const [signupData, setSignupData] = useState({ email: "", password: "", firstName: "", lastName: "" });
+  const [signupData, setSignupData] = useState({
+    email: "",
+    username: "",
+    password: "",
+    firstName: "",
+    lastName: ""
+  });
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -22,6 +28,7 @@ export default function SignupForm() {
   }
 
   function handleChange(e) {
+    e.preventDefault();
     setError(false);
     setSignupData({ ...signupData, [e.target.name]: e.target.value });
   }
