@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 
 export const AuthContext = createContext();
 
-// import { dummyRoster } from "../../utils/temporaryPokemons";
 export const AuthProvider = ({ children }) => {
   const API_URL = import.meta.env.VITE_APP_INCLUSIVETRIPBE_URL;
 
@@ -20,8 +19,6 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const token = Cookies.get('token');
-    console.log("AuthContext.jsx: token: ", token);
-    console.log(shouldFetch);
     if (token) {
       axios.get(authMeUrl, {
         headers: {
@@ -31,7 +28,6 @@ export const AuthProvider = ({ children }) => {
         withCredentials: true,
       })
         .then((res) => {
-          console.log("recieved data ", res.data);
           setUserInfo(res.data);
           navigate('/');
         })
@@ -41,19 +37,12 @@ export const AuthProvider = ({ children }) => {
     }
   }, [shouldFetch]);
 
-  useEffect(() => {
-    console.log("shouldFetch changed:", shouldFetch);
-    // Any other logic you want to execute when shouldFetch changes
-  }, [shouldFetch]);
-
-
   function login(loginData) {
     axios
       .post(loginUrl, loginData, {
         withCredentials: true,
       })
       .then((res) => {
-        // setUserInfo(res.data.user);
         setShouldFetch(true);
       })
       .catch((err) => {
@@ -66,7 +55,6 @@ export const AuthProvider = ({ children }) => {
 
 
   function logout() {
-    console.log("AuthContext - logout");
     Cookies.remove('token', { path: '/' });
     Cookies.remove('userData');
     setUserInfo(null);
@@ -74,13 +62,9 @@ export const AuthProvider = ({ children }) => {
   }
 
   function signup(userData) {
-    // console.log("AuthContext - logout");
-    console.log(userData);
     axios
       .post(signupUrl, userData)
       .then((res) => {
-        // console.log("Cookies after signup:", document.cookie);
-        // console.log(res.data);
         navigate('/login');
       })
       .catch((err) => {
@@ -88,10 +72,6 @@ export const AuthProvider = ({ children }) => {
         setUserInfo(null);
       });
   }
-
-
-
-
 
   return (
     <AuthContext.Provider
