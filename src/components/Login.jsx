@@ -27,7 +27,7 @@ export default function Login() {
         <Navigate to="/" />
       ) : (
         <div className=" max-w-[50rem] m-auto flex flex-col gap-6 items-center py-32 mt-16 bg-[#C1DCDC] rounded-[24px] ">
-                <label className="input input-bordered flex items-center gap-2">
+          <label className="input input-bordered flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="h-4 w-4 opacity-70">
               <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
               <path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
@@ -45,24 +45,24 @@ export default function Login() {
             </svg>
             <input name="password" onChange={handleChange} type="password" className="grow" value={loginData.password} />
           </label>
-          <button onClick={handleLogin} className="btn bg-[#FFD700] boarder-black border-black px-8 font-normal  ">   
-           
+          <button onClick={handleLogin} className="btn bg-[#FFD700] boarder-black border-black px-8 font-normal  ">
+
             Login
           </button>
 
-<a
-              href="#"
-              className="w-[170px] h-[26px] text-[16px] font-normal leading-[140%] underline text-[#1E1E1E]"
-            >
-              Passwort vergessen?
-            </a>
+          <a
+            href="#"
+            className="w-[170px] h-[26px] text-[16px] font-normal leading-[140%] underline text-[#1E1E1E]"
+          >
+            Passwort vergessen?
+          </a>
 
-            <a
-              href="signup"
-              className="w-[170px] h-[26px] text-[16px] font-normal leading-[140%] underline text-[#1E1E1E]"
-            >
-              Noch keinen Account?
-            </a>
+          <a
+            href="signup"
+            className="w-[170px] h-[26px] text-[16px] font-normal leading-[140%] underline text-[#1E1E1E]"
+          >
+            Noch keinen Account?
+          </a>
 
           {error && (
             <div role="alert" className="alert alert-warning">

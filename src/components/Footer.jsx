@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-   <footer className="bg-[#C1DCDC] text-[rgba(30,30,30,0.5)] py-4">
+    <footer className="bg-[#C1DCDC] text-[rgba(30,30,30,0.5)] py-4">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4">
         <aside className="flex items-center space-x-4">
           <img className="w-[206px] h-[44px]" src="../images/logo.png" alt="Logo" />

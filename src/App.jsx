@@ -11,20 +11,9 @@ import Login from "./components/Login";
 import NotFound from "./components/NotFound";
 import { AuthProvider, AuthContext } from "./components/AuthContext";
 import Signup from "./components/Signup";
+import MainLayout from "./components/MainLayout";
+import Map from "./components/Map";
 
-const MainLayout = () => {
-  return (
-     <div className="flex flex-col min-h-screen">
-      <AuthProvider>
-        <Navbar />
-        <div className="flex-grow container mx-auto py-4">
-          <Outlet />
-        </div>
-      </AuthProvider>
-      <Footer />
-    </div>
-  );
-};
 
 const Protected = () => {
   const { userInfo, loading } = useContext(AuthContext);
@@ -36,8 +25,9 @@ const router = createBrowserRouter(
     <Route path="/" element={<MainLayout />}>
       <Route index element={<Home />} />
       <Route path="ratings" element={<Ratings />} />
-      <Route path="user" element={<User/>} />
-       <Route path="create" element={<CreateRating />} />
+      <Route path="map" element={<Map />} />
+      <Route path="user" element={<User />} />
+      <Route path="create" element={<CreateRating />} />
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<Signup />} />
       <Route path="/" element={<Protected />}>
