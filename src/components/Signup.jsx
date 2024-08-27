@@ -78,19 +78,7 @@ export default function SignupForm() {
                     Lege dir ein Profil an, um <br />Bewertungen abgeben zu können
                   </div>
                 </div>
-                {/* <div className="flex items-center justify-end w-full md:w-1/3 mt-8 md:mt-0">
-                  <div className="w-[223px] h-[285px] bg-[#E6E6F0] rounded-[24px]">
-                    <div {...getRootProps()} className="flex space-x-1 items-center justify-center p-4 bg-[#4E4958] text-white rounded-lg cursor-pointer">
-                      <input {...getInputProps()} />
-                      <span>Foto hochladen</span>
-                    </div>
-                    {profilePhoto && (
-                      <div className="mt-4">
-                        <img src={URL.createObjectURL(profilePhoto)} alt="Profile Preview" className="max-w-full max-h-full object-cover rounded-lg" />
-                      </div>
-                    )} */}
-                  {/* </div>
-                </div> */}
+                
               </div>
             </div>
           </div>

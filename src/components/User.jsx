@@ -2,25 +2,73 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-
+import { useDropzone } from 'react-dropzone';
 
 function User() {
+  const [userId, setUserId] = useState(null);
+  const [profilePhoto, setProfilePhoto] = useState(null);
+
+  useEffect(() => {
+
+    setUserId(1); // auf 1 gesetzt zum testen
+  }, []);
+
+  const onDrop = (acceptedFiles) => {
+    const file = acceptedFiles[0];
+    setProfilePhoto(file);
+  };
+
+  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+
+  const handleUpload = async () => {
+    if (!profilePhoto || !userId) {
+      toast.error("Bitte wählen Sie ein Foto aus und stellen Sie sicher, dass Sie eingeloggt sind.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('profilePhoto', profilePhoto);
+
+    try {
+      const response = await axios.post(`{{base_url}}/profilePhotos/${userId}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      toast.success("Profilfoto erfolgreich hochgeladen!");
+    } catch (error) {
+      toast.error("Fehler beim Hochladen des Profilfotos.");
+    }
+  };
+
+
+
+
   return (
     <div>
+      <ToastContainer />
       <div className="flex flex-row md:flex-col items-top justify-center p-4">
-
-
-        <div className=" container mx-auto w-full min-h bg-[#C1DCDC] rounded-[24px] relative">
-
-
-          <div className="flex flex-col justify-start  p-8 ">
-            <h1 className="flex-1 font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black flex-grow">
-              Profil Julia Löw
-            </h1>
-
-
-
+        <div className="container mx-auto w-full min-h bg-[#C1DCDC] rounded-[24px] relative">
+          <div className="flex flex-col justify-start p-8">
+            <div className="flex justify-between items-center">
+              <h1 className="flex-1 font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black flex-grow">
+                Profil Julia Löw
+              </h1>
+              <div className="flex items-center justify-end w-1/3 md:w-1/4">
+                <div className="w-[223px] h-[285px] bg-[#E6E6F0] rounded-[24px]">
+                  <div {...getRootProps()} className="flex space-x-1 items-center justify-center p-4 bg-[#4E4958] text-white rounded-lg cursor-pointer">
+                    <input {...getInputProps()} />
+                    <span>Foto hochladen</span>
+                  </div>
+                  {profilePhoto && (
+                    <div className="mt-4">
+                      <img src={URL.createObjectURL(profilePhoto)} alt="Profile Preview" className="max-w-full max-h-full object-cover rounded-lg" />
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+  
             <div className="flex flex-col md:flex-row items-center justify-start ml-8 mt-[-24]">
               {/* Erste Box */}
               <div className="flex flex-col items-center text-center p-4 font-poppins font-medium text-[32px] text-[#1E1E1E]">
@@ -31,9 +79,9 @@ function User() {
                   Bewertungen
                 </div>
               </div>
-
+  
               {/* Strich */}
-              <div className="w-[64px]  border border-[#1E1E1E] rotate-90"></div>
+              <div className="w-[64px] border border-[#1E1E1E] rotate-90"></div>
 
               {/* Zweite Box */}
               <div className="flex flex-col items-center text-center p-4 font-poppins font-medium text-[32px] leading-[48px] text-[#1E1E1E]">
@@ -45,12 +93,6 @@ function User() {
                 </div>
               </div>
             </div>
-
-            {/* Profilfoto */}
-            {/* <div className="flex flex-row justify-end ">
-           
-    <img className="flex-2 w-48 h-auto" src="../images/profilfoto.jpg" alt="Profilfoto" />
-  </div> */}
 
           </div>
         </div>
