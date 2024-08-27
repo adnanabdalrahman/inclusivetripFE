@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import FilteredSelect from './FilteredSelect'; // Import the new component
+import FilteredSelect from './FilteredSelect';
 // import citiesGeoJson from '../data/cities.geojson';
 
-const CitySelector = () => {
+const CitySelector = ({ selectedCity, setSelectedCity }) => {
     const [cities, setCities] = useState([]);
-    const [selectedCity, setSelectedCity] = useState('');
 
     useEffect(() => {
         const fetchCities = async () => {
@@ -18,6 +17,7 @@ const CitySelector = () => {
                     const citiesData = data.features.map(feature => ({
                         name: feature.properties.name,
                         id: feature.id,
+                        coord: feature.geometry.coordinates,
                     }));
 
                     setCities(citiesData);
@@ -33,7 +33,7 @@ const CitySelector = () => {
     }, []);
 
     const handleSelect = (city) => {
-        setSelectedCity(city.id);
+        setSelectedCity(city.coord);
     };
 
     return (
