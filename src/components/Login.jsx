@@ -1,11 +1,18 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { AuthContext } from "./AuthContext";
 import { Navigate } from "react-router-dom";
+import Modal from 'react-modal';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+Modal.setAppElement('#root');
 
 export default function Login() {
   const { login, userInfo } = useContext(AuthContext);
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const [error, setError] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [forgotPasswordEmail, setForgotPasswordEmail] = useState("");
 
   function handleChange(e) {
     setError(false);
@@ -17,16 +24,35 @@ export default function Login() {
       setError(true);
       return;
     }
-    // console.log(loginData.email, loginData.password);
     login(loginData);
+  }
+
+  function openModal() {
+    console.log("Opening modal");
+    setModalIsOpen(true);
+  }
+
+  function closeModal() {
+    console.log("Closing modal");
+    setModalIsOpen(false);
+  }
+
+  function handleForgotPasswordChange(e) {
+    setForgotPasswordEmail(e.target.value);
+  }
+
+  function handleForgotPasswordSubmit() {
+    toast.success("Eine E-Mail zur Passwort-Zurücksetzung wurde gesendet. Bitte überprüfen Sie Ihr Postfach.");
+    closeModal();
   }
 
   return (
     <div className="min-h-screen text-lg">
+      <ToastContainer />
       {userInfo ? (
         <Navigate to="/" />
       ) : (
-        <div className=" max-w-[50rem] m-auto flex flex-col gap-6 items-center py-32 mt-16 bg-[#C1DCDC] rounded-[24px] ">
+        <div className="max-w-2xl mx-auto flex flex-col gap-6 items-center py-32 mt-16 bg-teal-200 rounded-2xl">
           <label className="input input-bordered flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="h-4 w-4 opacity-70">
               <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
@@ -43,29 +69,28 @@ export default function Login() {
                 clipRule="evenodd"
               />
             </svg>
-            <input name="password" onChange={handleChange} type="password" className="grow" value={loginData.password} />
+            <input name="password" onChange={handleChange} type="password" className="grow" value={loginData.password} placeholder="Passwort" />
           </label>
-          <button onClick={handleLogin} className="btn bg-[#FFD700] boarder-black border-black px-8 font-normal  ">
-
+          <button onClick={handleLogin} className="btn bg-yellow-400 border-black px-8 font-normal">
             Login
           </button>
 
           <a
-            href="#"
-            className="w-[170px] h-[26px] text-[16px] font-normal leading-[140%] underline text-[#1E1E1E]"
+            onClick={openModal}
+            className="w-40 h-6 text-base font-normal leading-6 underline text-black cursor-pointer"
           >
             Passwort vergessen?
           </a>
 
           <a
             href="signup"
-            className="w-[170px] h-[26px] text-[16px] font-normal leading-[140%] underline text-[#1E1E1E]"
+            className="w-40 h-6 text-base font-normal leading-6 underline text-black"
           >
             Noch keinen Account?
           </a>
 
           {error && (
-            <div role="alert" className="alert alert-warning">
+            <div role="alert" className="alert alert-warning flex items-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
@@ -77,6 +102,32 @@ export default function Login() {
               <span>All fields are required</span>
             </div>
           )}
+
+          <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            contentLabel="Passwort vergessen"
+            className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-lg"
+            overlayClassName="fixed inset-0 bg-black bg-opacity-75"
+            shouldCloseOnOverlayClick={true}
+            shouldCloseOnEsc={true}
+            ariaHideApp={false}
+          >
+            <h2 className="text-2xl mb-4">Passwort vergessen</h2>
+            <label className="input input-bordered flex items-center gap-2 mb-4">
+              <input
+                name="forgotPasswordEmail"
+                onChange={handleForgotPasswordChange}
+                type="email"
+                className="grow"
+                placeholder="Email"
+                value={forgotPasswordEmail}
+              />
+            </label>
+            <button onClick={handleForgotPasswordSubmit} className="btn bg-yellow-400 border-black px-8 font-normal">
+              Passwort zurück setzen
+            </button>
+          </Modal>
         </div>
       )}
     </div>
