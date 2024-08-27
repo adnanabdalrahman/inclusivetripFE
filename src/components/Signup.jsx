@@ -9,6 +9,7 @@ export default function SignupForm() {
 
   const [signupData, setSignupData] = useState({
     email: "",
+    username: "",
     password: "",
     firstName: "",
     lastName: ""
