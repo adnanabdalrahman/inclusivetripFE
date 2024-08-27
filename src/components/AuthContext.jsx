@@ -73,17 +73,17 @@ export const AuthProvider = ({ children }) => {
       });
   }
 
-  function uploadProfilePhoto(file) {
-    const formData = new FormData();
-    formData.append('profilePhoto', file);
+  // function uploadProfilePhoto(file) {
+  //   const formData = new FormData();
+  //   formData.append('profilePhoto', file);
 
-    return axios.post(uploadPhotoUrl, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-      withCredentials: true,
-    });
-  }
+  //   return axios.post(uploadPhotoUrl, formData, {
+  //     headers: {
+  //       'Content-Type': 'multipart/form-data',
+  //     },
+  //     withCredentials: true,
+  //   });
+  // }
 
   return (
     <AuthContext.Provider
@@ -93,7 +93,7 @@ export const AuthProvider = ({ children }) => {
         login,
         logout,
         signup,
-        uploadProfilePhoto,
+        // uploadProfilePhoto,
       }}>
       {children}
     </AuthContext.Provider>
