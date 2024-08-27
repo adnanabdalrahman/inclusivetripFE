@@ -80,11 +80,11 @@ export default function SignupForm() {
                     className="grow" placeholder="email" />
                 </label>
 
-                {/* <label className="input input-bordered flex items-center gap-2 w-full">
+                <label className="input input-bordered flex items-center gap-2 w-full">
                   User Name
                   <input onChange={handleChange} value={signupData.username} type="text"
                     name="username" className="grow" placeholder="username" />
-                </label> */}
+                </label>
 
                 <label className="input input-bordered flex items-center gap-2 w-full">
                   Passwort
