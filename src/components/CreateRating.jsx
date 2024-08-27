@@ -1,10 +1,93 @@
-import React, { useState } from 'react';
-
+import React, { useState, useContext, useEffect} from 'react';
+import { AuthContext } from "./AuthContext";
+import Cookies from 'js-cookie';
+import axios from 'axios';
 
 function CreateRating() {
 
+ const { userInfo, logout } = useContext(AuthContext);
+ const token = Cookies.get('token'); 
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+//  für Anzeige der 5 Barrieren
+  const [barriersData, setbarriersData] = useState([]);
+
+  // für setzen der Sterne je Barriere zu speichern
+// const [ratings, setRatings] = useState({});
+
+ const API_URL = import.meta.env.VITE_APP_INCLUSIVETRIPBE_URL;
+
+const barriersUrl = `${API_URL}/barriers`;
+
+  const reviewsUrl = `${API_URL}/reviews`;
+
+ const [ratingData, setRatingData] = useState({
+  gpsCode: "163975141",  
+  comment: "",
+  placeCategoriesId: 1,
+
+});
+
+useEffect(() => { 
+
+  axios.get(barriersUrl, {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        withCredentials: true,
+      })
+        .then((res) => {console.log(res.data);
+          setbarriersData(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+  }, []);
+
+const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleRatingChange = (category, value) => {
+    setRatingData({
+      ...ratingData,
+      [category]: value
+    });
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setRatingData({
+      ...ratingData,
+      [name]: value
+    });
+  };
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();     
+    
+      if (!ratingData.comment) {
+        alert("Das Erfahrungsbericht-Feld darf nicht leer sein.");
+        return;
+      }
+
+      axios
+      .post(reviewsUrl, ratingData, {
+          headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+                withCredentials: true,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+             
+      });
+      
+}
+
 
   const openModal = (e) => {
     e.preventDefault();
@@ -14,6 +97,21 @@ function CreateRating() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  const renderStars = (category) => {
+    const rating = ratingData[category];
+
+    return [1, 2, 3, 4, 5].map(star => (
+      <span
+        key={star}
+        className={`star ${rating >= star ? 'text-yellow-500' : 'text-gray-300'}`}
+        onClick={() => handleRatingChange(category, star)}
+      >
+        ★
+      </span>
+    ));
+  };
+
 
   return (
     <div>
@@ -31,91 +129,51 @@ function CreateRating() {
                 Bewertung abgeben
               </h1>
               <div className="mt-4 text-[#1E1E1E] font-poppins font-medium text-[32px] leading-[48px]">
-                Bewerte das Restaurant zur Mühle mit deinen Erfahrungen
+                Bewerte das Restaurant XXXX mit deinen Erfahrungen
               </div>
             </div>
           </div>
         </div>
       </div>
 
+      <form onSubmit={handleSubmit}>
+
       {/* Sternebewertung */}
-      <div className="flex flex-col items-center justify-center">
-        <div className="w-[454px]">
-          <div className="p-6">
-            <ul className="list-none space-y-4">
-              <li className="flex items-center space-x-4">
-                <div className="w-4 h-4 bg-[#FFD700] rounded-full"></div>
-                <span className="flex-1 text-lg">Rollstuhl geeignet</span>
-                <div className="star-rating">
-                  <span className="star">★</span>
-                  <span className="star">★</span>
-                  <span className="star">★</span>
-                  <span className="star">★</span>
-                  <span className="star">★</span>
-                </div>
-              </li>
-              <li className="flex items-center space-x-4">
-                <div className="w-4 h-4 bg-[#FFD700] rounded-full"></div>
-                <span className="flex-1 text-lg">Kinder geeignet</span>
-                <div className="star-rating">
-                  <span className="star">★</span>
-                  <span className="star">★</span>
-                  <span className="star">★</span>
-                  <span className="star">★</span>
-                  <span className="star">★</span>
-                </div>
-              </li>
-              <li className="flex items-center space-x-4">
-                <div className="w-4 h-4 bg-[#FFD700] rounded-full"></div>
-                <span className="flex-1 text-lg">für Blinde geeignet</span>
-                <div className="star-rating">
-                  <span className="star">★</span>
-                  <span className="star">★</span>
-                  <span className="star">★</span>
-                  <span className="star">★</span>
-                  <span className="star">★</span>
-                </div>
-              </li>
-              <li className="flex items-center space-x-4">
-                <div className="w-4 h-4 bg-[#FFD700] rounded-full"></div>
-                <span className="flex-1 text-lg">Taubstum geeignet</span>
-                <div className="star-rating">
-                  <span className="star">★</span>
-                  <span className="star">★</span>
-                  <span className="star">★</span>
-                  <span className="star">★</span>
-                  <span className="star">★</span>
-                </div>
-              </li>
-              <li className="flex items-center space-x-4">
-                <div className="w-4 h-4 bg-[#FFD700] rounded-full"></div>
-                <span className="flex-1 text-lg">Mehrsprachig ausgelegt</span>
-                <div className="star-rating">
-                  <span className="star">★</span>
-                  <span className="star">★</span>
-                  <span className="star">★</span>
-                  <span className="star">★</span>
-                  <span className="star">★</span>
-                </div>
-
-              </li>
-
-            </ul>
+        <div className="flex flex-col items-center justify-center">
+          <div className="w-[454px]">
+            <div className="p-6">
+              <ul className="list-none space-y-4">
+                {barriersData.map((barrier) => (
+                  <li className="flex items-center space-x-4">
+                    <div className="w-4 h-4 bg-[#FFD700] rounded-full"></div>
+                    <span className="flex-1 text-lg">{barrier.name}</span>
+                    <div className="star-rating">
+                      {renderStars()}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-        </div>
 
         {/* Textbox Erfahrungsberich */}
         <div className="flex flex-col items-start justify-start w-full ">
-          <label htmlFor="username" className="pb-4  font-normal text-[#1E1E1E]">
+          <label htmlFor="comment" className="pb-4  font-normal text-[#1E1E1E]">
             Berichte über deine Erfahrungen
           </label>
-          <textarea className="flex px-4 py-2 w-full min-w-[240px]  min-h-[160px] bg-white border border-[#D9D9D9] rounded-lg" placeholder="Erfahrungsbericht" />
+          <textarea 
+          className="flex px-4 py-2 w-full min-w-[240px]  min-h-[160px] bg-white border border-[#D9D9D9] rounded-lg" 
+          name="comment"
+          id="comment"
+          value={ratingData.comment}
+          onChange={handleInputChange}
+          placeholder="Erfahrungsbericht" />
         </div>
 
 
         <div className="flex flex-col items-start justify-start">
           <button className="mt-8 flex justify-center items-center px-4 py-3 w-[487px] h-[40px] bg-[#FFD700] border border-[#2C2C2C] rounded-lg"
-            onClick={() => handleRateClick(place)}>Fotos hochladen</button>
+            type="submit">Fotos hochladen</button>
 
           {/* Button senden */}
           <div className="mt-8 flex justify-center items-center px-4 py-3 w-[487px] h-[40px] bg-[#FFD700] border border-[#2C2C2C] rounded-lg">
@@ -181,7 +239,9 @@ function CreateRating() {
             )}
           </div>
         </div>
+       
       </div>
+      </form>
     </div>
   );
 }
