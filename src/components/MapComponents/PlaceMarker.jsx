@@ -5,12 +5,22 @@ import { useNavigate } from "react-router-dom";
 
 const PlaceMarker = function ({ place, placeIcon }) {
     const navigate = useNavigate();
+
+
     const handleMarkerClick = (position) => {
 
     };
-    const handleRateClick = (place) => {
+
+
+
+    const handleCreateRate = (place) => {
+        navigate(`/create`, { state: { place: place } });
+    };
+
+    const handleRatinsClick = (place) => {
         navigate(`/ratings`, { state: { place: place } });
     };
+
 
     return (
         <Marker
@@ -21,9 +31,15 @@ const PlaceMarker = function ({ place, placeIcon }) {
                 click: () => handleMarkerClick([place.lat, place.lon]),
             }}
         >
-            <Popup>Bewertungs : .... {place.name}  - {[place.lat, place.lon]}
-                <button className="btn btn-warning p-2 h-8 min-h-2 m-2"
-                    onClick={() => handleRateClick(place)}>Bewerten</button>
+            <Popup>
+                <h1>{place.name}</h1>
+                <div>
+                    <button className="btn btn-warning p-2 h-8 min-h-2 m-2"
+                        onClick={() => handleRatinsClick(place)}>Bewertungen</button>
+                    <button className="btn btn-warning p-2 h-8 min-h-2 m-2"
+                        onClick={() => handleCreateRate(place)}>Bewertung abgeben</button>
+                </div>
+
             </Popup>
         </Marker>
     );
