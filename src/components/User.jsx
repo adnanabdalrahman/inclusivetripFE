@@ -131,14 +131,134 @@ function User() {
                     value={userData.email}
                     readOnly
                   />
+
                 </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  );
+
+                </div>
+
+<div className="flex-1 p-0 ml-16  mt-0">
+  <div className="mt-6 flex flex-col items-start gap-2 w-[487px] h-[50px]">
+    <label htmlFor="username" className="w-full h-[22px] text-[20px] font-bold leading-[140%] text-[#1E1E1E]">
+      Kategorien
+    </label>
+  </div>
+
+  <div className="form-control">
+    <label className="label cursor-pointer">
+      <input type="checkbox" defaultChecked className="checkbox" />
+      <span className="text-[16px] font-normal leading-[140%] text-[#1E1E1E]">Rollstuhlfahrer</span>
+    </label>
+  </div>
+
+  <div className="form-control">
+    <label className="label cursor-pointer ">
+      <input type="checkbox" defaultChecked className="checkbox  " />
+      <span className="text-[16px] m  font-normal leading-[140%] text-[#1E1E1E]">Kinderfreundlich</span>
+    </label>
+  </div>
+
+  <div className="form-control">
+    <label className="label cursor-pointer ">
+      <input type="checkbox" defaultChecked className="checkbox  " />
+      <span className="text-[16px] font-normal leading-[140%] text-[#1E1E1E]">Blind</span>
+    </label>
+  </div>
+
+  <div className="form-control">
+    <label className="label cursor-pointer ">
+      <input type="checkbox" defaultChecked className="checkbox  " />
+      <span className="text-[16px] font-normal leading-[140%] text-[#1E1E1E]">Taubstum</span>
+    </label>
+  </div>
+
+  <div className="form-control">
+    <label className="label cursor-pointer ">
+      <input type="checkbox" defaultChecked className="checkbox  " />
+      <span className="text-[16px] font-normal leading-[140%] text-[#1E1E1E]">Mehrsprachig</span>
+    </label>
+  </div>
+</div>
+</div>
+<div className="ml-4 mt-32 flex justify-center items-center px-4 py-3 w-[487px] h-[40px] bg-[#FFD700] border border-[#2C2C2C] rounded-lg">
+<button type="submit">bearbeiten</button>
+</div>
+
+
+
+</form>
+
+
+
+</div>
+
+<div>
+<h1 className="font-poppins font-bold text-[18px] text-center pt-12 mt-12 text-[#000000]">Deine Bewertungen</h1>
+
+{/* erster Blockeintrag*/}
+
+<div className="container mx-auto w-full bg-[#C1DCDC] rounded-[24px] mt-8">
+<div className="w-full text-left p-8">
+<div className="flex items-center justify-between">
+  <h1 className=" font-poppins font-bold text-[18px] text-[#000000]"> Deine Bewertung vom 08.08.2024</h1>
+
+  <div className="space-x-1 rating">
+    <input type="radio" name="rating-1" className="mask mask-star bg-[#FFD700]" />
+    <input type="radio" name="rating-1" className="mask mask-star bg-[#FFD700]" defaultChecked />
+    <input type="radio" name="rating-1" className="mask mask-star bg-[#FFD700]" />
+    <input type="radio" name="rating-1" className="mask mask-star bg-[#FFD700]" />
+    <input type="radio" name="rating-1" className="mask mask-star bg-[#FFD700]" />
+  </div>
+</div>
+<p className="mt-4 font-poppins font-medium text-[rgba(30,30,30,0.5)] text-left">
+  Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+</p>
+
+{/* Button ädern und löschen */}
+
+<button className="btn bg-[#FFD700]  border-black  w-36 p-2 h-12 min-h-2 m-2 justify-center float-right"
+  onClick={() => handleRateClick(place)}>ändern</button>
+
+<button className="btn bg-[#FFD700] border-black w-36 p-2 h-12 min-h-2 m-2 justify-center float-right"
+  onClick={() => handleRateClick(place)}>löschen</button>
+
+</div>
+</div>
+{/* zweiter Blockeintrag*/}
+
+<div className=" container mx-auto w-full  bg-[#C1DCDC] rounded-[24px] mt-16 mb-16">
+<div className="w-full text-left p-8">
+<div className="flex items-center justify-between">
+  <h1 className=" font-poppins font-bold text-[18px] text-[#000000]"> Deine Bewertung vom 08.06.2024</h1>
+
+  <div className="space-x-1 rating">
+    <input type="radio" name="rating-1" className="mask mask-star bg-[#FFD700]" />
+    <input type="radio" name="rating-1" className="mask mask-star bg-[#FFD700]" defaultChecked />
+    <input type="radio" name="rating-1" className="mask mask-star bg-[#FFD700]" />
+    <input type="radio" name="rating-1" className="mask mask-star bg-[#FFD700]" />
+    <input type="radio" name="rating-1" className="mask mask-star bg-[#FFD700]" />
+  </div>
+</div>
+<p className="mt-4 font-poppins font-medium text-[rgba(30,30,30,0.5)] text-left">
+  Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+</p>
+
+{/* Button ädern und löschen */}
+
+<button className="btn bg-[#FFD700]  border-black  w-36 p-2 h-12 min-h-2 m-2 justify-center float-right"
+  onClick={() => handleRateClick(place)}>ändern</button>
+
+<button className="btn bg-[#FFD700] border-black w-36 p-2 h-12 min-h-2 m-2 justify-center float-right"
+  onClick={() => handleRateClick(place)}>löschen</button>
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+);
 }
 
 export default User;
