@@ -48,7 +48,6 @@ function User() {
     fetchUserData();
   }, []);
 
-  // Funktion zum Hochladen des Profilfotos
   const onDrop = async (acceptedFiles) => {
     const token = Cookies.get("token");
     if (!token) {
@@ -57,16 +56,20 @@ function User() {
     }
 
     const formData = new FormData();
-    formData.append("profilePhoto", acceptedFiles[0]);
+    formData.append("file", acceptedFiles[0]);
 
     try {
-      const response = await axios.post(`${API_URL}/profilePhotos`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
-        },
-        withCredentials: true,
-      });
+      const response = await axios.post(
+        `${API_URL}/profilePhotos/${userData.id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        }
+      );
       setProfilePhoto(response.data.profilePhoto);
       console.log("Profilfoto erfolgreich hochgeladen:", response.data);
     } catch (error) {
@@ -99,7 +102,7 @@ function User() {
                   {...getRootProps()}
                   className="flex items-center justify-center w-1/3 md:w-1/4 border-dashed border-2 border-gray-400 rounded-[24px] cursor-pointer"
                 >
-                  <input {...getInputProps()} />
+                  <input {...getInputProps()} name="file" />
                   <p>Profilfoto hochladen</p>
                 </div>
               )}
