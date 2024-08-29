@@ -1,11 +1,13 @@
-import React, { useState, useContext, useEffect  } from "react";
-import { useNavigate } from "react-router-dom";
+
+import React, { useState, useContext, useEffect } from "react";
+
 import { AuthContext } from "./AuthContext";
 import Cookies from "js-cookie";
 import axios from "axios";
 import User from "./User.jsx";
 function CreateRating() {
   const { userInfo, logout } = useContext(AuthContext);
+
   const token = Cookies.get("token");
   const barriers = [1, 2, 3, 4, 5];
 
@@ -58,6 +60,7 @@ function CreateRating() {
   };
   const API_URL = import.meta.env.VITE_APP_INCLUSIVETRIPBE_URL;
   const barriersReviewsUrl = `${API_URL}/barriersReviews`;
+
   const reviewsUrl = `${API_URL}/reviews`;
   const filesUrl = `${API_URL}/file-upload`;
   const [ratingData, setRatingData] = useState({
@@ -65,6 +68,7 @@ function CreateRating() {
     comment: "",
     placeCategoriesId: 1,
   });
+
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -84,10 +88,12 @@ function CreateRating() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+
     if (!ratingData.comment) {
       alert("Das Erfahrungsbericht-Feld darf nicht leer sein.");
       return;
     }
+
     let reviewid = 0;
     await axios
       .post(reviewsUrl, ratingData, {
@@ -127,7 +133,7 @@ function CreateRating() {
 
     const formData = new FormData();
 
-    // Append files to FormData
+    
     if (files.length > 5) {
       setMessage("Maximal 5 Dateien können hochgeladen werden");
       return;
@@ -150,6 +156,7 @@ function CreateRating() {
       }
     }
   };
+
   const openModal = (e) => {
     e.preventDefault();
     setIsModalOpen(true);
@@ -158,6 +165,7 @@ function CreateRating() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
   return (
     <div>
           <div className="flex flex-col md:flex-row items-top p-4">
@@ -415,11 +423,13 @@ function CreateRating() {
                         onChange={handleSpracheChange}
                         className="mask mask-star"
                       />
+
                     </div>
                   </li>
                 </ul>
               </div>
             </div>
+
             <div className="flex flex-col items-start justify-start w-full ">
               <label
                 htmlFor="comment"
@@ -435,6 +445,7 @@ function CreateRating() {
                 onChange={handleInputChange}
                 placeholder="Erfahrungsbericht"
               />
+
             </div>
             <div className="flex flex-col items-center">
               <h3 className="text-3xl font-extrabold m-5">
@@ -474,6 +485,7 @@ function CreateRating() {
                     >
                       &times;
                     </button>
+
 
                     <h2 className="text-xl font-bold mb-4">
                       Anregungen zum Schreiben
@@ -534,6 +546,7 @@ function CreateRating() {
                       <br />
                       Diese und weitere Aspekte können dir helfen, eine
                       detaillierte und hilfreiche Bewertung zu verfassen.
+
                     </p>
                     <button
                       className="px-4 py-2 bg-[#FFD700] border border-[#2C2C2C] rounded-lg"
@@ -545,8 +558,10 @@ function CreateRating() {
                 </div>
               )}
             </div>
+
           </form>
     </div>
   );
 }
+
 export default CreateRating;
