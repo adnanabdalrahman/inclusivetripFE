@@ -79,6 +79,46 @@ function User() {
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const token = Cookies.get("token");
+    if (!token) {
+      console.error("No token found");
+      return;
+    }
+
+    try {
+      const response = await axios.put(
+        `${API_URL}/users/${userData.id}`,
+        {
+          firstName: userData.firstName,
+          lastName: userData.lastName,
+          email: userData.email,
+          password: userData.password,
+          roleId: userData.roleId,
+          profilePhoto: userData.profilePhoto,
+          blocked: userData.blocked,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        }
+      );
+      setUserData(response.data);
+      console.log("User data updated successfully:", response.data);
+      toast.success("Benutzerdaten erfolgreich aktualisiert.");
+    } catch (error) {
+      console.error("Error updating user data:", error);
+    }
+  };
+
   return (
     <div>
       <ToastContainer />
@@ -127,7 +167,7 @@ function User() {
         </div>
 
         <div className="flex flex-col items-start p-16 gap-12 rounded-t-lg">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="flex flex-row gap-4">
               <div className="flex-1 p-4">
                 <div className="flex flex-col items-start gap-2 w-[487px] h-[50px]">
@@ -141,7 +181,7 @@ function User() {
 
                 <div className="flex flex-col items-start gap-2 w-[487px] h-[70px]">
                   <label
-                    htmlFor="firstname"
+                    htmlFor="firstName"
                     className="w-full h-[22px] text-[16px] font-normal leading-[140%] text-[#1E1E1E]"
                   >
                     Vorname
@@ -149,14 +189,15 @@ function User() {
                   <input
                     className="flex items-center px-4 py-3 w-[487px] min-w-[240px] h-[40px] bg-white border border-[#D9D9D9] rounded-lg"
                     type="text"
+                    name="firstName"
                     value={userData.firstName}
-                    readOnly
+                    onChange={handleChange}
                   />
                 </div>
 
                 <div className="flex flex-col items-start gap-2 w-[487px] h-[70px]">
                   <label
-                    htmlFor="lastname"
+                    htmlFor="lastName"
                     className="mt-6 w-full h-[22px] text-[16px] font-normal leading-[140%] text-[#1E1E1E]"
                   >
                     Nachname
@@ -164,8 +205,9 @@ function User() {
                   <input
                     className="flex items-center px-4 py-3 w-[487px] min-w-[240px] h-[40px] bg-white border border-[#D9D9D9] rounded-lg"
                     type="text"
+                    name="lastName"
                     value={userData.lastName}
-                    readOnly
+                    onChange={handleChange}
                   />
                 </div>
 
@@ -179,85 +221,10 @@ function User() {
                   <input
                     className="flex items-center px-4 py-3 w-[487px] min-w-[240px] h-[40px] bg-white border border-[#D9D9D9] rounded-lg"
                     type="email"
+                    name="email"
                     value={userData.email}
-                    readOnly
+                    onChange={handleChange}
                   />
-                </div>
-              </div>
-
-              <div className="flex-1 p-0 ml-16  mt-0">
-                <div className="mt-6 flex flex-col items-start gap-2 w-[487px] h-[50px]">
-                  <label
-                    htmlFor="username"
-                    className="w-full h-[22px] text-[20px] font-bold leading-[140%] text-[#1E1E1E]"
-                  >
-                    Kategorien
-                  </label>
-                </div>
-
-                <div className="form-control">
-                  <label className="label cursor-pointer">
-                    <input
-                      type="checkbox"
-                      defaultChecked
-                      className="checkbox"
-                    />
-                    <span className="text-[16px] font-normal leading-[140%] text-[#1E1E1E]">
-                      Rollstuhlfahrer
-                    </span>
-                  </label>
-                </div>
-
-                <div className="form-control">
-                  <label className="label cursor-pointer ">
-                    <input
-                      type="checkbox"
-                      defaultChecked
-                      className="checkbox  "
-                    />
-                    <span className="text-[16px] m  font-normal leading-[140%] text-[#1E1E1E]">
-                      Kinderfreundlich
-                    </span>
-                  </label>
-                </div>
-
-                <div className="form-control">
-                  <label className="label cursor-pointer ">
-                    <input
-                      type="checkbox"
-                      defaultChecked
-                      className="checkbox  "
-                    />
-                    <span className="text-[16px] font-normal leading-[140%] text-[#1E1E1E]">
-                      Blind
-                    </span>
-                  </label>
-                </div>
-
-                <div className="form-control">
-                  <label className="label cursor-pointer ">
-                    <input
-                      type="checkbox"
-                      defaultChecked
-                      className="checkbox  "
-                    />
-                    <span className="text-[16px] font-normal leading-[140%] text-[#1E1E1E]">
-                      Taubstum
-                    </span>
-                  </label>
-                </div>
-
-                <div className="form-control">
-                  <label className="label cursor-pointer ">
-                    <input
-                      type="checkbox"
-                      defaultChecked
-                      className="checkbox  "
-                    />
-                    <span className="text-[16px] font-normal leading-[140%] text-[#1E1E1E]">
-                      Mehrsprachig
-                    </span>
-                  </label>
                 </div>
               </div>
             </div>
