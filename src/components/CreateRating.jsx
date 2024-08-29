@@ -1,4 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect  } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
 import Cookies from "js-cookie";
 import axios from "axios";
@@ -6,7 +7,6 @@ import User from "./User.jsx";
 function CreateRating() {
   const { userInfo, logout } = useContext(AuthContext);
   const token = Cookies.get("token");
-
   const barriers = [1, 2, 3, 4, 5];
 
   const [barriersReviews, setBarriersReviews] = useState([2, 2, 2, 2, 2]);
@@ -77,7 +77,7 @@ function CreateRating() {
   };
   const [files, setFiles] = useState([]);
   const [message, setMessage] = useState("");
-  const [openUser, setOpenUser] = useState(false);
+  
   const onFileChange = (e) => {
     setFiles(e.target.files);
   };
@@ -142,7 +142,6 @@ function CreateRating() {
           "Content-Type": "multipart/form-data",
         },
       });
-      setOpenUser(true);
     } catch (err) {
       if (err.response.status === 500) {
         setMessage("Ein Fehler ist aufgetreten,bitte versuchen Sie es erneut");
@@ -161,10 +160,6 @@ function CreateRating() {
   };
   return (
     <div>
-      {openUser ? (
-        <User />
-      ) : (
-        <div>
           <div className="flex flex-col md:flex-row items-top p-4">
             <div className="flex flex-col md:flex-row"></div>
             <div className="container mx-auto w-full  bg-[#C1DCDC] rounded-[24px] relative">
@@ -551,8 +546,6 @@ function CreateRating() {
               )}
             </div>
           </form>
-        </div>
-      )}
     </div>
   );
 }
