@@ -1,10 +1,9 @@
 
 import React, { useState, useContext, useEffect } from "react";
-
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthContext";
 import Cookies from "js-cookie";
 import axios from "axios";
-import User from "./User.jsx";
 function CreateRating() {
   const { userInfo, logout } = useContext(AuthContext);
 
@@ -12,7 +11,7 @@ function CreateRating() {
   const barriers = [1, 2, 3, 4, 5];
 
   const [barriersReviews, setBarriersReviews] = useState([2, 2, 2, 2, 2]);
-
+  const navigate = useNavigate();
   const handleRollstuhlChange = (e) => {
     setBarriersReviews([
       Number(e.target.value),
@@ -148,12 +147,10 @@ function CreateRating() {
           "Content-Type": "multipart/form-data",
         },
       });
+      navigate("/user");
     } catch (err) {
-      if (err.response.status === 500) {
-        setMessage("Ein Fehler ist aufgetreten,bitte versuchen Sie es erneut");
-      } else {
-        setMessage(err.response.data.msg);
-      }
+      setMessage("Fehler beim Hochladen der Dateien , bitte versuchen Sie es erneut");
+      console.log(err);
     }
   };
 
