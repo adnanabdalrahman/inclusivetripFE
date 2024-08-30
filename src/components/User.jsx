@@ -30,28 +30,11 @@ function User() {
                 <h1 className="font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black">
                   Profil {userData.firstName} {userData.lastName}
                 </h1>
-                {profilePhoto ? (
-                  <div className="relative flex items-center justify-end w-1/3 md:w-1/4">
-                    <img
-                      src={profilePhoto}
-                      alt="Profilfoto"
-                      className="w-[223px] h-[285px] object-cover rounded-[24px]"
-                    />
-                    <button
-                      onClick={() => {
-                        setProfilePhoto("");
-                      }}
-                      className="absolute bottom-2 left-1/2 transform -translate-x-1/2 bg-yellow-400 border-black px-4 py-2 font-normal rounded"
-                    >
-                      löschen
-                    </button>
-                  </div>
-                ) : (
-                  <ProfilePhotoUpload
-                    userData={userData}
-                    setProfilePhoto={setProfilePhoto}
-                  />
-                )}
+                <ProfilePhotoUpload
+                  userData={userData}
+                  profilePhoto={profilePhoto}
+                  setProfilePhoto={setProfilePhoto}
+                />
               </div>
 
               <div className="flex flex-col md:flex-row items-center justify-start ml-8 mt-[-24px]">
