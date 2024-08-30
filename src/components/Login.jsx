@@ -49,12 +49,28 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen text-lg">
+    <div className=" text-lg">
       <ToastContainer />
       {userInfo ? (
         <Navigate to="/" />
       ) : (
-        <div className="max-w-2xl mx-auto flex flex-col gap-6 items-center py-32 mt-16 bg-teal-200 rounded-2xl">
+     
+         <div className="flex flex-col items-top p-4">
+       
+            <div className="container mx-auto w-full  bg-[#C1DCDC] rounded-[24px] relative">
+              <div className="flex flex-col w-full p-8">
+                <div className="flex flex-col w-full md:w-2/3 text-left">
+                  <h1 className="font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black">
+                    Login
+                  </h1>
+                  <div className="mt-4 text-[#1E1E1E] font-poppins font-medium text-[32px] leading-[48px]">
+                    Logge dich ein, um Bewertungen abgeben zu können und dein Profil zu verwalten.
+                  </div>
+                </div>
+                </div>
+                 </div>
+                
+        <div className="max-w-2xl mx-auto flex flex-col gap-6 items-center py-16 rounded-2xl">
           <label className="input input-bordered flex items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -99,7 +115,7 @@ export default function Login() {
           </label>
           <button
             onClick={handleLogin}
-            className="btn bg-yellow-400 border-black px-8 font-normal"
+            className="btn bg-yellow-400 border-black px-24 font-normal"
           >
             Login
           </button>
@@ -136,7 +152,7 @@ export default function Login() {
                   d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
                 />
               </svg>
-              <span>All fields are required</span>
+              <span>Alle Felder erforderlich</span>
             </div>
           )}
 
@@ -169,6 +185,8 @@ export default function Login() {
             </button>
           </Modal>
         </div>
+        </div>
+       
       )}
     </div>
   );

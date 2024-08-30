@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4">
         <aside className="flex items-center space-x-4">
           <img className="w-[206px] h-[44px]" src="../images/logo.png" alt="Logo" />
-          <p>Copyright © {new Date().getFullYear()} - All rights reserved</p>
+          <p>Urheberrecht © {new Date().getFullYear()} - Alle Rechte vorbehalten</p>
         </aside>
         <nav className="flex flex-wrap space-x-4 mt-4 md:mt-0">
           <Link to="/impressum" className="text-black hover:underline">Impressum</Link>

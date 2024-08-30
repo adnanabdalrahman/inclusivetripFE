@@ -18,7 +18,7 @@ export default function Header() {
                 </div>
                 {userInfo && (
                     <div>
-                        <p className="text-2xl">Welcome, {userInfo.firstName}</p>
+                        <p className="text-2xl">Willkommen, {userInfo.firstName}</p>
                     </div>
                 )}
                 <Navbar />
