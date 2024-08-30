@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useDropzone } from "react-dropzone";
 
 const API_URL = import.meta.env.VITE_APP_INCLUSIVETRIPBE_URL;
 
-export function ProfilePhotoUpload({ userData, setProfilePhoto }) {
+export function ProfilePhotoUpload({
+  userData,
+  profilePhoto,
+  setProfilePhoto,
+}) {
+  const [isDeleting, setIsDeleting] = useState(false);
+
   const onDrop = async (acceptedFiles) => {
     const token = Cookies.get("token");
     if (!token) {
@@ -42,40 +48,59 @@ export function ProfilePhotoUpload({ userData, setProfilePhoto }) {
       return;
     }
 
+    setIsDeleting(true); // Setze den Zustand auf "wird gelöscht"
+
     try {
-      const response = await axios.delete(
-        `${API_URL}/profilePhotos/${userData.id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          withCredentials: true,
-        }
-      );
+      await axios.delete(`${API_URL}/profilePhotos/${userData.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      });
       setProfilePhoto("");
-      console.log("Profilfoto erfolgreich gelöscht:", response.data);
+      console.log("Profilfoto erfolgreich gelöscht");
     } catch (error) {
       console.error("Fehler beim Löschen des Profilfotos:", error);
+    } finally {
+      setIsDeleting(false);
     }
   };
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   return (
-    <div>
-      <div
-        {...getRootProps()}
-        className="flex items-center justify-center w-1/3 md:w-1/4 border-dashed border-2 border-gray-400 rounded-[24px] cursor-pointer"
-      >
-        <input {...getInputProps()} name="file" />
-        <p>Profilfoto hochladen</p>
-      </div>
-      <button
-        onClick={deleteProfilePhoto}
-        className="btn bg-red-500 text-white mt-4"
-      >
-        Profilfoto löschen
-      </button>
+    <div className="relative w-1/3 md:w-1/4">
+      {profilePhoto ? (
+        <div className="relative">
+          <img
+            src={profilePhoto}
+            alt="Profilfoto"
+            className="w-full h-auto rounded-[24px]"
+          />
+          <button
+            onClick={deleteProfilePhoto}
+            className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-2 btn bg-red-500 text-white ${isDeleting ? "opacity-50 cursor-not-allowed" : ""}`}
+            disabled={isDeleting}
+          >
+            {isDeleting ? "Löschen..." : "Profilfoto löschen"}
+          </button>
+        </div>
+      ) : (
+        <div
+          {...getRootProps()}
+          className="flex flex-col items-center justify-center border-dashed border-2 border-gray-400 rounded-[24px] p-4 cursor-pointer"
+        >
+          <input {...getInputProps()} name="file" />
+          <p>Profilfoto hochladen</p>
+          <button
+            onClick={deleteProfilePhoto}
+            className={`mt-4 btn bg-red-500 text-white ${isDeleting ? "opacity-50 cursor-not-allowed" : ""}`}
+            disabled={isDeleting}
+          >
+            {isDeleting ? "Löschen..." : "Profilfoto löschen"}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
