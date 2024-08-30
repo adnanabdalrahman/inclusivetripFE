@@ -5,7 +5,38 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 const Home = () => {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
-
+  const API_URL = import.meta.env.VITE_APP_INCLUSIVETRIPBE_URL;
+  const reviewsCountUrl = `${API_URL}/reviews/count`;
+  const usersCountUrl = `${API_URL}/users/count`;
+  const [reviewsData, setReviewsData] = useState(0);
+  const [usersData, setUsersData] = useState(0);
+  useEffect(() => async () => {
+    try {
+      const response = await fetch(reviewsCountUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      setReviewsData(data);
+    } catch (error) {
+      console.error(`Error: ${error}`);
+    }}, []);
+      
+  useEffect(() => async () => {
+    try {
+      const response = await fetch(usersCountUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+       setUsersData(data);
+    } catch (error) {
+      console.error(`Error: ${error}`);
+    }}, []);
   // useEffect(() => {
   //   fetchAllPosts();
   // }, []);
@@ -52,7 +83,7 @@ const Home = () => {
           {/* Erste Box */}
           <div className="flex flex-col items-center text-center p-4 w-[85px] h-[75px] font-poppins font-medium text-[32px] leading-[48px] text-[#1E1E1E]">
             <div className="text-[32px] leading-[48px]">
-              500+
+              {reviewsData}+
             </div>
             <div className="text-[18px] leading-[27px] mt-2 ml-8">
               Bewertungen
@@ -65,7 +96,7 @@ const Home = () => {
           {/* Zweite Box */}
           <div className="flex flex-col items-center text-center p-4 w-[80px] h-[75px] font-poppins font-medium text-[32px] leading-[48px] text-[#1E1E1E]">
             <div className="text-[32px] leading-[48px]">
-              100+
+              {usersData}+
             </div>
             <div className="text-[18px] leading-[27px] mt-2">
               Benutzer
