@@ -1,6 +1,6 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "./AuthContext";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import Modal from "react-modal";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,6 +13,13 @@ export default function Login() {
   const [error, setError] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [forgotPasswordEmail, setForgotPasswordEmail] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/map");
+    }
+  }, [userInfo, navigate]);
 
   function handleChange(e) {
     setError(false);
@@ -24,7 +31,14 @@ export default function Login() {
       setError(true);
       return;
     }
-    login(loginData);
+    login(loginData)
+      .then(() => {
+        navigate("/map");
+      })
+      .catch((error) => {
+        setError(true);
+        console.error("Login failed:", error);
+      });
   }
 
   function openModal() {
@@ -52,9 +66,12 @@ export default function Login() {
     <div className="min-h-screen text-lg">
       <ToastContainer />
       {userInfo ? (
-        <Navigate to="/" />
+        <Navigate to="/map" />
       ) : (
-        <div className="max-w-2xl mx-auto flex flex-col gap-6 items-center py-32 mt-16 bg-teal-200 rounded-2xl">
+        <div className="max-w-2xl mx-auto flex flex-col gap-6 items-center pt-16 pb-12 mt-16 bg-[#C1DCDC] rounded-2xl">
+          <h1 className="mb-4 font-bold">
+            Hier können Sie sich Einloggen um Bewertungen zu erstellen
+          </h1>
           <label className="input input-bordered flex items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
