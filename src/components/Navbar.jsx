@@ -12,12 +12,13 @@ export default function Navbar() {
   return (
     <nav className="flex space-x-4 items-center">
       <div className="flex space-x-8 ml-8">
-        <NavLink to="/" className="text-black">
-          Home
-        </NavLink>
-        <NavLink to="/map" className="text-black">
-          Karte
-        </NavLink>
+
+        <NavLink to="/" className="text-black">InclusiveTRIP</NavLink>
+        <NavLink to="/map" className="text-black">Karte</NavLink>
+        <NavLink to="/create" className="text-black">Anlegen</NavLink>
+        <NavLink to="/user" className="text-black">User</NavLink>
+        <NavLink to="/ratings" className="text-black">Bewertungen</NavLink>
+       
         {userInfo && (
           <>
             <NavLink to="/create" className="text-black">
@@ -53,9 +54,10 @@ export default function Navbar() {
                 isActive
                   ? "text-slate-200 text-2xl hover:underline hover:underline-offset-4"
                   : " text-2xl hover:underline hover:underline-offset-4"
-              }
-            >
-              <Bars3Icon className="w-6 h-6" />
+
+              }>
+              {/* <Bars3Icon className="w-6 h-6" /> */}
+
             </NavLink>
           </>
         )}
