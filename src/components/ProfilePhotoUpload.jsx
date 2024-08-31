@@ -48,7 +48,7 @@ export function ProfilePhotoUpload({
       return;
     }
 
-    setIsDeleting(true); // Setze den Zustand auf "wird gelöscht"
+    setIsDeleting(true);
 
     try {
       await axios.delete(`${API_URL}/profilePhotos/${userData.id}`, {
@@ -92,13 +92,6 @@ export function ProfilePhotoUpload({
         >
           <input {...getInputProps()} name="file" />
           <p>Profilfoto hochladen</p>
-          <button
-            onClick={deleteProfilePhoto}
-            className={`mt-4 btn bg-red-500 text-white ${isDeleting ? "opacity-50 cursor-not-allowed" : ""}`}
-            disabled={isDeleting}
-          >
-            {isDeleting ? "Löschen..." : "Profilfoto löschen"}
-          </button>
         </div>
       )}
     </div>
