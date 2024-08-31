@@ -1,35 +1,53 @@
 import React, { useEffect, useState } from "react";
 
 import { useMap } from "react-leaflet";
-import { hospitalIcon } from "./icons/hospialIcon";
-import { restaurantIcon } from "./icons/resturantIcon";
-import { schoolIcon } from "./icons/schoolIcon";
 import PlaceMarker from "./PlaceMarker";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ReactDOMServer from 'react-dom/server';
 
 
-const PlacesLayer = () => {
-    const [hospitals, setHospitals] = useState([]);
-    const [schools, setSchools] = useState([]);
-    const [clinics, setClinics] = useState([]);
-    const [restaurants, setRestaurants] = useState([]);
+import * as icons from '@fortawesome/free-solid-svg-icons';
+
+const iconMap = Object.fromEntries(
+    Object.entries(icons).map(([key, icon]) => [key.toLowerCase(), icon])
+);
+
+const createIcon = (selectedCategory) => {
+    const icon = iconMap[selectedCategory.icon.toLowerCase()] || icons.faCoffee;
+    return new L.DivIcon({
+        className: 'leaflet-div-icon',
+        html: ReactDOMServer.renderToString(
+            <div style={{ fontSize: '26px', color: selectedCategory.iconColor }}>
+                <FontAwesomeIcon icon={icon} />
+            </div>
+        ),
+    });
+};
+
+
+const PlacesLayer = ({ selectedCategory }) => {
+
+    const [places, setPlaces] = useState([]);
+    const [icon, setIcon] = useState([]);
+
     const map = useMap();
 
     useEffect(() => {
+        if (!selectedCategory) {
+            return;
+        }
+        const PlaceIcon = createIcon(selectedCategory);
+        setIcon(PlaceIcon);
+
         const fetchAndSetPlaces = async () => {
             const bounds = map.getBounds();
             const bbox = `${bounds.getSouth()},${bounds.getWest()},${bounds.getNorth()},${bounds.getEast()}`;
 
-            const [clinicData, hospitalData, schoolData, restaurantData] = await Promise.all([
-                fetchPlaces(bbox, 'clinic'),
-                fetchPlaces(bbox, 'hospital'),
-                fetchPlaces(bbox, 'school'),
-                fetchPlaces(bbox, 'restaurant'),
+            const [placeData] = await Promise.all([
+                fetchPlaces(bbox, selectedCategory.searchName),
             ]);
 
-            setClinics(clinicData);
-            setHospitals(hospitalData);
-            setSchools(schoolData);
-            setRestaurants(restaurantData);
+            setPlaces(placeData);
         };
 
         fetchAndSetPlaces();
@@ -39,27 +57,17 @@ const PlacesLayer = () => {
         return () => {
             map.off('moveend', fetchAndSetPlaces);
         };
-    }, [map]);
+
+    }, [selectedCategory, map]);
 
     return (
         <>
-            {clinics.map((clinic) => (
-                <PlaceMarker key={clinic.id} place={clinic} placeIcon={hospitalIcon} />
+            {places.map((place) => (
+                <PlaceMarker key={place.id} place={place} placeIcon={icon} />
             ))}
-            {hospitals.map((hospital) => (
-                <PlaceMarker key={hospital.id} place={hospital} placeIcon={hospitalIcon} />
-            ))}
-            {schools.map((school) => (
-                <PlaceMarker key={school.id} place={school} placeIcon={schoolIcon} />
-            ))}
-            {restaurants.map((restaurant) => (
-                <PlaceMarker key={restaurant.id} place={restaurant} placeIcon={restaurantIcon} />
-            ))}
-
         </>
     );
 };
-
 
 const fetchPlaces = async (bbox, amenity) => {
     const overpassUrl = "https://overpass-api.de/api/interpreter";

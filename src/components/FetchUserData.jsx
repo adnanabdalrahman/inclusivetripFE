@@ -23,8 +23,6 @@ export function FetchUserData({ setUserData, setProfilePhoto }) {
           },
           withCredentials: true,
         });
-
-        console.log("User data fetched:", response.data);
         setUserData(response.data);
         setProfilePhoto(response.data.profilePhoto);
       } catch (error) {

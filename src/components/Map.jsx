@@ -1,6 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
-
+import { useState } from "react";
 
 import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from "react-leaflet";
 import { GeoSearchControl, OpenStreetMapProvider } from "leaflet-geosearch";
@@ -12,10 +11,9 @@ import CitySelector from "./MapComponents/CitySelector";
 import PlacesLayer from "./MapComponents/PlacesLayer";
 import LocationMarker from "./MapComponents/LocationMarker";
 import NavigateMap from "./MapComponents/NavigateMap";
+import CategorySelector from "./MapComponents/CategorySelector";
 
 
-
-// Fix for default marker icon not showing up in React-Leaflet
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'marker-icon-2x.png',
   iconUrl: 'marker-icon.png',
@@ -49,13 +47,23 @@ const SearchField = () => {
   return null;
 };
 
-
 const Map = () => {
   const [defaultCenter, setDefaultCenter] = useState([52.51085635037089, 13.399439386103111]);
   const [selectedCity, setSelectedCity] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
+
+
   return (
     <>
-      <CitySelector selectedCity={selectedCity} setSelectedCity={setSelectedCity} />
+      <div className="flex space-x-4 items-center">
+        <div className="p-4 mr-9">
+          <CitySelector selectedCity={selectedCity} setSelectedCity={setSelectedCity} />
+        </div>
+        <div className="p-4 mx-9">
+          <CategorySelector selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
+        </div>
+      </div>
+
       <MapContainer
         center={defaultCenter}
         zoom={15}
@@ -66,13 +74,13 @@ const Map = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
-        <Marker position={defaultCenter}>
+        {/* <Marker position={[52.51444539703697, 13.400659561157228]}>
           <Popup>A pretty CSS3 popup. <br /> Easily customizable.</Popup>
-        </Marker>
+        </Marker> */}
         {/* <SearchField /> */}
         <LocationMarker />
         <NavigateMap selectedCity={selectedCity} />
-        <PlacesLayer />
+        <PlacesLayer selectedCategory={selectedCategory} />
       </MapContainer >
     </>
 

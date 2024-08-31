@@ -1,17 +1,14 @@
 
-import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from "react-leaflet";
+import { Marker, Popup } from "react-leaflet";
 
 import { useNavigate } from "react-router-dom";
 
 const PlaceMarker = function ({ place, placeIcon }) {
     const navigate = useNavigate();
 
-
     const handleMarkerClick = (position) => {
 
     };
-
-
 
     const handleCreateRate = (place) => {
         navigate(`/create`, { state: { place: place } });
@@ -33,7 +30,7 @@ const PlaceMarker = function ({ place, placeIcon }) {
         >
             <Popup>
                 <h1>{place.name}</h1>
-                <div>
+                <div className="flex">
                     <button className="btn btn-warning p-2 h-8 min-h-2 m-2"
                         onClick={() => handleRatinsClick(place)}>Bewertungen</button>
                     <button className="btn btn-warning p-2 h-8 min-h-2 m-2"

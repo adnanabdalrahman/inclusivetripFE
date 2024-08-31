@@ -2,16 +2,16 @@ import React from 'react';
 import { useMap } from 'react-leaflet';
 
 const NavigateMap = ({ selectedCity }) => {
-    const map = useMap(); // Access the map instance
+    const map = useMap();
 
-    // Move the map to the city's coordinates when cityId changes
     React.useEffect(() => {
         if (selectedCity) {
-            map.setView([selectedCity[1], selectedCity[0]]); // Set view to city coordinates with a zoom level of 12
+            const coord = selectedCity.coord;
+            map.setView([coord[1], coord[0]]);
         }
     }, [selectedCity, map]);
 
-    return null; // This component does not render anything on its own
+    return null;
 }
 
 export default NavigateMap;
