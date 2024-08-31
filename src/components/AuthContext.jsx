@@ -1,8 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
-import Cookies from 'js-cookie';
-import { useNavigate } from 'react-router-dom';
-
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
@@ -18,18 +17,19 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = Cookies.get('token');
+    const token = Cookies.get("token");
     if (token) {
-      axios.get(authMeUrl, {
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
-        },
-        withCredentials: true,
-      })
+      axios
+        .get(authMeUrl, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        })
         .then((res) => {
           setUserInfo(res.data);
-          navigate('/');
+          navigate("/");
         })
         .catch((err) => {
           console.log(err);
@@ -43,47 +43,33 @@ export const AuthProvider = ({ children }) => {
         withCredentials: true,
       })
       .then((res) => {
-        setShouldFetch(prev => !prev);
+        setShouldFetch((prev) => !prev);
       })
       .catch((err) => {
         console.log(err);
-        Cookies.remove('token');
+        Cookies.remove("token");
         setUserInfo(null);
       });
   }
 
-
-
   function logout() {
-    Cookies.remove('token', { path: '/' });
-    Cookies.remove('userData');
+    Cookies.remove("token", { path: "/" });
+    Cookies.remove("userData");
     setUserInfo(null);
-    navigate('/login');
+    navigate("/login");
   }
 
   function signup(userData) {
     axios
       .post(signupUrl, userData)
       .then((res) => {
-        navigate('/login');
+        navigate("/login");
       })
       .catch((err) => {
         console.log(err);
         setUserInfo(null);
       });
   }
-
-  // function uploadProfilePhoto(file) {
-  //   const formData = new FormData();
-  //   formData.append('profilePhoto', file);
-
-  //   return axios.post(uploadPhotoUrl, formData, {
-  //     headers: {
-  //       'Content-Type': 'multipart/form-data',
-  //     },
-  //     withCredentials: true,
-  //   });
-  // }
 
   return (
     <AuthContext.Provider
@@ -93,8 +79,8 @@ export const AuthProvider = ({ children }) => {
         login,
         logout,
         signup,
-        // uploadProfilePhoto,
-      }}>
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
