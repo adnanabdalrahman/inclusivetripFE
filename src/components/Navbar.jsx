@@ -6,7 +6,6 @@ import React from "react";
 
 export default function Navbar() {
   const { userInfo, logout } = useContext(AuthContext);
-  console.log("userInfo", userInfo);
   document.querySelector("html").setAttribute("data-theme", "light");
   return (
     <nav className="flex space-x-4 items-center">

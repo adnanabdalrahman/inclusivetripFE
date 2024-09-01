@@ -7,7 +7,6 @@ import "react-toastify/dist/ReactToastify.css";
 export default function SignupForm() {
   const { signup, userInfo } = useContext(AuthContext);
   const [error, setError] = useState(false);
-
   const [signupData, setSignupData] = useState({
     email: "",
     password: "",
@@ -84,98 +83,98 @@ export default function SignupForm() {
 
               <div className="flex flex-col py-12  gap-3 max-w-[20rem]  m-auto">
                 <label className="input input-bordered flex items-center gap-2 w-full"
-              >
-                   <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              fill="currentColor"
-              className="h-4 w-4 opacity-70"
-            >
-              <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
-              <path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
-            </svg>
-                
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    className="h-4 w-4 opacity-70"
+                  >
+                    <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
+                    <path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
+                  </svg>
+
                   <input onChange={handleChange} value={signupData.email} type="text" name="email"
                     className="grow" placeholder="Email" />
-                    
 
-                  
+
+
 
                 </label>
-                
+
                 <label className="input input-bordered flex items-center gap-2 w-full">
 
-                    <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 16 16"
-    fill="currentColor"
-    className="h-4 w-4 opacity-70"
-  >
-    <path
-      fillRule="evenodd"
-      d="M4.5 2a2.5 2.5 0 0 1 5 0v1h.5A1.5 1.5 0 0 1 11.5 4v6a1.5 1.5 0 0 1-1.5 1.5H6A1.5 1.5 0 0 1 4.5 10V9h-1v1A1.5 1.5 0 0 1 2 11.5v.5A1.5 1.5 0 0 1 3.5 13H5v1a1.5 1.5 0 0 1-1.5 1.5h-1A1.5 1.5 0 0 1 1 13V4A2.5 2.5 0 0 1 3.5 1.5h1V2h-1A.5.5 0 0 0 3 2.5v8.5A.5.5 0 0 0 3.5 11H5v-1H3.5a.5.5 0 0 1-.5-.5v-8A.5.5 0 0 1 3.5 1h.5v1h-.5zM8 2v1H6V2a1 1 0 1 1 2 0zm2 2v7H6V4h4zM7 6a.5.5 0 0 1 1 0v4a.5.5 0 0 1-1 0V6z"
-      clipRule="evenodd"
-    />
-  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    className="h-4 w-4 opacity-70"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.5 2a2.5 2.5 0 0 1 5 0v1h.5A1.5 1.5 0 0 1 11.5 4v6a1.5 1.5 0 0 1-1.5 1.5H6A1.5 1.5 0 0 1 4.5 10V9h-1v1A1.5 1.5 0 0 1 2 11.5v.5A1.5 1.5 0 0 1 3.5 13H5v1a1.5 1.5 0 0 1-1.5 1.5h-1A1.5 1.5 0 0 1 1 13V4A2.5 2.5 0 0 1 3.5 1.5h1V2h-1A.5.5 0 0 0 3 2.5v8.5A.5.5 0 0 0 3.5 11H5v-1H3.5a.5.5 0 0 1-.5-.5v-8A.5.5 0 0 1 3.5 1h.5v1h-.5zM8 2v1H6V2a1 1 0 1 1 2 0zm2 2v7H6V4h4zM7 6a.5.5 0 0 1 1 0v4a.5.5 0 0 1-1 0V6z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
                   <input onChange={handleChange} value={signupData.firstName} type="text" name="firstName"
                     className="grow" placeholder="Vorname" />
                 </label>
 
                 <label onChange={handleChange} value={signupData.lastName}
                   className="input input-bordered flex items-center gap-2 w-full">
-                    <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 16 16"
-    fill="currentColor"
-    className="h-4 w-4 opacity-70"
-  >
-    <path
-      d="M8 0a4 4 0 0 1 4 4 4 4 0 0 1-4 4A4 4 0 0 1 4 4 4 4 0 0 1 8 0zm0 1.5A2.5 2.5 0 0 0 5.5 4 2.5 2.5 0 0 0 8 6.5 2.5 2.5 0 0 0 10.5 4 2.5 2.5 0 0 0 8 1.5zM1 14a6 6 0 0 1 12 0H1z"
-    />
-  </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    className="h-4 w-4 opacity-70"
+                  >
+                    <path
+                      d="M8 0a4 4 0 0 1 4 4 4 4 0 0 1-4 4A4 4 0 0 1 4 4 4 4 0 0 1 8 0zm0 1.5A2.5 2.5 0 0 0 5.5 4 2.5 2.5 0 0 0 8 6.5 2.5 2.5 0 0 0 10.5 4 2.5 2.5 0 0 0 8 1.5zM1 14a6 6 0 0 1 12 0H1z"
+                    />
+                  </svg>
                   <input type="text" name="lastName" className="grow" placeholder="Nachname" />
                 </label>
-               <label className="input input-bordered flex items-center gap-2 w-full">
-                        <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              fill="currentColor"
-              className="h-4 w-4 opacity-70"
-            >
-              <path
-                fillRule="evenodd"
-                d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
-                clipRule="evenodd"
-              />
-            </svg>
+                <label className="input input-bordered flex items-center gap-2 w-full">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    className="h-4 w-4 opacity-70"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
                   <input onChange={handleChange} value={signupData.password}
                     type="password" name="password" className="grow" placeholder="Passwort"
-                    
+
 
                   />
-                  
+
                 </label>
 
                 <label className="input input-bordered flex items-center gap-2 w-full">
 
-                        <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 16 16"
-              fill="currentColor"
-              className="h-4 w-4 opacity-70"
-            >
-              <path
-                fillRule="evenodd"
-                d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
-                clipRule="evenodd"
-              />
-            </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    className="h-4 w-4 opacity-70"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
                   <input onChange={handleChange} value={signupData.confirmPassword}
                     type="password" name="confirmPassword" className="grow" placeholder="Passwort bestätigen"
                   />
                 </label>
 
-                
+
 
                 <button type="submit" className="btn bg-yellow-400 border-black px-8 font-normal ">
                   speichern

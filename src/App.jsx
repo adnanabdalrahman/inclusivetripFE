@@ -32,11 +32,11 @@ const router = createBrowserRouter(
       <Route path="datenschutz" element={<Dataprotection />} />
       <Route path="ueberuns" element={<Aboutus />} />
       <Route path="map" element={<Map />} />
+      <Route path="signup" element={<Signup />} />
       <Route path="login" element={<Login />} />
       <Route path="/" element={<Protected />}>
         <Route path="create" element={<CreateRating />} />
         <Route path="user" element={<User />} />
-        <Route path="signup" element={<Signup />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Route>

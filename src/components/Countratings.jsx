@@ -11,12 +11,11 @@ export default function ReviewsCount() {
         // API-Anfrage zum Abrufen aller Reviews
         const response = await axios.get('http://localhost:3000/reviews'); // 
         setReviews(response.data); // Setze alle Reviews in den State
-            console.log('API Antwort:', response.data); 
       } catch (error) {
         console.error('Fehler beim Abrufen der Bewertungen:', error);
       } finally {
         setLoading(false);
-    
+
       }
     }
 
@@ -24,15 +23,13 @@ export default function ReviewsCount() {
   }, []);
 
   const reviewsCount = reviews.length;
-
-  console.log(reviewsCount);
   return (
     <div>
       {loading ? (
         'Laden...'
       ) : (
         <div>
-          
+
           <p>{reviewsCount}</p>
         </div>
       )}
