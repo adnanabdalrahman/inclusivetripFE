@@ -43,6 +43,7 @@ export const AuthProvider = ({ children }) => {
         withCredentials: true,
       })
       .then((res) => {
+        console.log('res.data', res.data);
         setShouldFetch((prev) => !prev);
       })
       .catch((err) => {

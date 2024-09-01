@@ -31,9 +31,9 @@ const PlaceMarker = function ({ place, placeIcon }) {
             <Popup>
                 <h1>{place.name}</h1>
                 <div className="flex">
-                    <button className="btn btn-warning p-2 h-8 min-h-2 m-2"
+                    <button className="btn  bg-[#FFD700] border border-[#2C2C2C] rounded-lg p-2 h-8 min-h-2 m-2"
                         onClick={() => handleRatinsClick(place)}>Bewertungen</button>
-                    <button className="btn btn-warning p-2 h-8 min-h-2 m-2"
+                    <button className="btn bg-[#FFD700] border border-[#2C2C2C] rounded-lg p-2 h-8 min-h-2 m-2"
                         onClick={() => handleCreateRate(place)}>Bewertung abgeben</button>
                 </div>
 
