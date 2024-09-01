@@ -10,7 +10,6 @@ export async function handleForgotPasswordSubmit(forgotPasswordEmail, closeModal
       email: forgotPasswordEmail,
     });
 
-    console.log("E-Mail zur Passwort-Zurücksetzung gesendet an:", forgotPasswordEmail);
     toast.success("Eine E-Mail zur Passwort-Zurücksetzung wurde gesendet. Bitte überprüfen Sie Ihr Postfach.");
   } catch (error) {
     console.error("Fehler beim Senden der E-Mail zur Passwort-Zurücksetzung:", error);

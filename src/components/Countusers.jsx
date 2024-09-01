@@ -11,7 +11,6 @@ export default function Countusers() {
       try {
         // API-Anfrage zum Abrufen aller Users
         const response = await axios.get('http://localhost:3000/users'); // URL anpassen, falls erforderlich
-        console.log('API Antwort:', response.data);
 
         // Überprüfen, ob die Antwort ein Array ist
         if (Array.isArray(response.data)) {

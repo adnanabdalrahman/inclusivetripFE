@@ -58,7 +58,6 @@ export function ProfilePhotoUpload({
         withCredentials: true,
       });
       setProfilePhoto("");
-      console.log("Profilfoto erfolgreich gelöscht");
     } catch (error) {
       console.error("Fehler beim Löschen des Profilfotos:", error);
     } finally {
