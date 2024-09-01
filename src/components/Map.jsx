@@ -68,7 +68,7 @@ const Map = () => {
         center={defaultCenter}
         zoom={15}
         minZoom={14}
-        style={{ zIndex: 9, height: "100vh", width: "100%" }}
+        style={{ zIndex: 9, height: "70vh", width: "100%" }}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
