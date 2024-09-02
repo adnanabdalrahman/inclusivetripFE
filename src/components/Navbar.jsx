@@ -13,7 +13,7 @@ export default function Navbar() {
 
         <NavLink to="/" className="text-black">Home</NavLink>
         <NavLink to="/map" className="text-black">Karte</NavLink>
-
+<NavLink to="/detailreview" className="text-black">Detailreview</NavLink>
         {userInfo && (
           <>
             <NavLink to="/create" className="text-black">
