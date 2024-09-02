@@ -4,6 +4,8 @@ import { AuthContext } from "./AuthContext";
 import axios from "axios";
 import { createReview, createBarrierReviews } from "../utils/reviewHandler";
 import { useDropzone } from "react-dropzone";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function CreateRating() {
   const location = useLocation();
@@ -65,13 +67,16 @@ function CreateRating() {
     setComment(value);
   };
 
-  const onDrop = useCallback((acceptedFiles) => {
-    if (acceptedFiles.length > 5) {
-      setMessage("Maximal 5 Dateien können hochgeladen werden");
-      return;
-    }
-    setFiles(acceptedFiles);
-  }, []);
+  const onDrop = useCallback(
+    (acceptedFiles) => {
+      if (acceptedFiles.length + files.length > 5) {
+        setMessage("Es können maximal 5 Bilder hochgeladen werden");
+        return;
+      }
+      setFiles((prevFiles) => [...prevFiles, ...acceptedFiles].slice(0, 5));
+    },
+    [files]
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -116,6 +121,8 @@ function CreateRating() {
         console.log(err);
       }
     }
+
+    toast.success("Vielen Dank, Ihre Bewertung wurde hinzugefügt!");
   };
 
   const openModal = (e) => {
@@ -136,6 +143,7 @@ function CreateRating() {
 
   return (
     <div>
+      <ToastContainer />
       <div className="flex flex-col md:flex-row items-top p-4">
         <div className="flex flex-col md:flex-row"></div>
         <div className="container mx-auto w-full bg-[#C1DCDC] rounded-[24px] relative">
@@ -196,41 +204,6 @@ function CreateRating() {
             placeholder="Erfahrungsbericht"
           />
         </div>
-
-        <div className="flex flex-col items-center">
-          <h3 className="text-3xl font-extrabold m-5">
-            Fügen Sie Bilder zu Ihrer Bewertung hinzu!
-          </h3>
-          {message && <p className="m-3">{message}</p>}
-          <div
-            {...getRootProps({ className: "dropzone" })}
-            className="border-dashed border-2 border-gray-400 p-6 w-full max-w-xs text-center"
-          >
-            <input {...getInputProps()} />
-            <p>Ziehe Dateien hierher oder klicke, um Dateien auszuwählen</p>
-          </div>
-          <div className="flex flex-wrap mt-4">
-            {files.map((file, index) => (
-              <div key={index} className="w-24 h-24 m-2 border border-gray-300">
-                <img
-                  src={URL.createObjectURL(file)}
-                  alt={`preview-${index}`}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="flex flex-col items-center">
-          <button
-            className="mt-8 flex justify-center items-center px-4 py-3 w-[487px] h-[40px] bg-[#FFD700] border border-[#2C2C2C] rounded-lg"
-            type="submit"
-          >
-            Bewertung senden
-          </button>
-        </div>
-
         <div>
           <div className="flex flex-col items-start mt-8 gap-2 w-[487px] h-[70px]">
             <a
@@ -269,6 +242,40 @@ function CreateRating() {
               </div>
             </div>
           )}
+        </div>
+
+        <div className="flex flex-col items-center">
+          <h3 className="text-3xl font-extrabold m-5">
+            Fügen Sie Bilder zu Ihrer Bewertung hinzu!
+          </h3>
+          {message && <p className="m-3">{message}</p>}
+          <div
+            {...getRootProps({ className: "dropzone" })}
+            className="border-dashed border-2 border-gray-400 p-6 w-full max-w-xs text-center"
+          >
+            <input {...getInputProps()} />
+            <p>Ziehe Bilder hierher oder klicke, um Bilder auszuwählen</p>
+          </div>
+          <div className="flex flex-wrap mt-4">
+            {files.slice(0, 5).map((file, index) => (
+              <div key={index} className="w-24 h-24 m-2 border border-gray-300">
+                <img
+                  src={URL.createObjectURL(file)}
+                  alt={`preview-${index}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center">
+          <button
+            className="mt-8 flex justify-center items-center px-4 py-3 w-[487px] h-[40px] bg-[#FFD700] border border-[#2C2C2C] rounded-lg"
+            type="submit"
+          >
+            Bewertung senden
+          </button>
         </div>
       </form>
     </div>
