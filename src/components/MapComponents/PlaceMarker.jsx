@@ -15,7 +15,7 @@ const PlaceMarker = function ({ place, placeIcon, category }) {
     };
 
     const handleRatinsClick = (place) => {
-        navigate(`/ratings`, { state: { place: place } });
+        navigate(`/ratings`, { state: { place: place, category: category } });
     };
 
 

@@ -7,7 +7,7 @@ import { createReview, createBarrierReviews } from "../utils/reviewHandler";
 function CreateRating() {
   const location = useLocation();
   const { place, category } = location.state || {};
-  const [stars] = useState([1, 2, 3, 4, 5]);
+  const [stars] = useState([1, 2, 3, 4, 5, 6]);
 
   const API_URL = import.meta.env.VITE_APP_INCLUSIVETRIPBE_URL;
 
@@ -70,8 +70,6 @@ function CreateRating() {
       setMessage("Maximal 5 Dateien können hochgeladen werden");
       return;
     }
-
-
     const ratingData = {
       placeName: place.name,
       placeId: place.id,
@@ -101,12 +99,14 @@ function CreateRating() {
             "Content-Type": "multipart/form-data",
           },
         });
-        // navigate("/user");
       } catch (err) {
         setMessage("Fehler beim Hochladen der Dateien , bitte versuchen Sie es erneut");
         console.log(err);
       }
     }
+
+    navigate("/user");
+
 
   };
   const openModal = (e) => {
@@ -139,6 +139,7 @@ function CreateRating() {
       <form onSubmit={handleSubmit}>
         <div className="flex items-center justify-center">
           <div className="p-6">
+
             <ul className="list-none space-y-4">
               {barriers.map((barrier) => (
                 <li key={barrier.id} className="flex items-center space-x-4">
@@ -161,6 +162,7 @@ function CreateRating() {
                 </li>
               ))}
             </ul>
+
           </div>
         </div>
 
