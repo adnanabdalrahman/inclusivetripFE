@@ -11,9 +11,9 @@ export default function DetailReview() {
   const [barriers, setBarriers] = useState([]);
   const [description, setDescription] = useState('');
   const [selectedImage, setSelectedImage] = useState(null);
-const [placeName, setPlaceName] = useState('');
- const navigate = useNavigate();
- 
+  const [placeName, setPlaceName] = useState('');
+  const navigate = useNavigate();
+
 
   const images = [
     "https://media.istockphoto.com/id/1307190527/de/foto/gl%C3%BCcklicher-kellner-serviert-essen-f%C3%BCr-gruppe-von-freunden-in-einer-kneipe.jpg?s=612x612&w=0&k=20&c=ibnkW2wUUsORthgoyJQR7Y3ej4Nix38XVXzAZA_dcms=",
@@ -50,7 +50,7 @@ const [placeName, setPlaceName] = useState('');
   useEffect(() => {
     const fetchDescriptionById = async () => {
       try {
-        const response = await axios.get(`${API_URL}/reviews/reviewid/${REVIEW_ID}`); 
+        const response = await axios.get(`${API_URL}/reviews/reviewid/${REVIEW_ID}`);
         if (response.data) {
           setDescription(response.data.comment); // Beschreibung aus der API speichern
         }
@@ -67,11 +67,11 @@ const [placeName, setPlaceName] = useState('');
     toast.success("Formular erfolgreich eingereicht!");
   };
 
-//   UseEffekt für Laden von Locationnamen
- useEffect(() => {
+  //   UseEffekt für Laden von Locationnamen
+  useEffect(() => {
     const fetchPlaceName = async () => {
       try {
-        const response = await axios.get(`${API_URL}/reviews/reviewid/${REVIEW_ID}`); 
+        const response = await axios.get(`${API_URL}/reviews/reviewid/${REVIEW_ID}`);
         if (response.data) {
           setPlaceName(response.data.placeName); // 
         }
@@ -82,13 +82,13 @@ const [placeName, setPlaceName] = useState('');
         setLoading(false);
       }
     };
-    
-     fetchPlaceName();
+
+    fetchPlaceName();
   }, [API_URL]);
 
-//  Funktion um auf die vorherige Seite zu kommen 
+  //  Funktion um auf die vorherige Seite zu kommen 
   const handleBackClick = () => {
-  navigate(-1);
+    navigate(-1);
   };
 
   return (
@@ -106,55 +106,55 @@ const [placeName, setPlaceName] = useState('');
                 zu dieser Einrichtung bezüglich der Barriere Eignung.
               </div>
             </div>
-             {/* Bild Container */}
-        <div className="flex items-center justify-center w-full md:w-1/3 mt-4 md:mt-0">
-          <img
-            src="../images/Icon_Bewertung.png" 
-            alt="Icon Karte"
-            className="max-w-full max-h-[300px] object-cover rounded-lg" 
-            style={{  width: '200px', height: '200px' }} 
-          />
+            {/* Bild Container */}
+            <div className="flex items-center justify-center w-full md:w-1/3 mt-4 md:mt-0">
+              <img
+                src="/images//Icon_Bewertung.png"
+                alt="Icon Karte"
+                className="max-w-full max-h-[300px] object-cover rounded-lg"
+                style={{ width: '200px', height: '200px' }}
+              />
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-        
+
 
       {/* Fotogalerie */}
-   <div>
-      {/* Galerie */}
-      <div className="flex flex-wrap justify-center items-center gap-4 p-4">
-        {images.map((image, index) => (
-          <div key={index} className="w-1/4 p-2 cursor-pointer" onClick={() => openModal(image)}>
-            <img
-              src={image}
-              alt={`Bild ${index + 1}`}
-              className="w-full h-auto object-cover rounded-lg"
-            />
-          </div>
-        ))}
-      </div>
-
-      {/* Modal */}
-      {selectedImage && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50" onClick={closeModal}>
-          <div className="relative">
-            <img
-              src={selectedImage}
-              alt="Selected"
-              className="max-w-full max-h-full object-contain"
-              onClick={(e) => e.stopPropagation()} // Verhindert das Schließen des Modals, wenn auf das Bild geklickt wird
-            />
-            <button
-              className="absolute top-4 right-4 text-white text-3xl font-bold"
-              onClick={closeModal}
-            >
-              &times;
-            </button>
-          </div>
+      <div>
+        {/* Galerie */}
+        <div className="flex flex-wrap justify-center items-center gap-4 p-4">
+          {images.map((image, index) => (
+            <div key={index} className="w-1/4 p-2 cursor-pointer" onClick={() => openModal(image)}>
+              <img
+                src={image}
+                alt={`Bild ${index + 1}`}
+                className="w-full h-auto object-cover rounded-lg"
+              />
+            </div>
+          ))}
         </div>
-      )}
-    </div>
+
+        {/* Modal */}
+        {selectedImage && (
+          <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50" onClick={closeModal}>
+            <div className="relative">
+              <img
+                src={selectedImage}
+                alt="Selected"
+                className="max-w-full max-h-full object-contain"
+                onClick={(e) => e.stopPropagation()} // Verhindert das Schließen des Modals, wenn auf das Bild geklickt wird
+              />
+              <button
+                className="absolute top-4 right-4 text-white text-3xl font-bold"
+                onClick={closeModal}
+              >
+                &times;
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
 
       <form onSubmit={handleSubmit}>
         <div className="flex items-center justify-center">
@@ -186,7 +186,7 @@ const [placeName, setPlaceName] = useState('');
             placeholder="Beschreibung hier eingeben"
           ></textarea>
         </div>
-         <button type="button" className="btn bg-yellow-400 border-black px-8 font-normal" onClick={handleBackClick}>
+        <button type="button" className="btn bg-yellow-400 border-black px-8 font-normal" onClick={handleBackClick}>
           Zurück
         </button>
       </form>
