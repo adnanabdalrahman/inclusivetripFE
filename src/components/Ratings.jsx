@@ -90,10 +90,9 @@ const Ratings = () => {
 
         <div className="flex flex-wrap justify-center items-center gap-4 p-4 ">
           {placeRatings.map((rating, index) => (
-
             rating.fileUploads.map((file, index) => (
-              <div className="w-1/5 p-2 ">
-                <img key={file.id} src={file.filePath}
+              <div key={index} className="w-1/5 p-2 ">
+                <img key={index} src={file.filePath}
                   alt="Photo" className="w-full h-auto object-cover rounded-lg" />
               </div>
             ))
