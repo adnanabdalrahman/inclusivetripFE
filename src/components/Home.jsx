@@ -12,35 +12,6 @@ const Home = () => {
   const API_URL = import.meta.env.VITE_APP_INCLUSIVETRIPBE_URL;
   const reviewsCountUrl = `${API_URL}/reviews/count`;
   const usersCountUrl = `${API_URL}/users/count`;
-  const [reviewsData, setReviewsData] = useState(0);
-  const [usersData, setUsersData] = useState(0);
-  useEffect(() => async () => {
-    try {
-      const response = await fetch(reviewsCountUrl, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-      setReviewsData(data);
-    } catch (error) {
-      console.error(`Error: ${error}`);
-    }}, []);
-      
-  useEffect(() => async () => {
-    try {
-      const response = await fetch(usersCountUrl, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-       setUsersData(data);
-    } catch (error) {
-      console.error(`Error: ${error}`);
-    }}, []);
   // useEffect(() => {
   //   fetchAllPosts();
   // }, []);

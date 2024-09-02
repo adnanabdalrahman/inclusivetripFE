@@ -2,14 +2,15 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function ReviewsCount() {
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState(0);
   const [loading, setLoading] = useState(true);
-
+  const API_URL = import.meta.env.VITE_APP_INCLUSIVETRIPBE_URL;
+  const reviewsCountUrl = `${API_URL}/reviews/count`;
   useEffect(() => {
     async function fetchReviews() {
       try {
         // API-Anfrage zum Abrufen aller Reviews
-        const response = await axios.get('http://localhost:3000/reviews'); // 
+        const response = await axios.get(reviewsCountUrl); // 
         setReviews(response.data); // Setze alle Reviews in den State
       } catch (error) {
         console.error('Fehler beim Abrufen der Bewertungen:', error);
@@ -22,7 +23,6 @@ export default function ReviewsCount() {
     fetchReviews();
   }, []);
 
-  const reviewsCount = reviews.length;
   return (
     <div>
       {loading ? (
@@ -30,7 +30,7 @@ export default function ReviewsCount() {
       ) : (
         <div>
 
-          <p>{reviewsCount}</p>
+          <p>{reviews}</p>
         </div>
       )}
     </div>
