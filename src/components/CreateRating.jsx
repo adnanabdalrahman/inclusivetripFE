@@ -9,17 +9,11 @@ import "react-toastify/dist/ReactToastify.css";
 
 function CreateRating() {
   const location = useLocation();
-<<<<<<< HEAD
   const { place, category } = location.state || {};
   const [stars] = useState([1, 2, 3, 4, 5, 6]);
-
   const API_URL = import.meta.env.VITE_APP_INCLUSIVETRIPBE_URL;
-
   const filesUrl = `${API_URL}/file-upload`;
-=======
->>>>>>> origin
   const navigate = useNavigate();
-  const { place, category } = location.state || {};
 
   useEffect(() => {
     if (!place || !category) {
@@ -28,10 +22,6 @@ function CreateRating() {
       });
     }
   }, [place, category, navigate]);
-
-  const [stars] = useState([1, 2, 3, 4, 5]);
-  const API_URL = import.meta.env.VITE_APP_INCLUSIVETRIPBE_URL;
-  const filesUrl = `${API_URL}/file-upload`;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [files, setFiles] = useState([]);
@@ -94,13 +84,10 @@ function CreateRating() {
       return;
     }
 
-<<<<<<< HEAD
     if (files.length > 5) {
       setMessage("Maximal 5 Dateien können hochgeladen werden");
       return;
     }
-=======
->>>>>>> origin
     const ratingData = {
       placeName: place.name,
       placeId: place.id,
@@ -137,14 +124,11 @@ function CreateRating() {
         console.log(err);
       }
     }
-
-<<<<<<< HEAD
-    navigate("/user");
-
-
-=======
     toast.success("Vielen Dank, Ihre Bewertung wurde hinzugefügt!");
->>>>>>> origin
+    setTimeout(() => {
+      navigate(`/ratings`, { state: { place: place, category: category } });
+    }, 3000);
+
   };
 
   const openModal = (e) => {

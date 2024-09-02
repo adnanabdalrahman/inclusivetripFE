@@ -93,13 +93,10 @@ const Ratings = () => {
 
             rating.fileUploads.map((file, index) => (
               <div className="w-1/5 p-2 ">
-                <img src={file.filePath}
+                <img key={file.id} src={file.filePath}
                   alt="Photo" className="w-full h-auto object-cover rounded-lg" />
               </div>
             ))
-
-
-
           ))}
 
         </div>
