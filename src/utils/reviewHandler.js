@@ -1,14 +1,16 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-
 const token = Cookies.get('token');
+
 const API_URL = import.meta.env.VITE_APP_INCLUSIVETRIPBE_URL;
 const reviewsUrl = `${API_URL}/reviews`;
 const barriersReviewsUrl = `${API_URL}/barriersReviews`;
 
-
 export async function createReview(ratingData) {
+    if (!token) {
+        throw new Error("No token found");
+    }
     let reviewId = 0;
     await axios
         .post(reviewsUrl, ratingData, {
@@ -42,9 +44,10 @@ export async function createReview(ratingData) {
     return reviewId;
 };
 
-
-
 export async function createBarrierReviews(barriersReviews, reviewId) {
+    if (!token) {
+        throw new Error("No token found");
+    }
     for (const barriersReview of barriersReviews) {
         console.log('barriersReview', barriersReview);
 
@@ -62,10 +65,6 @@ export async function createBarrierReviews(barriersReviews, reviewId) {
         }
     }
 }
-
-// Example usage
-// await processBarriersReviews(barriersReviews, reviewId);
-
 
 export async function createBarrierReview(barrierRatingData) {
 

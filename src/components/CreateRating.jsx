@@ -9,8 +9,11 @@ import "react-toastify/dist/ReactToastify.css";
 
 function CreateRating() {
   const location = useLocation();
-  const navigate = useNavigate();
   const { place, category } = location.state || {};
+  const [stars] = useState([1, 2, 3, 4, 5, 6]);
+  const API_URL = import.meta.env.VITE_APP_INCLUSIVETRIPBE_URL;
+  const filesUrl = `${API_URL}/file-upload`;
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!place || !category) {
@@ -19,10 +22,6 @@ function CreateRating() {
       });
     }
   }, [place, category, navigate]);
-
-  const [stars] = useState([1, 2, 3, 4, 5]);
-  const API_URL = import.meta.env.VITE_APP_INCLUSIVETRIPBE_URL;
-  const filesUrl = `${API_URL}/file-upload`;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [files, setFiles] = useState([]);
@@ -85,6 +84,10 @@ function CreateRating() {
       return;
     }
 
+    if (files.length > 5) {
+      setMessage("Maximal 5 Dateien können hochgeladen werden");
+      return;
+    }
     const ratingData = {
       placeName: place.name,
       placeId: place.id,
@@ -121,8 +124,11 @@ function CreateRating() {
         console.log(err);
       }
     }
-
     toast.success("Vielen Dank, Ihre Bewertung wurde hinzugefügt!");
+    setTimeout(() => {
+      navigate(`/ratings`, { state: { place: place, category: category } });
+    }, 3000);
+
   };
 
   const openModal = (e) => {
@@ -173,6 +179,7 @@ function CreateRating() {
       <form onSubmit={handleSubmit}>
         <div className="flex items-center justify-center">
           <div className="p-6">
+
             <ul className="list-none space-y-4">
               {barriers.map((barrier) => (
                 <li key={barrier.id} className="flex items-center space-x-4">
@@ -197,6 +204,7 @@ function CreateRating() {
                 </li>
               ))}
             </ul>
+
           </div>
         </div>
 
