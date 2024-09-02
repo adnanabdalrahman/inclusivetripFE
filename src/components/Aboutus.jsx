@@ -32,30 +32,30 @@ const Aboutus = () => {
       <p className="text-gray-700 leading-relaxed mb-6">
         Wir, das Team hinter der App, sind stolz auf das, was wir in kurzer Zeit erreicht haben. Jeder von uns hat seine eigene Motivation und Geschichte, die ihn zu diesem Projekt geführt hat:
       </p>
-                
-         <div className="flex flex-wrap justify-center space-x-6">
+
+      <div className="flex flex-wrap justify-center space-x-6">
         <div className="text-center mb-6">
-          <img src="../images/Photosebastian.jpeg" alt="Sebastian" className="w-32 h-32 rounded-full mb-4 object-cover" />
+          <img src="/images//Photosebastian.jpeg" alt="Sebastian" className="w-32 h-32 rounded-full mb-4 object-cover" />
           <p className="text-gray-700 font-semibold">Sebastian</p>
-                  </div>
-                    <div className="text-center mb-6">
-          <img src="../images/Photoadnan.jpeg" alt="Sebastian" className="w-32 h-32 rounded-full mb-4 object-cover" />
+        </div>
+        <div className="text-center mb-6">
+          <img src="/images//Photoadnan.jpeg" alt="Sebastian" className="w-32 h-32 rounded-full mb-4 object-cover" />
           <p className="text-gray-700 font-semibold">Adnan</p>
-                  </div>
-                    <div className="text-center mb-6">
-          <img src="../images/Photoahmed.jpeg" alt="Sebastian" className="w-32 h-32 rounded-full mb-4 object-cover" />
+        </div>
+        <div className="text-center mb-6">
+          <img src="/images//Photoahmed.jpeg" alt="Sebastian" className="w-32 h-32 rounded-full mb-4 object-cover" />
           <p className="text-gray-700 font-semibold">Ahmed</p>
-                  </div>
-                    <div className="text-center mb-6">
-          <img src="../images/Photojulia.jpeg" alt="Sebastian" className="w-32 h-32 rounded-full mb-4 object-cover" />
+        </div>
+        <div className="text-center mb-6">
+          <img src="/images//Photojulia.jpeg" alt="Sebastian" className="w-32 h-32 rounded-full mb-4 object-cover" />
           <p className="text-gray-700 font-semibold">Julia</p>
-                  </div>
-        
-        
-        
-      
-      
-       
+        </div>
+
+
+
+
+
+
       </div>
 
       <p className="text-gray-700 leading-relaxed">

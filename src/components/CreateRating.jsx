@@ -163,15 +163,15 @@ function CreateRating() {
                 Erfahrungen.
               </div>
             </div>
-                        {/* Bild Container */}
-        <div className="flex items-center justify-center w-full md:w-1/3 mt-4 md:mt-0">
-          <img
-            src="../images/Icon_Create.png" 
-            alt="Icon Create"
-            className="max-w-full max-h-[300px] object-cover rounded-lg" 
-            style={{  width: '200px', height: '200px' }} 
-          />
-        </div>
+            {/* Bild Container */}
+            <div className="flex items-center justify-center w-full md:w-1/3 mt-4 md:mt-0">
+              <img
+                src="/images//Icon_Create.png"
+                alt="Icon Create"
+                className="max-w-full max-h-[300px] object-cover rounded-lg"
+                style={{ width: '200px', height: '200px' }}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -248,26 +248,26 @@ function CreateRating() {
                 <p className="mb-4">
                   Du weißt nicht, was du schreiben sollst? Kein Problem! Hier
                   sind ein paar Anregungen, worüber du berichten kannst:
-                   <br /><br />
-                <strong>Eingang und Zugang:</strong> Gibt es einen stufenlosen Zugang? Sind Rampen oder ein ebenerdiger Zugang vorhanden? Falls es Treppen gibt, existieren alternative Wege wie Aufzüge oder Treppenlifte?
-                <br /><br />
-                <strong>Türbreiten:</strong> Sind die Türen breit genug für Rollstühle oder Kinderwagen?
-                <br /><br />
-                <strong>Sanitäreinrichtungen:</strong> Gibt es speziell gekennzeichnete Rollstuhltoiletten? Sind sie gut zugänglich und mit notwendigen Haltegriffen ausgestattet?
-                <br /><br />
-                <strong>Parkmöglichkeiten:</strong> Gibt es ausgewiesene Behindertenparkplätze in der Nähe des Eingangs? Sind sie ausreichend breit und gut ausgeschildert?
-                <br /><br />
-                <strong>Öffentliche Verkehrsmittel:</strong> Ist der Ort gut mit barrierefreien öffentlichen Verkehrsmitteln erreichbar? Gibt es in der Nähe Haltestellen, die für Menschen mit Behinderungen zugänglich sind?
-                <br /><br />
-                <strong>Service und Unterstützung:</strong> Ist das Personal geschult und bereit, bei Bedarf Hilfe zu leisten?
-                <br /><br />
-                <strong>Informationen und Beschilderung:</strong> Sind die Schilder gut sichtbar, verständlich und in einer angemessenen Höhe angebracht? Gibt es Informationen in Brailleschrift oder taktile Karten?
-                <br /><br />
-                <strong>Akustische und visuelle Aspekte:</strong> Ist der Ort gut beleuchtet, um Menschen mit Sehbehinderungen zu unterstützen? Ist der Geräuschpegel für Menschen mit Hörbehinderungen oder kognitiven Beeinträchtigungen akzeptabel?
-                <br /><br />
-                <strong>Zusätzliche Einrichtungen:</strong> Gibt es Bereiche, in denen Menschen mit sensorischen Überempfindlichkeiten eine Pause einlegen können?
-                <br /><br />
-                Diese und weitere Aspekte können dir helfen, eine detaillierte und hilfreiche Bewertung zu verfassen.
+                  <br /><br />
+                  <strong>Eingang und Zugang:</strong> Gibt es einen stufenlosen Zugang? Sind Rampen oder ein ebenerdiger Zugang vorhanden? Falls es Treppen gibt, existieren alternative Wege wie Aufzüge oder Treppenlifte?
+                  <br /><br />
+                  <strong>Türbreiten:</strong> Sind die Türen breit genug für Rollstühle oder Kinderwagen?
+                  <br /><br />
+                  <strong>Sanitäreinrichtungen:</strong> Gibt es speziell gekennzeichnete Rollstuhltoiletten? Sind sie gut zugänglich und mit notwendigen Haltegriffen ausgestattet?
+                  <br /><br />
+                  <strong>Parkmöglichkeiten:</strong> Gibt es ausgewiesene Behindertenparkplätze in der Nähe des Eingangs? Sind sie ausreichend breit und gut ausgeschildert?
+                  <br /><br />
+                  <strong>Öffentliche Verkehrsmittel:</strong> Ist der Ort gut mit barrierefreien öffentlichen Verkehrsmitteln erreichbar? Gibt es in der Nähe Haltestellen, die für Menschen mit Behinderungen zugänglich sind?
+                  <br /><br />
+                  <strong>Service und Unterstützung:</strong> Ist das Personal geschult und bereit, bei Bedarf Hilfe zu leisten?
+                  <br /><br />
+                  <strong>Informationen und Beschilderung:</strong> Sind die Schilder gut sichtbar, verständlich und in einer angemessenen Höhe angebracht? Gibt es Informationen in Brailleschrift oder taktile Karten?
+                  <br /><br />
+                  <strong>Akustische und visuelle Aspekte:</strong> Ist der Ort gut beleuchtet, um Menschen mit Sehbehinderungen zu unterstützen? Ist der Geräuschpegel für Menschen mit Hörbehinderungen oder kognitiven Beeinträchtigungen akzeptabel?
+                  <br /><br />
+                  <strong>Zusätzliche Einrichtungen:</strong> Gibt es Bereiche, in denen Menschen mit sensorischen Überempfindlichkeiten eine Pause einlegen können?
+                  <br /><br />
+                  Diese und weitere Aspekte können dir helfen, eine detaillierte und hilfreiche Bewertung zu verfassen.
                 </p>
                 <button
                   className="px-4 py-2 bg-[#FFD700] border border-[#2C2C2C] rounded-lg"
