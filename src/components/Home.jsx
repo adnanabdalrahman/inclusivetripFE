@@ -12,6 +12,35 @@ const Home = () => {
   const API_URL = import.meta.env.VITE_APP_INCLUSIVETRIPBE_URL;
   const reviewsCountUrl = `${API_URL}/reviews/count`;
   const usersCountUrl = `${API_URL}/users/count`;
+  const [reviewsData, setReviewsData] = useState(0);
+  const [usersData, setUsersData] = useState(0);
+  useEffect(() => async () => {
+    try {
+      const response = await fetch(reviewsCountUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      setReviewsData(data);
+    } catch (error) {
+      console.error(`Error: ${error}`);
+    }}, []);
+      
+  useEffect(() => async () => {
+    try {
+      const response = await fetch(usersCountUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+       setUsersData(data);
+    } catch (error) {
+      console.error(`Error: ${error}`);
+    }}, []);
   // useEffect(() => {
   //   fetchAllPosts();
   // }, []);
@@ -41,30 +70,23 @@ const Home = () => {
   // }
 
   return (
-    <div className="flex flex-col md:flex-row items-top justify-center p-4">
-      <div>
-      <div className="flex flex-col md:flex-row items-center justify-center">
+    <div>
+   <div className="flex flex-col md:flex-row items-top justify-center p-4">
+  <div className="pb-1 container mx-auto w-full bg-[#C1DCDC] rounded-[24px] relative">
+    <div className="flex flex-col md:flex-row w-full p-8">
+      {/* Text Container */}
+      <div className="flex flex-col w-full md:w-2/3 text-left">
+        <h1 className="font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black">
+          Barriere Bewertungen <br />
+          für Standorte in Deutschland
+        </h1>
 
-      </div>
-      <div className="pb-1 container mx-auto w-full bg-[#C1DCDC] rounded-[24px] relative">
-
-        <div className="w-full text-left p-8">
-          <h1 className="font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black">
-            Barriere Bewertungen <br />
-            für Standorte
-          </h1>
-        </div>
-
-        <div className="flex flex-col md:flex-row items-center justify-left ml-8 mt-[-24]">
+        <div className="flex flex-col md:flex-row items-center justify-left ml-8 mt-4">
           {/* Erste Box */}
           <div className="flex flex-col items-center text-center p-4 w-[85px] h-[75px] font-poppins font-medium text-[32px] leading-[48px] text-[#1E1E1E]">
             <div className="text-[32px] leading-[48px]">
-
-            <Countratings />
-            
-
+              <Countratings />
               {/* {reviewsData}+ */}
-
             </div>
             <div className="text-[18px] leading-[27px] mt-2 ml-8">
               Bewertungen
@@ -77,11 +99,8 @@ const Home = () => {
           {/* Zweite Box */}
           <div className="flex flex-col items-center text-center p-4 w-[80px] h-[75px] font-poppins font-medium text-[32px] leading-[48px] text-[#1E1E1E]">
             <div className="text-[32px] leading-[48px]">
-
-              <Countusers /> 
-
+              <Countusers />
               {/* {usersData}+ */}
-
             </div>
             <div className="text-[18px] leading-[27px] mt-2">
               Benutzer
@@ -89,26 +108,39 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Filter Städte  */}
+        {/* Filter Städte */}
         <div className="ml-8 mt-16 mb-16 w-[449px] h-[64px] bg-[#FFFFFF] rounded-[12px] flex items-center justify-start relative">
-
           <div className="ml-4 left-[18px] top-[18px] font-poppins font-medium text-[18px] leading-[27px] text-[rgba(30, 30, 30, 0.5)]">
             Filter Städte
           </div>
 
           <div className="ml-60 relative flex justify-center items-center p-4">
             {/* Kasten */}
-            <div className="w-[48px] h-[48px] bg-[#C1DCDC] rounded-[12px] flex items-center justify-center">
-            </div>
+            <div className="w-[48px] h-[48px] bg-[#C1DCDC] rounded-[12px] flex items-center justify-center"></div>
             {/* Lupe */}
-            <div className=" flex items-center justify-center">
+            <div className="flex items-center justify-center">
               <MagnifyingGlassIcon className="w-1/2 h-1/2 text-gray-600" />
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Bild Container */}
+      <div className="flex items-center justify-center w-full md:w-1/3 mt-4 md:mt-0">
+        <img
+          src="../images/Icon_Rollstuhl.png"
+          alt="Icon Karte"
+          className="object-cover rounded-lg"
+          style={{ width: '300px', height: '300px' }} // Bildgröße anpassen
+        />
+      </div>
+    </div>
+  </div>
 </div>
+
+       
         {/* Beschreibungstext */}
-        <p className="mt-20 p-4  font-medium font-poppins text-[rgba(30,30,30,0.5)]">
+        <p className="mt-8 p-4  font-medium font-poppins text-[rgba(30,30,30,0.5)]">
           InclusiveTRIP hilft Ihnen, öffentliche Orte wie Restaurants, Kinos, Geschäfte und vieles mehr hinsichtlich ihrer Barrierefreiheit zu bewerten und passende Locations zu finden. Unsere App ermöglicht es Ihnen, Orte zu entdecken und zu bewerten, um anderen Menschen mit ähnlichen Bedürfnissen zu helfen, barrierefreie Orte zu finden.
           <br />
           <br />
@@ -161,7 +193,7 @@ const Home = () => {
           </div>
         </div>
 </div>
-      </div>
+      
 
 
   );

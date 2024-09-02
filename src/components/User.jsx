@@ -5,6 +5,7 @@ import { FetchUserData } from "./FetchUserData";
 import { ProfilePhotoUpload } from "./ProfilePhotoUpload";
 import { UserProfileForm } from "./UserProfileForm";
 import { FetchUserRatings } from "./FetchUserRatings";
+import { useNavigate } from 'react-router-dom'; 
 
 function User() {
   const [userData, setUserData] = useState({
@@ -16,7 +17,11 @@ function User() {
   });
   const [profilePhoto, setProfilePhoto] = useState("");
   const [userRatings, setUserRatings] = useState([]);
+const navigate = useNavigate();
 
+const handleRateClick = (rating) => {
+   navigate('/DetailReview');
+};
   return (
     <>
       <div>
@@ -26,31 +31,36 @@ function User() {
           setProfilePhoto={setProfilePhoto}
         />
         <FetchUserRatings setUserRatings={setUserRatings} />
-        <div className="flex flex-row md:flex-col items-top justify-center p-4">
-          <div className="container mx-auto w-full min-h bg-[#C1DCDC] rounded-[24px] relative">
-            <div className="flex flex-col justify-start p-8">
-              <div className="flex justify-between items-center">
-                <h1 className="font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black mb-8">
-                  Profil von {userData.firstName}
-                </h1>
-                <ProfilePhotoUpload
-                  userData={userData}
-                  profilePhoto={profilePhoto}
-                  setProfilePhoto={setProfilePhoto}
-                />
-              </div>
 
-              <div className="flex flex-col md:flex-row items-center justify-start ml-8 mt-[-24px]">
-                <UserProfileForm
-                  userData={userData}
-                  setUserData={setUserData}
-                />
-              </div>
+   <div className="flex flex-col md:flex-row items-top justify-center p-4">
+      <div className="container mx-auto w-full min-h bg-[#C1DCDC] rounded-[24px] relative">
+        <div className="flex flex-col md:flex-row justify-between p-8">
+          {/* Text Container */}
+          <div className="flex flex-col w-full md:w-2/3 text-left">
+            <h1 className="font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black">
+              Profil von {userData.firstName}
+            </h1>
+            <div className="mt-4 text-[#1E1E1E] font-poppins font-medium text-[32px] leading-[48px]">
+              Ändere deine Benutzerdaten und bearbeite deine bereits abgegebenen Bewertungen.
             </div>
           </div>
-        </div>
+          {/* Bild Container */}
+          <div className="flex items-center justify-end w-full md:w-2/3 mt-4 md:mt-0">
+            <ProfilePhotoUpload
+              userData={userData}
+              profilePhoto={profilePhoto}
+              setProfilePhoto={setProfilePhoto}
+              
+            />
+            </div>
       </div>
-      <div>
+    </div>
+  </div>
+      <div className="flex flex-col md:flex-row items-center justify-center mt-8">
+        <UserProfileForm userData={userData} setUserData={setUserData} />
+      </div>
+    </div>
+  
         <h1 className="font-poppins font-bold text-[18px] text-center pt-12 mt-12 text-[#000000]">
           Deine Bewertungen
         </h1>
@@ -58,7 +68,7 @@ function User() {
         {userRatings.map((rating, index) => (
           <div
             key={index}
-            className="container mx-auto w-full bg-[#C1DCDC] rounded-[24px] mt-8"
+            className="container mx-auto w-full bg-[#C1DCDC] rounded-[24px] mt-16"
           >
             <div className="w-full text-left p-8">
               <div className="flex items-center justify-between">
@@ -92,7 +102,7 @@ function User() {
             </div>
           </div>
         ))}
-      </div>
+      
     </>
   );
 }
