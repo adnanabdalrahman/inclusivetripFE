@@ -63,8 +63,8 @@ function User() {
             <div className="w-full text-left p-8">
               <div className="flex items-center justify-between">
                 <h1 className="font-poppins font-bold text-[18px] text-[#000000]">
-                  Deine Bewertung vom{" "}
-                  {new Date(rating.createdAt).toLocaleDateString()}
+                  So hast du {rating.placeName} am{" "}
+                  {new Date(rating.createdAt).toLocaleDateString()} bewertet:
                 </h1>
 
                 <div className="space-x-1 rating">
