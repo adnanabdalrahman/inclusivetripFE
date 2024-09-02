@@ -64,11 +64,12 @@ export function UserProfileForm({ userData, setUserData }) {
           <div className="flex flex-col items-start gap-2 w-[487px] h-[50px]">
             <label
               htmlFor="username"
-              className="w-full h-[22px] text-[20px] font-bold leading-[140%] text-[#1E1E1E]"
+              className="text-center w-full h-[22px] text-[20px] font-bold leading-[140%] text-[#1E1E1E]"
             >
               Persönliche Daten
             </label>
-          </div>
+                      </div>
+
           <div className="flex flex-col items-start gap-2 w-[487px] h-[70px]">
             <label
               htmlFor="firstName"
@@ -84,6 +85,7 @@ export function UserProfileForm({ userData, setUserData }) {
               onChange={handleChange}
             />
           </div>
+
           <div className="flex flex-col items-start gap-2 w-[487px] h-[70px]">
             <label
               htmlFor="lastName"
@@ -99,10 +101,11 @@ export function UserProfileForm({ userData, setUserData }) {
               onChange={handleChange}
             />
           </div>
-          <div className="flex flex-col items-start gap-2 w-[487px] h-[70px]">
+
+                    <div className="flex flex-col items-start gap-2 w-[487px] h-[70px]">
             <label
               htmlFor="email"
-              className="mt-6 w-full h-[22px] text-[16px] font-normal leading-[140%] text-[#1E1E1E]"
+              className="mt-12 w-full h-[22px] text-[16px] font-normal leading-[140%] text-[#1E1E1E]"
             >
               Email
             </label>
@@ -116,8 +119,8 @@ export function UserProfileForm({ userData, setUserData }) {
           </div>
         </div>
       </div>
-      <div className="ml-4 mt-32 flex justify-center items-center px-4 py-3 w-[487px] h-[40px] bg-[#FFD700] border border-[#2C2C2C] rounded-lg">
-        <button type="submit">bearbeiten</button>
+      <div className="ml-4 mt-16 flex justify-center items-center px-4 py-3 w-[487px] h-[40px] bg-[#FFD700] border border-[#2C2C2C] rounded-lg">
+        <button type="submit">Änderungen speichern</button>
       </div>
     </form>
   );

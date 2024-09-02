@@ -39,7 +39,7 @@ const CitySelector = ({ selectedCity, setSelectedCity }) => {
 
     return (
         <>
-            <h1 className="text-2xl font-bold mb-4">Filter Städte</h1>
+            <h1 className="text-2xl font-bold mb-4">Wähle eine Stadt aus:</h1>
             <div className="mb-4">
                 <FilterableSelect
                     items={cities}
