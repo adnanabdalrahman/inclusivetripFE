@@ -39,14 +39,6 @@ export default function Login() {
       setError(true);
       console.error("Login failed:", error);
     }
-    // login(loginData)
-    // .then(() => {
-    //   navigate("/map");
-    // })
-    //   .catch((error) => {
-    //     setError(true);
-    //     console.error("Login failed:", error);
-    //   });
   }
 
   function openModal() {

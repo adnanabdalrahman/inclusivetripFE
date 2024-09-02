@@ -3,7 +3,7 @@ import { Marker, Popup } from "react-leaflet";
 
 import { useNavigate } from "react-router-dom";
 
-const PlaceMarker = function ({ place, placeIcon }) {
+const PlaceMarker = function ({ place, placeIcon, category }) {
     const navigate = useNavigate();
 
     const handleMarkerClick = (position) => {
@@ -11,7 +11,7 @@ const PlaceMarker = function ({ place, placeIcon }) {
     };
 
     const handleCreateRate = (place) => {
-        navigate(`/create`, { state: { place: place } });
+        navigate(`/create`, { state: { place: place, category: category } });
     };
 
     const handleRatinsClick = (place) => {

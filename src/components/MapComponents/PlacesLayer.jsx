@@ -63,7 +63,7 @@ const PlacesLayer = ({ selectedCategory }) => {
     return (
         <>
             {places.map((place) => (
-                <PlaceMarker key={place.id} place={place} placeIcon={icon} />
+                <PlaceMarker key={place.id} place={place} placeIcon={icon} category={selectedCategory} />
             ))}
         </>
     );
