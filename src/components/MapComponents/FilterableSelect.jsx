@@ -20,10 +20,10 @@ const FilterableSelect = ({ items, selectedValue, onSelect }) => {
     return (
         <div className="relative inline-block w-64">
             <button
-                className="w-full px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="btn w-full px-4 py-2 bg-yellow-400  border-black rounded-lg shadow-sm focus:outline-none focus:ring-2"
                 onClick={() => setIsOpen(!isOpen)}
             >
-                {selectedValue ? selectedValue.name : 'Select an item'}
+                {selectedValue ? selectedValue.name : 'Auswählen'}
             </button>
 
             {isOpen && (
