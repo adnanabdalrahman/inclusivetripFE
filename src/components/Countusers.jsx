@@ -1,27 +1,22 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Countusers() {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const API_URL = import.meta.env.VITE_APP_INCLUSIVETRIPBE_URL;
+  const usersCountUrl = `${API_URL}/users/count`;
   useEffect(() => {
     async function fetchUsers() {
       try {
         // API-Anfrage zum Abrufen aller Users
-        const response = await axios.get('http://localhost:3000/users'); // URL anpassen, falls erforderlich
+        const response = await axios.get(usersCountUrl); // URL anpassen, falls erforderlich
 
-        // Überprüfen, ob die Antwort ein Array ist
-        if (Array.isArray(response.data)) {
-          setUsers(response.data); // Setze alle Users in den State
-        } else {
-          console.error('Unerwartetes Datenformat:', response.data);
-          setError('Fehlerhaftes Datenformat von der API');
-        }
+        setUsers(response.data); // Setze alle Users in den State
       } catch (error) {
-        console.error('Fehler beim Abrufen der User-Daten:', error);
-        setError('Fehler beim Abrufen der User-Daten');
+        console.error("Fehler beim Abrufen der User-Daten:", error);
+        setError("Fehler beim Abrufen der User-Daten");
       } finally {
         setLoading(false);
       }
@@ -30,18 +25,15 @@ export default function Countusers() {
     fetchUsers();
   }, []);
 
-  // Anzahl der User ermitteln
-  const usersCount = users.length;
-
   return (
     <div>
       {loading ? (
-        'Laden...'
+        "Laden..."
       ) : error ? (
         <div className="error">{error}</div>
       ) : (
         <div>
-          <p>{usersCount}</p>
+          <p>{users}</p>
         </div>
       )}
     </div>
