@@ -37,38 +37,36 @@ export const AuthProvider = ({ children }) => {
     }
   }, [shouldFetch]);
 
-
   async function login(loginData) {
     try {
       const response = await axios.post(loginUrl, loginData, {
         withCredentials: true,
       });
 
-      // Handle successful response
-      console.log('Login successful:', response);
-      setShouldFetch(prev => !prev);
+      console.log("Login successful:", response);
+      setShouldFetch((prev) => !prev);
     } catch (err) {
       if (err.response) {
         const { status, data } = err.response;
-        console.error(`Error ${status}: ${data.message || 'An unknown error occurred.'}`);
+        console.error(
+          `Error ${status}: ${data.message || "An unknown error occurred."}`
+        );
         if (data.errors) {
-          // Create a user-friendly message for each validation error
-          const validationErrors = data.errors.map(error => ({
+          const validationErrors = data.errors.map((error) => ({
             field: error.field,
             message: error.message,
           }));
 
-          console.error('Validation errors:', validationErrors);
-          // setValidationErrors(validationErrors); // Example state update
+          console.error("Validation errors:", validationErrors);
         } else {
-          console.error(`Error message: ${data.message || 'An unknown error occurred.'}`);
+          console.error(
+            `Error message: ${data.message || "An unknown error occurred."}`
+          );
         }
       } else {
-        // If no response was received or another error occurred
-        console.error('Login error:', err.message);
+        console.error("Login error:", err.message);
       }
 
-      // Clear cookies and user info on error
       Cookies.remove("token");
       setUserInfo(null);
     }

@@ -16,6 +16,7 @@ import Map from "./components/Map";
 import Impressum from "./components/Impressum";
 import Dataprotection from "./components/Dataprotection";
 import Aboutus from "./components/Aboutus";
+import DetailReview from "./components/DetailReview";
 
 
 const Protected = () => {
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="ratings" element={<Ratings />} />
       <Route path="impressum" element={<Impressum />} />
+      <Route path="detailreview" element={<DetailReview />} />
       <Route path="datenschutz" element={<Dataprotection />} />
       <Route path="ueberuns" element={<Aboutus />} />
       <Route path="map" element={<Map />} />
