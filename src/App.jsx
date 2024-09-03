@@ -1,5 +1,12 @@
 import { useContext, useState } from "react";
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider, Outlet, Navigate } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+  Outlet,
+  Navigate,
+} from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
@@ -17,7 +24,7 @@ import Impressum from "./components/Impressum";
 import Dataprotection from "./components/Dataprotection";
 import Aboutus from "./components/Aboutus";
 import DetailReview from "./components/DetailReview";
-
+import ReviewEdit from "./components/ReviewEdit";
 
 const Protected = () => {
   const { userInfo, loading } = useContext(AuthContext);
@@ -31,6 +38,7 @@ const router = createBrowserRouter(
       <Route path="ratings" element={<Ratings />} />
       <Route path="impressum" element={<Impressum />} />
       <Route path="detailreview" element={<DetailReview />} />
+      <Route path="/review-edit/:id" element={<ReviewEdit />} />
       <Route path="datenschutz" element={<Dataprotection />} />
       <Route path="ueberuns" element={<Aboutus />} />
       <Route path="map" element={<Map />} />
