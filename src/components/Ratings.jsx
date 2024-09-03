@@ -14,6 +14,16 @@ const Ratings = () => {
   const { place, category } = location.state || {};
   const [placeRatings, setPlaceRatings] = useState([]);
   const navigate = useNavigate();
+    const [selectedImage, setSelectedImage] = useState(null);
+
+const openModal = (image) => {
+    setSelectedImage(image); // Setze das ausgewählte Bild
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null); // Schließe das Modal
+  };
+
 
   useEffect(() => {
     const fetchPlaceRatings = async () => {
@@ -82,7 +92,7 @@ const Ratings = () => {
         <div className="flex flex-wrap justify-center items-center gap-4 p-4 ">
           {placeRatings.map((rating, index) => (
             rating.fileUploads.map((file, index) => (
-              <div key={index} className="w-1/5 p-2 ">
+              <div key={index} className="w-1/5 p-2 " onClick={() => openModal(file)}>
                 <img key={index} src={file.filePath}
                   alt="Photo" className="w-full h-auto object-cover rounded-lg" />
               </div>
@@ -90,6 +100,28 @@ const Ratings = () => {
           ))}
 
         </div>
+
+            {/* Modal */}
+        {selectedImage && (
+          <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50" onClick={closeModal}>
+            <div className="relative">
+              <img
+                src={selectedImage}
+                alt="Selected"
+                className="max-w-full max-h-full object-contain"
+                onClick={(e) => e.stopPropagation()} // Verhindert das Schließen des Modals, wenn auf das Bild geklickt wird
+              />
+              <button
+                className="absolute top-4 right-4 text-white text-3xl font-bold"
+                onClick={closeModal}
+              >
+                &times;
+              </button>
+            </div>
+          </div>
+        
+        )}
+      
 
         <button className="btn bg-[#FFD700] p-2 mt-4 h-12 min-h-2 m-2 justify-end float-right"
           onClick={() => handleCreateRate(place)}>Bewertung hinzufügen</button>

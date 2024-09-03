@@ -49,15 +49,18 @@ const Home = () => {
   }
   return (
     <div className="flex flex-col md:flex-row items-top justify-center p-4">
-      <div>
-        <div className="flex flex-col md:flex-row items-center justify-center"></div>
-        <div className="pb-1 container mx-auto w-full bg-[#C1DCDC] rounded-[24px] relative">
-          <div className="w-full text-left p-8">
-            <h1 className="font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black">
-              Barriere Bewertungen <br />
-              für Standorte
-            </h1>
-          </div>
+    <div>
+      <div className="flex flex-col md:flex-row items-center justify-center"></div>
+      <div className="pb-1 container mx-auto w-full bg-[#C1DCDC] rounded-[24px] relative">
+        
+        <div className="w-full text-left p-8 relative">
+          <h1 className="font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black">
+            Barriere Bewertungen <br />
+            für Standorte
+          </h1>
+      
+          
+        </div>
 
           <div className="flex flex-col md:flex-row items-center justify-left ml-8 mt-[-24]">
             {/* Erste Box */}
@@ -85,7 +88,10 @@ const Home = () => {
               <div className="text-[18px] leading-[27px] mt-2">Benutzer</div>
             </div>
           </div>
-          <div className="flex flex-col md:flex-row items-center justify-center mt-8 p-4 gap-6">
+
+
+          
+          <div className="flex flex-col md:flex-row items-left justify-left mt-8 p-4 gap-6">
             <div className="flex space-x-4 items-center">
               <div className="p-4 mr-9">
                 <CitySelector
@@ -99,11 +105,23 @@ const Home = () => {
                   setSelectedCategory={setSelectedCategory}
                 />
               </div>
-            </div>
+            
 
-            <button className="btn btn-outline" onClick={handleSearch}>Suchen</button>
+            <button className="btn btn-outline mt-8  bg-yellow-400" onClick={handleSearch}>Suchen</button>
           </div>
-        </div>
+          
+          
+
+  </div>
+      
+
+    </div>
+ 
+
+
+
+
+       
         {/* Beschreibungstext */}
         <p className="mt-20 p-4  font-medium font-poppins text-[rgba(30,30,30,0.5)]">
           InclusiveTRIP hilft Ihnen, öffentliche Orte wie Restaurants, Kinos,
