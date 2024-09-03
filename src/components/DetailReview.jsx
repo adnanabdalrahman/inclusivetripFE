@@ -2,89 +2,54 @@ import { useState, useEffect } from "react";
 import axios from 'axios'; // Importiere axios
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_APP_INCLUSIVETRIPBE_URL;
 const REVIEW_ID = 38; // Beispielhafte Review-ID
 
-export default function DetailReview() {
-  const [barriers, setBarriers] = useState([]);
-  const [description, setDescription] = useState('');
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [placeName, setPlaceName] = useState('');
+const DetailReview = () => {
+  const API_URL = import.meta.env.VITE_APP_INCLUSIVETRIPBE_URL;
+  const location = useLocation();
+  const { place, category, rating } = location.state || {};
+  const [barrierRatings, setBarrierRatings] = useState([]);
   const navigate = useNavigate();
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [stars] = useState([1, 2, 3, 4, 5]);
 
 
-  const images = [
-    "https://media.istockphoto.com/id/1307190527/de/foto/gl%C3%BCcklicher-kellner-serviert-essen-f%C3%BCr-gruppe-von-freunden-in-einer-kneipe.jpg?s=612x612&w=0&k=20&c=ibnkW2wUUsORthgoyJQR7Y3ej4Nix38XVXzAZA_dcms=",
-    "https://t3.ftcdn.net/jpg/03/24/73/92/360_F_324739203_keeq8udvv0P2h1MLYJ0GLSlTBagoXS48.jpg",
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzva470ITGU716RSlhsQpt-7B8S2ZAuO8IAtBmXNm9qdCcWMHYMNxU-Is9TZYuSG7Tvv8&usqp=CAU",
-    "https://media.istockphoto.com/id/1404204719/de/foto/unkenntliche-multirassische-weibliche-und-m%C3%A4nnliche-freunde-die-auf-dem-balkon-des-restaurants.jpg?s=612x612&w=0&k=20&c=kxNTFIWHszVWDM9x78KQ2x7SQycpdq_o1EaWmv_60e8=",
-    "https://www.tageskarte.io/fileadmin/content/_processed_/5/8/csm_Bild2seo_03469576dd.jpg"
-  ];
+  console.log('place', place);
+  console.log('category', category);
+  console.log('rating ', rating);
+
+
+
+  useEffect(() => {
+    const fetchBarrierRatings = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/barriersReviews/review/${rating.id}`, {
+        });
+        setBarrierRatings(response.data);
+        console.log('barrierRatings', response.data);
+      } catch (error) {
+        console.error("Error fetching Place ratings:", error);
+        toast.error("Fehler beim Laden der Bewertungen.");
+      }
+    };
+
+    fetchBarrierRatings();
+  }, []);
+
+
+
 
   const openModal = (image) => {
-    setSelectedImage(image); // Setze das ausgewählte Bild
+    setSelectedImage(image);
   };
 
   const closeModal = () => {
     setSelectedImage(null); // Schließe das Modal
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Abrufen der Barrieren-Daten
-        const response = await axios.get(`${API_URL}/barriers/selected`);
-        if (response.data && response.data.length) {
-          setBarriers(response.data);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, [API_URL]);
-
-  // UseEffect zum Abrufen der Beschreibung beim Laden der Komponente
-  useEffect(() => {
-    const fetchDescriptionById = async () => {
-      try {
-        const response = await axios.get(`${API_URL}/reviews/reviewid/${REVIEW_ID}`);
-        if (response.data) {
-          setDescription(response.data.comment); // Beschreibung aus der API speichern
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchDescriptionById();
-  }, [API_URL]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Hier kannst du Formular-Daten verarbeiten oder validieren, wenn nötig
-    toast.success("Formular erfolgreich eingereicht!");
-  };
-
-  //   UseEffekt für Laden von Locationnamen
-  useEffect(() => {
-    const fetchPlaceName = async () => {
-      try {
-        const response = await axios.get(`${API_URL}/reviews/reviewid/${REVIEW_ID}`);
-        if (response.data) {
-          setPlaceName(response.data.placeName); // 
-        }
-      } catch (error) {
-        setError('Fehler beim Abrufen des Ortes');
-        console.error('Fehler beim Abrufen des Ortes:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPlaceName();
-  }, [API_URL]);
 
   //  Funktion um auf die vorherige Seite zu kommen 
   const handleBackClick = () => {
@@ -99,7 +64,7 @@ export default function DetailReview() {
           <div className="flex flex-col md:flex-row w-full p-8">
             <div className="flex flex-col w-full md:w-2/3 text-left">
               <h1 className="mt-4 font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black">
-                Details Bewertung <br /> {placeName}
+                Details Bewertung <br />
               </h1>
               <div className="mt-4 text-[#1E1E1E] font-poppins font-medium text-[32px] leading-[48px]">
                 Erfahre mehr über die Meinung und Beurteilung
@@ -109,7 +74,7 @@ export default function DetailReview() {
             {/* Bild Container */}
             <div className="flex items-center justify-center w-full md:w-1/3 mt-4 md:mt-0">
               <img
-                src="/images//Icon_Bewertung.png"
+                src="/images/Icon_Bewertung.png"
                 alt="Icon Karte"
                 className="max-w-full max-h-[300px] object-cover rounded-lg"
                 style={{ width: '200px', height: '200px' }}
@@ -124,10 +89,10 @@ export default function DetailReview() {
       <div>
         {/* Galerie */}
         <div className="flex flex-wrap justify-center items-center gap-4 p-4">
-          {images.map((image, index) => (
+          {rating.FileUploads.map((image, index) => (
             <div key={index} className="w-1/4 p-2 cursor-pointer" onClick={() => openModal(image)}>
               <img
-                src={image}
+                key={index} src={image.filePath}
                 alt={`Bild ${index + 1}`}
                 className="w-full h-auto object-cover rounded-lg"
               />
@@ -140,58 +105,68 @@ export default function DetailReview() {
           <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50" onClick={closeModal}>
             <div className="relative">
               <img
-                src={selectedImage}
+                src={selectedImage.filePath}
                 alt="Selected"
                 className="max-w-full max-h-full object-contain"
-                onClick={(e) => e.stopPropagation()} // Verhindert das Schließen des Modals, wenn auf das Bild geklickt wird
+                onClick={(e) => e.stopPropagation()}
               />
               <button
                 className="absolute top-4 right-4 text-white text-3xl font-bold"
                 onClick={closeModal}
               >
-                &times;
+                &times;{selectedImage.path}
               </button>
             </div>
           </div>
         )}
       </div>
 
-      <form onSubmit={handleSubmit}>
-        <div className="flex items-center justify-center">
-          <div className="p-6">
-            <ul className="list-none space-y-4">
-              {barriers.map((barrier) => (
-                <li key={barrier.id} className="flex items-center space-x-4">
-                  <div className="w-4 h-4 bg-[#FFD700] rounded-full"></div>
-                  <span className="flex-1 text-lg">{barrier.name} geeignet</span>
-                  <div className="flex space-x-1 rating ml-auto">
-                    {[...Array(5)].map((_, index) => (
-                      <div
-                        key={index}
-                        className={`w-6 h-6 mask mask-star ${index < barrier.rating ? 'bg-yellow-500' : 'bg-gray-300'}`}
-                      ></div>
-                    ))}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
+      <div className="flex items-center justify-center">
+        <div className="p-6">
+
+          <ul className="list-none space-y-4">
+            {barrierRatings.map((barrierRating) => (
+              <li key={barrierRating.Barrier.id} className="flex items-center space-x-4">
+                <div className="w-4 h-4 bg-[#FFD700] rounded-full"></div>
+                <span className="flex-1 text-lg">
+                  {barrierRating.Barrier.name} geeignet
+                </span>
+                <div className="flex space-x-1 rating ml-auto">
+                  {stars.map((star) => (
+                    <input
+                      key={star}
+                      type="radio"
+                      name={`barrier-${barrierRating.Barrier.id}`}
+                      id={star}
+                      value={barrierRating.reviews}
+                      className="mask mask-star"
+                    />
+                  ))}
+                </div>
+              </li>
+            ))}
+          </ul>
+
         </div>
-        <div className="flex items-center justify-center mb-4">
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="w-full p-4 border border-gray-300 rounded-lg"
-            rows="4"
-            placeholder="Beschreibung hier eingeben"
-          ></textarea>
-        </div>
-        <button type="button" className="btn bg-yellow-400 border-black px-8 font-normal" onClick={handleBackClick}>
-          Zurück
-        </button>
-      </form>
+      </div>
+
+
+
+
+      <div className="flex items-center justify-center mb-4">
+        <p className="w-full p-4 border border-gray-300 rounded-lg">
+
+          {rating.comment}
+        </p>
+      </div>
+      <button type="button" className="btn bg-yellow-400 border-black px-8 font-normal" onClick={handleBackClick}>
+        Zurück
+      </button>
 
       <ToastContainer />
     </div>
   );
 }
+
+
+export default DetailReview;
