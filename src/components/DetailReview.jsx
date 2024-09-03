@@ -16,20 +16,12 @@ const DetailReview = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [stars] = useState([1, 2, 3, 4, 5]);
 
-
-  console.log('place', place);
-  console.log('category', category);
-  console.log('rating ', rating);
-
-
-
   useEffect(() => {
     const fetchBarrierRatings = async () => {
       try {
         const response = await axios.get(`${API_URL}/barriersReviews/review/${rating.id}`, {
         });
         setBarrierRatings(response.data);
-        console.log('barrierRatings', response.data);
       } catch (error) {
         console.error("Error fetching Place ratings:", error);
         toast.error("Fehler beim Laden der Bewertungen.");
@@ -140,6 +132,8 @@ const DetailReview = () => {
                       id={star}
                       value={barrierRating.reviews}
                       className="mask mask-star"
+                      defaultChecked={star == barrierRating.reviews}
+                      disabled
                     />
                   ))}
                 </div>

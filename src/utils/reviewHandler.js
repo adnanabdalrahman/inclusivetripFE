@@ -48,7 +48,6 @@ export async function createBarrierReviews(barriersReviews, reviewId) {
         throw new Error("No token found");
     }
     for (const barriersReview of barriersReviews) {
-        console.log('barriersReview', barriersReview);
 
         const barrierRatingData = {
             barrierId: barriersReview.barrierId,
@@ -58,7 +57,6 @@ export async function createBarrierReviews(barriersReviews, reviewId) {
 
         try {
             const barrierReviewId = await createBarrierReview(barrierRatingData);
-            console.log('barrierReviewId', barrierReviewId);
         } catch (error) {
             console.error('Error creating barrier review:', error);
         }
