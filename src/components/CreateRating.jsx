@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 function CreateRating() {
   const location = useLocation();
   const { place, category } = location.state || {};
-  const [stars] = useState([1, 2, 3, 4, 5, 6]);
+  const [stars] = useState([1, 2, 3, 4, 5]);
   const API_URL = import.meta.env.VITE_APP_INCLUSIVETRIPBE_URL;
   const filesUrl = `${API_URL}/file-upload`;
   const navigate = useNavigate();
