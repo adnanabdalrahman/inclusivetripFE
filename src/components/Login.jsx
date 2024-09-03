@@ -34,7 +34,7 @@ export default function Login() {
     try {
       login(loginData).then(() => {
         navigate("/map");
-      })
+      });
     } catch (error) {
       setError(true);
       console.error("Login failed:", error);
@@ -76,7 +76,8 @@ export default function Login() {
                   Login
                 </h1>
                 <div className="mt-4 text-[#1E1E1E] font-poppins font-medium text-[32px] leading-[48px]">
-                  Logge dich ein, um Bewertungen abgeben zu können und dein Profil zu verwalten.
+                  Logge dich ein, um Bewertungen abgeben zu können und dein
+                  Profil zu verwalten.
                 </div>
               </div>
               {/* Bild Container */}
@@ -85,17 +86,13 @@ export default function Login() {
                   src="/images//Icon_Login.png"
                   alt="Icon Karte"
                   className="object-cover rounded-lg"
-                  style={{ width: '200px', height: '200px' }}
+                  style={{ width: "200px", height: "200px" }}
                 />
               </div>
             </div>
           </div>
 
-
-
-
           <div className="max-w-2xl mx-auto flex flex-col gap-6 items-center py-16 rounded-2xl">
-
             <label className="input input-bordered flex items-center gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -132,6 +129,11 @@ export default function Login() {
               <input
                 name="password"
                 onChange={handleChange}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleLogin();
+                  }
+                }}
                 type="password"
                 className="grow"
                 value={loginData.password}
@@ -211,7 +213,6 @@ export default function Login() {
             </Modal>
           </div>
         </div>
-
       )}
     </div>
   );
