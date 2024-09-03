@@ -28,12 +28,23 @@ export default function ReviewEdit() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`${API_URL}/reviewid/${id}`, {
+      await axios.put(`${API_URL}/reviews/reviewid/${id}`, {
         comment: description,
       });
       toast.success("Bewertung erfolgreich aktualisiert!");
     } catch (error) {
       toast.error("Fehler beim Aktualisieren der Bewertung.");
+      console.log(error);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`${API_URL}/reviews/reviewid/${id}`);
+      toast.success("Bewertung erfolgreich gelöscht!");
+      navigate(-1); // Zurück zur vorherigen Seite
+    } catch (error) {
+      toast.error("Fehler beim Löschen der Bewertung.");
       console.log(error);
     }
   };
@@ -91,14 +102,14 @@ export default function ReviewEdit() {
           </button>
           <button
             type="button"
-            className="btn bg-red-400 border-black px-8 font-normal"
-            // onClick={handleDelete}
+            className="btn bg-yellow-400 border-black px-8 font-normal"
+            onClick={handleDelete}
           >
             Löschen
           </button>
           <button
             type="button"
-            className="btn bg-gray-400 border-black px-8 font-normal"
+            className="btn bg-yellow-400 border-black px-8 font-normal"
             onClick={handleBackClick}
           >
             Zurück
