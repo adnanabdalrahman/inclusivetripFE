@@ -18,16 +18,7 @@ const Ratings = () => {
   useEffect(() => {
     const fetchPlaceRatings = async () => {
       try {
-        const token = Cookies.get("token");
-        if (!token) {
-          throw new Error("No token found");
-        }
-
         const response = await axios.get(`${API_URL}/reviews/place/${place.id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          withCredentials: true,
         });
         setPlaceRatings(response.data);
         console.log(response.data);
