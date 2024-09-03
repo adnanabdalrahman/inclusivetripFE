@@ -129,7 +129,7 @@ const DetailReview = () => {
               <li key={barrierRating.Barrier.id} className="flex items-center space-x-4">
                 <div className="w-4 h-4 bg-[#FFD700] rounded-full"></div>
                 <span className="flex-1 text-lg">
-                  {barrierRating.Barrier.name} geeignet
+                  {barrierRating.Barrier.name} geeignet {barrierRating.reviews}
                 </span>
                 <div className="flex space-x-1 rating ml-auto">
                   {stars.map((star) => (
@@ -140,6 +140,8 @@ const DetailReview = () => {
                       id={star}
                       value={barrierRating.reviews}
                       className="mask mask-star"
+                      defaultChecked={star == barrierRating.reviews}
+                      disabled
                     />
                   ))}
                 </div>
