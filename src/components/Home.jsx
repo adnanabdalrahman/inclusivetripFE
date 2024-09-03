@@ -12,8 +12,6 @@ const Home = () => {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
   const API_URL = import.meta.env.VITE_APP_INCLUSIVETRIPBE_URL;
-  const reviewsCountUrl = `${API_URL}/reviews/count`;
-  const usersCountUrl = `${API_URL}/users/count`;
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   // useEffect(() => {
@@ -44,6 +42,11 @@ const Home = () => {
   //   navigate("/Details/${postId}");
   // }
 
+  function handleSearch() {
+    navigate("/map", {
+      state: { city: selectedCity, category: selectedCategory },
+    });
+  }
   return (
     <div className="flex flex-col md:flex-row items-top justify-center p-4">
       <div>
@@ -98,14 +101,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="ml-60 relative flex justify-center items-center p-4">
-              {/* Kasten */}
-              <div className="w-[48px] h-[48px] bg-[#C1DCDC] rounded-[12px] flex items-center justify-center"></div>
-              {/* Lupe */}
-              <div className=" flex items-center justify-center">
-                <MagnifyingGlassIcon className="w-1/2 h-1/2 text-gray-600" />
-              </div>
-            </div>
+            <button className="btn btn-outline" onClick={handleSearch}>Suchen</button>
           </div>
         </div>
         {/* Beschreibungstext */}
