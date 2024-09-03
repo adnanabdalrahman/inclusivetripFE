@@ -193,7 +193,7 @@ function CreateRating() {
                         key={star}
                         type="radio"
                         name={`barrier-${barrier.id}`}
-                        id={barrier.id}
+                        id={star}
                         value={star}
                         onChange={handleBarrierReviewChange}
                         className="mask mask-star"

@@ -4,8 +4,6 @@ import { useMap } from "react-leaflet";
 import PlaceMarker from "./PlaceMarker";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ReactDOMServer from 'react-dom/server';
-
-
 import * as icons from '@fortawesome/free-solid-svg-icons';
 
 const iconMap = Object.fromEntries(
@@ -26,7 +24,6 @@ const createIcon = (selectedCategory) => {
 
 
 const PlacesLayer = ({ selectedCategory }) => {
-
     const [places, setPlaces] = useState([]);
     const [icon, setIcon] = useState([]);
 
@@ -46,14 +43,11 @@ const PlacesLayer = ({ selectedCategory }) => {
             const [placeData] = await Promise.all([
                 fetchPlaces(bbox, selectedCategory.searchName),
             ]);
-
             setPlaces(placeData);
         };
-
         fetchAndSetPlaces();
 
         map.on('moveend', fetchAndSetPlaces);
-
         return () => {
             map.off('moveend', fetchAndSetPlaces);
         };

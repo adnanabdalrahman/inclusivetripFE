@@ -17,7 +17,7 @@ export default function Login() {
 
   useEffect(() => {
     if (userInfo) {
-      navigate("/map");
+      navigate(-1);
     }
   }, [userInfo, navigate]);
 
@@ -33,7 +33,7 @@ export default function Login() {
     }
     try {
       login(loginData).then(() => {
-        navigate("/map");
+        navigate(-1);
       });
     } catch (error) {
       setError(true);
