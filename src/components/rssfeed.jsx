@@ -5,10 +5,8 @@ const RssFeed = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-       const apiUrl = import.meta.env.VITE_API_URL || '';  
-
-
-        fetch(`${apiUrl}/feed/`)  
+       
+         fetch('/api/feed/')
             .then(response => response.text())
             .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
             .then(data => {

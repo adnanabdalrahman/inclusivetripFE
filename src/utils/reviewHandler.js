@@ -1,7 +1,9 @@
+
 import axios from "axios";
 import Cookies from "js-cookie";
 
 const token = Cookies.get("token");
+
 
 const API_URL = import.meta.env.VITE_APP_INCLUSIVETRIPBE_URL;
 const reviewsUrl = `${API_URL}/reviews`;
@@ -67,6 +69,7 @@ export async function createBarrierReviews(barriersReviews, reviewId) {
     } catch (error) {
       console.error("Error creating barrier review:", error);
     }
+
   }
 }
 
@@ -75,6 +78,7 @@ export async function fetchReviewById(reviewId) {
   if (!token) {
     throw new Error("No token found");
   }
+
 
   try {
     const response = await axios.get(
@@ -106,6 +110,7 @@ export async function fetchReviewById(reviewId) {
       }
     } else {
       console.error("Fetch error:", error.message);
+
     }
     throw error;
   }
