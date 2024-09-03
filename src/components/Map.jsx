@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from "react-leaflet";
 import { GeoSearchControl, OpenStreetMapProvider } from "leaflet-geosearch";
@@ -12,7 +12,7 @@ import PlacesLayer from "./MapComponents/PlacesLayer";
 import LocationMarker from "./MapComponents/LocationMarker";
 import NavigateMap from "./MapComponents/NavigateMap";
 import CategorySelector from "./MapComponents/CategorySelector";
-
+import { useLocation } from "react-router-dom";
 
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'marker-icon-2x.png',
@@ -51,7 +51,13 @@ const Map = () => {
   const [defaultCenter, setDefaultCenter] = useState([52.51085635037089, 13.399439386103111]);
   const [selectedCity, setSelectedCity] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
-
+  const location = useLocation();
+  useEffect(() => {
+    if (location.state) {
+      setSelectedCity(location.state.city);
+      setSelectedCategory(location.state.category);
+    }
+  }, [location.state]);
 
   return (
     <>
