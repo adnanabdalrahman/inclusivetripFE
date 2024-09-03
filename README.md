@@ -1,6 +1,6 @@
 # InclusiveTrip
 
-## https://inclusivetrip.onrender.com
+## https://inclusivetripfe.onrender.com/
 
 (An English translation can be found at the end of this text.)
 
