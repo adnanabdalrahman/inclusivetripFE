@@ -54,9 +54,9 @@ const DetailReview = () => {
         <div className="flex flex-col md:flex-row"></div>
         <div className="container mx-auto w-full bg-[#C1DCDC] rounded-[24px] relative">
           <div className="flex flex-col md:flex-row w-full p-8">
-            <div className="flex flex-col w-full md:w-2/3 text-left">
+            <div className="flex flex-col items-center justify-between w-full md:w-2/3 text-left">
               <h1 className="mt-4 font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black">
-                Details Bewertung <br />
+                {rating.User.firstName} hat {place.name} {category.name} wie folgt bewertet:
               </h1>
               <div className="mt-4 text-[#1E1E1E] font-poppins font-medium text-[32px] leading-[48px]">
                 Erfahre mehr über die Meinung und Beurteilung
@@ -64,7 +64,10 @@ const DetailReview = () => {
               </div>
             </div>
             {/* Bild Container */}
-            <div className="flex items-center justify-center w-full md:w-1/3 mt-4 md:mt-0">
+            <div className="flex flex-col items-center justify-center w-full md:w-1/3 mt-4 md:mt-0">
+              <h1 className="font-poppins text-left font-bold text-[18px] text-[#000000]">
+                {new Date(rating.createdAt).toLocaleDateString()}
+              </h1>
               <img
                 src="/images/Icon_Bewertung.png"
                 alt="Icon Karte"
