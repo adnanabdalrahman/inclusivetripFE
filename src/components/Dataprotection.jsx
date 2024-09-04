@@ -14,7 +14,7 @@ const Dataprotection = () => {
         Verantwortlich für die Datenverarbeitung auf dieser Webseite ist:<br />
         Sebastian Olthoff <a href="mailto:sebastian-olthoff@gmx.de" className="text-blue-500 hover:underline">sebastian-olthoff@gmx.de</a><br />
         Adnan Abdalrahmen <a href="mailto:adnan.24150@gmail.com" className="text-blue-500 hover:underline">adnan.24150@gmail.com</a><br />
-        Ahmed M. <a href="mailto:rashin2604@gmail.com" className="text-blue-500 hover:underline">rashin2604@gmail.com</a><br />
+        Ahmed Mohamad <a href="mailto:rashin2604@gmail.com" className="text-blue-500 hover:underline">rashin2604@gmail.com</a><br />
         Julia Löw <a href="mailto:julia.loew@gmx.net" className="text-blue-500 hover:underline">julia.loew@gmx.net</a>
       </p>
 

@@ -20,6 +20,7 @@ export default function ReviewEdit() {
   const [showDeleteModal, setShowDeleteModal] = useState(false); // State für das Modal
   const navigate = useNavigate();
   const stars = [1, 2, 3, 4, 5];
+   const { place, category, rating } = location.state || {};
 
   useEffect(() => {
     const getReview = async () => {
@@ -135,6 +136,8 @@ export default function ReviewEdit() {
     setShowDeleteModal(false);
   };
 
+  
+
   return (
     <div>
       <div className="flex flex-col md:flex-row items-top p-4">
@@ -161,22 +164,40 @@ export default function ReviewEdit() {
         </div>
       </div>
 
+      
+      {/* Fotogalerie */}
+      <div>
+        {/* Galerie */}
+       <div className="flex flex-wrap justify-center items-center gap-4 p-4">
+  {rating && rating.FileUploads ? (
+    rating.FileUploads.map((image, index) => (
+      <div
+        key={index}
+        className="w-1/4 p-2 cursor-pointer"
+        onClick={() => openModal(image)}
+      >
+        <img
+          key={index}
+          src={image.filePath}
+          alt={`Bild ${index + 1}`}
+          className="w-full h-auto object-cover rounded-lg"
+        />
+      </div>
+    ))
+  ) : (
+    <div>Keine Bilder verfügbar</div>
+  )}
+</div>
+
+
       <form onSubmit={(e) => e.preventDefault()}>
         <div className="flex items-center justify-center">
           <div className="p-6"></div>
         </div>
-        <div className="flex items-center justify-center mb-4">
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="w-full p-4 border border-gray-300 rounded-lg"
-            rows="4"
-            placeholder="Beschreibung hier eingeben"
-          ></textarea>
-        </div>
+    
 
-        <div className="mb-4">
-          <h2 className="text-xl font-semibold">Barrierebewertungen</h2>
+        <div className="mb-4 flex items-center justify-center ">
+         
           <ul className="list-none space-y-4">
             {barrierRatings.map((barrierRating) => (
               <li
@@ -245,7 +266,17 @@ export default function ReviewEdit() {
           </div>
         )}
 
-        <div className="flex items-center justify-center space-x-4">
+            <div className="flex items-center justify-center mb-4">
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="w-full p-4 border border-gray-300 rounded-lg"
+            rows="4"
+            placeholder="Beschreibung hier eingeben"
+          ></textarea>
+        </div>
+
+        <div className="flex items-center justify-left space-x-4">
           <button
             type="button"
             className="btn bg-yellow-400 border-black px-8 font-normal"
@@ -304,5 +335,6 @@ export default function ReviewEdit() {
 
       <ToastContainer />
     </div>
+     </div>
   );
 }
