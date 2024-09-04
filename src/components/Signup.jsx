@@ -77,7 +77,7 @@ export default function SignupForm() {
                 {/* Bild Container */}
                 <div className="flex items-center justify-center w-full md:w-1/3 mt-4 md:mt-0">
                   <img
-                    src="/images//Icon_signup.png"
+                    src="/images//Icon_Signup.png"
                     alt="Icon Karte"
                     className="max-w-full max-h-[300px] object-cover rounded-lg"
                     style={{ width: '200px', height: '200px' }}

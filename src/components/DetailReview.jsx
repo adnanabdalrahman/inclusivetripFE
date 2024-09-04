@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from 'axios';
+import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -17,8 +17,10 @@ const DetailReview = () => {
   useEffect(() => {
     const fetchBarrierRatings = async () => {
       try {
-        const response = await axios.get(`${API_URL}/barriersReviews/review/${rating.id}`, {
-        });
+        const response = await axios.get(
+          `${API_URL}/barriersReviews/review/${rating.id}`,
+          {}
+        );
         setBarrierRatings(response.data);
       } catch (error) {
         console.error("Error fetching Place ratings:", error);
@@ -29,17 +31,14 @@ const DetailReview = () => {
     fetchBarrierRatings();
   }, []);
 
-
-
-
   const openModal = (image) => {
     setSelectedImage(image);
   };
 
   const closeModal = () => {
     setSelectedImage(null);
+  };
 
-  }
   const handleBackClick = () => {
     navigate(-1);
   };
@@ -51,11 +50,11 @@ const DetailReview = () => {
           <div className="flex flex-col md:flex-row w-full p-8">
             <div className="flex flex-col items-center justify-between w-full md:w-2/3 text-left">
               <h1 className="mt-4 font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black">
-                {rating.User.firstName} hat {place.name} {category.name} wie folgt bewertet:
+                {rating.User.firstName} hat {place.name} {category.name} wie
+                folgt bewertet:
               </h1>
               <div className="mt-4 text-[#1E1E1E] font-poppins font-medium text-[32px] leading-[48px]">
-                Erfahre mehr über die Meinung und Beurteilung
-                zu dieser Einrichtung bezüglich der Barriere Eignung.
+                Erfahre wie andere Nutzer diesen Ort bewertet haben.
               </div>
             </div>
 
@@ -67,20 +66,24 @@ const DetailReview = () => {
                 src="/images/Icon_Bewertung.png"
                 alt="Icon Karte"
                 className="max-w-full max-h-[300px] object-cover rounded-lg"
-                style={{ width: '200px', height: '200px' }}
+                style={{ width: "200px", height: "200px" }}
               />
             </div>
           </div>
         </div>
       </div>
 
-
       <div>
         <div className="flex flex-wrap justify-center items-center gap-4 p-4">
           {rating.FileUploads.map((image, index) => (
-            <div key={index} className="w-1/4 p-2 cursor-pointer" onClick={() => openModal(image)}>
+            <div
+              key={index}
+              className="w-1/4 p-2 cursor-pointer"
+              onClick={() => openModal(image)}
+            >
               <img
-                key={index} src={image.filePath}
+                key={index}
+                src={image.filePath}
                 alt={`Bild ${index + 1}`}
                 className="w-full h-auto object-cover rounded-lg"
               />
@@ -89,7 +92,10 @@ const DetailReview = () => {
         </div>
 
         {selectedImage && (
-          <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50" onClick={closeModal}>
+          <div
+            className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50"
+            onClick={closeModal}
+          >
             <div className="relative">
               <img
                 src={selectedImage.filePath}
@@ -110,13 +116,15 @@ const DetailReview = () => {
 
       <div className="flex items-center justify-center">
         <div className="p-6">
-
           <ul className="list-none space-y-4">
             {barrierRatings.map((barrierRating) => (
-              <li key={barrierRating.Barrier.id} className="flex items-center space-x-4">
+              <li
+                key={barrierRating.Barrier.id}
+                className="flex items-center space-x-4"
+              >
                 <div className="w-4 h-4 bg-[#FFD700] rounded-full"></div>
                 <span className="flex-1 text-lg">
-                  {barrierRating.Barrier.name} geeignet
+                  Für {barrierRating.Barrier.name} geeignet
                 </span>
                 <div className="flex space-x-1 rating ml-auto">
                   {stars.map((star) => (
@@ -135,28 +143,25 @@ const DetailReview = () => {
               </li>
             ))}
           </ul>
-
         </div>
       </div>
 
-
-
-
       <div className="flex items-center justify-center mb-4">
         <p className="w-full p-4 border border-gray-300 rounded-lg">
-
           {rating.comment}
         </p>
       </div>
-      <button type="button" className="btn bg-yellow-400 border-black px-8 font-normal" onClick={handleBackClick}>
+      <button
+        type="button"
+        className="btn bg-yellow-400 border-black px-8 font-normal"
+        onClick={handleBackClick}
+      >
         Zurück
       </button>
 
       <ToastContainer />
     </div>
   );
-
-}
-
+};
 
 export default DetailReview;
