@@ -29,7 +29,6 @@ const Ratings = () => {
         const response = await axios.get(`${API_URL}/reviews/place/${place.id}`, {
         });
         setPlaceRatings(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error("Error fetching Place ratings:", error);
         toast.error("Fehler beim Laden der Bewertungen.");
@@ -46,6 +45,10 @@ const Ratings = () => {
 
   const handleCreateRate = (place) => {
     navigate(`/create`, { state: { place: place, category: category } });
+  };
+
+  const handleBackClick = () => {
+    navigate(-1);
   };
 
   return (
@@ -67,22 +70,9 @@ const Ratings = () => {
                 Bewertungen
               </div>
             </div>
-
-            <div className="w-[64px] h-[0px] border border-[#1E1E1E] rotate-90 mx-6 mt-10"></div>
-
-            <div className="flex flex-col items-center text-center p-4 w-[80px] h-[75px] font-poppins font-medium text-[32px] leading-[48px] text-[#1E1E1E]">
-              <div className="text-[32px] leading-[48px]">
-                5
-              </div>
-              <div className="text-[18px] leading-[27px] mt-2">
-                Sterne
-              </div>
-            </div>
           </div>
 
           <p className="mt-10 ml-8 mr-10 font-medium font-poppins text-[rgba(30,30,30,0.5)] pb-6">
-            Willkommen im La Bella Vita, einem charmanten italienischen Restaurant im Herzen der Stadt. Das La Bella Vita vereint traditionelles italienisches Flair mit einer modernen Note und bietet seinen Gästen ein unvergessliches kulinarisches Erlebnis. Das Interieur ist warm und einladend, mit rustikalen Holztischen, weichen Beleuchtung und einer gemütlichen Atmosphäre, die an die romantischen Gassen Italiens erinnert.
-            Die Speisekarte spiegelt die Vielfalt der italienischen Küche wider, von hausgemachter Pasta und knusprigen Pizzen aus dem Holzofen bis hin zu frischen Meeresfrüchten und saftigen Fleischgerichten. Jede Mahlzeit wird mit den besten, saisonalen Zutaten zubereitet, und die Leidenschaft des Küchenchefs für authentische Aromen ist in jedem Bissen spürbar.
           </p>
         </div>
 
@@ -149,6 +139,10 @@ const Ratings = () => {
             </div>
           </div>
         ))}
+
+        <button type="button" className="btn bg-yellow-400 border-black px-8 font-normal" onClick={handleBackClick}>
+          Zurück
+        </button>
       </div>
 
     </div>
