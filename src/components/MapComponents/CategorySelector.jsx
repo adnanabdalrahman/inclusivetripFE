@@ -16,7 +16,6 @@ const CategorySelector = ({ selectedCategory, setSelectedCategory }) => {
         const response = await axios.get(categoryUrl);
         if (response.data && response.data.length) {
           setCategories(response.data);
-          console.log(response.data);
         }
       } catch (error) {
         console.log(error);

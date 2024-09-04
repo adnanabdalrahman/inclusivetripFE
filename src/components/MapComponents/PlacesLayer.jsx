@@ -4,6 +4,8 @@ import { useMap } from "react-leaflet";
 import PlaceMarker from "./PlaceMarker";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ReactDOMServer from 'react-dom/server';
+
+
 import * as icons from '@fortawesome/free-solid-svg-icons';
 
 const iconMap = Object.fromEntries(
@@ -24,9 +26,9 @@ const createIcon = (selectedCategory) => {
 
 
 const PlacesLayer = ({ selectedCategory }) => {
+
     const [places, setPlaces] = useState([]);
     const [icon, setIcon] = useState([]);
-
     const map = useMap();
 
     useEffect(() => {
@@ -35,18 +37,18 @@ const PlacesLayer = ({ selectedCategory }) => {
         }
         const PlaceIcon = createIcon(selectedCategory);
         setIcon(PlaceIcon);
-
         const fetchAndSetPlaces = async () => {
             const bounds = map.getBounds();
             const bbox = `${bounds.getSouth()},${bounds.getWest()},${bounds.getNorth()},${bounds.getEast()}`;
 
             const [placeData] = await Promise.all([
-                fetchPlaces(bbox, selectedCategory.searchName),
+                fetchPlaces(bbox, selectedCategory.tag, selectedCategory.searchName),
             ]);
+
             setPlaces(placeData);
         };
-        fetchAndSetPlaces();
 
+        fetchAndSetPlaces();
         map.on('moveend', fetchAndSetPlaces);
         return () => {
             map.off('moveend', fetchAndSetPlaces);
@@ -63,13 +65,28 @@ const PlacesLayer = ({ selectedCategory }) => {
     );
 };
 
-const fetchPlaces = async (bbox, amenity) => {
+const fetchPlaces = async (bbox, tag, amenity) => {
     const overpassUrl = "https://overpass-api.de/api/interpreter";
     const query = `
       [out:json];
-      node["amenity"="${amenity}"](${bbox});
+      node["${tag}"="${amenity}"](${bbox});
       out body;
     `;
+
+    //     const query = `
+    //     [out:json];
+    //     node["${tag}"="${amenity}"](${bbox});
+    //     out;
+    //     way["${tag}"="${amenity}"](${bbox});
+    //     out center;
+    //     relation["${tag}"="${amenity}"](${bbox});
+    //     out center;
+    // `;
+    // const query = `
+    // [out:json];
+    // node["${tag}"="${amenity}"](${bbox});
+    // out ;
+    // `;
 
     const response = await fetch(`${overpassUrl}?data=${encodeURIComponent(query)}`);
     const data = await response.json();
