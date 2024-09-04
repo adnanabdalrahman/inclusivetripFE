@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { fetchReviewById } from "../utils/reviewHandler";
+import Cookies from "js-cookie";
 
 const API_URL = import.meta.env.VITE_APP_INCLUSIVETRIPBE_URL;
 
@@ -27,10 +28,25 @@ export default function ReviewEdit() {
   }, [id]);
 
   const handleUpdate = async () => {
+    const token = Cookies.get("token");
+    if (!token) {
+      toast.error("Keine Berechtigung. Bitte einloggen.");
+      return;
+    }
+
     try {
-      await axios.put(`${API_URL}/reviews/reviewid/${id}`, {
-        comment: description,
-      });
+      await axios.put(
+        `${API_URL}/reviews/${id}`,
+        {
+          comment: description,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        }
+      );
       toast.success("Bewertung erfolgreich aktualisiert!");
     } catch (error) {
       toast.error("Fehler beim Aktualisieren der Bewertung.");
@@ -39,10 +55,21 @@ export default function ReviewEdit() {
   };
 
   const handleDelete = async () => {
+    const token = Cookies.get("token");
+    if (!token) {
+      toast.error("Keine Berechtigung. Bitte einloggen.");
+      return;
+    }
+
     try {
-      await axios.delete(`${API_URL}/reviews/reviewid/${id}`);
+      await axios.delete(`${API_URL}/reviews/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      });
       toast.success("Bewertung erfolgreich gelöscht!");
-      navigate(-1); // Zurück zur vorherigen Seite
+      navigate(-1);
     } catch (error) {
       toast.error("Fehler beim Löschen der Bewertung.");
       console.log(error);
