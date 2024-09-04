@@ -72,20 +72,12 @@ function User() {
           <div className="w-full text-left p-8">
             <div className="flex items-center justify-between">
               <h1 className="font-poppins font-bold text-[18px] text-[#000000]">
-                So hast du {rating.placeName} am{" "}
-                {new Date(rating.createdAt).toLocaleDateString()} bewertet:
+                So hast du {rating.placeName} bewertet:
               </h1>
 
               <div className="space-x-1 rating">
-                {[...Array(5)].map((_, i) => (
-                  <input
-                    key={i}
-                    type="radio"
-                    name={`rating-${index}`}
-                    className="mask mask-star bg-[#FFD700]"
-                    defaultChecked={i < rating.stars}
-                  />
-                ))}
+                {" "}
+                {new Date(rating.createdAt).toLocaleDateString()}
               </div>
             </div>
             <p className="mt-4 font-poppins font-medium text-[rgba(30,30,30,0.5)] text-left">
@@ -96,7 +88,7 @@ function User() {
               className="btn bg-[#FFD700] border-black w-36 p-2 h-12 min-h-2 m-2 justify-center float-right"
               onClick={() => handleRateClick(rating)}
             >
-              bearbeiten
+              mehr lesen
             </button>
           </div>
         </div>
