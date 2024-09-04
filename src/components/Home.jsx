@@ -49,18 +49,15 @@ const Home = () => {
   }
   return (
     <div className="flex flex-col md:flex-row items-top justify-center p-4">
-    <div>
-      <div className="flex flex-col md:flex-row items-center justify-center"></div>
-      <div className="pb-1 container mx-auto w-full bg-[#C1DCDC] rounded-[24px] relative">
-        
-        <div className="w-full text-left p-8 relative">
-          <h1 className="font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black">
-            Barriere Bewertungen <br />
-            für Standorte
-          </h1>
-      
-          
-        </div>
+      <div>
+        <div className="flex flex-col md:flex-row items-center justify-center"></div>
+        <div className="pb-1 container mx-auto w-full bg-[#C1DCDC] rounded-[24px] relative">
+          <div className="w-full text-left p-8 relative">
+            <h1 className="font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black">
+              Barriere Bewertungen <br />
+              für Standorte
+            </h1>
+          </div>
 
           <div className="flex flex-col md:flex-row items-center justify-left ml-8 mt-[-24]">
             {/* Erste Box */}
@@ -89,8 +86,6 @@ const Home = () => {
             </div>
           </div>
 
-
-          
           <div className="flex flex-col md:flex-row items-left justify-left mt-8 p-4 gap-6">
             <div className="flex space-x-4 items-center">
               <div className="p-4 mr-9">
@@ -105,23 +100,17 @@ const Home = () => {
                   setSelectedCategory={setSelectedCategory}
                 />
               </div>
-            
 
-            <button className="btn btn-outline mt-8  bg-yellow-400" onClick={handleSearch}>Suchen</button>
+              <button
+                className="btn btn-outline mt-8  bg-yellow-400"
+                onClick={handleSearch}
+              >
+                Suchen
+              </button>
+            </div>
           </div>
-          
-          
+        </div>
 
-  </div>
-      
-
-    </div>
- 
-
-
-
-
-       
         {/* Beschreibungstext */}
         <p className="mt-20 p-4  font-medium font-poppins text-[rgba(30,30,30,0.5)]">
           InclusiveTRIP hilft Ihnen, öffentliche Orte wie Restaurants, Kinos,
@@ -153,8 +142,8 @@ const Home = () => {
               Barrierefilter
             </p>
             <p className="font-poppins font-medium text-[rgba(30,30,30,0.5)] text-center">
-              Filter nach deiner Barriere und finde den optimalen Ort für deinen
-              Ausflug.
+              Finde den idealen Ort für deinen Ausflug, indem du nach deinen
+              individuellen Bedürfnissen filterst.
             </p>
           </div>
 
@@ -185,22 +174,22 @@ const Home = () => {
               Locationsfilter
             </p>
             <p className="font-poppins font-medium text-[rgba(30,30,30,0.5)] text-center">
-              Suche nach der Location, woran du heute Spaß hast.
+              Finde Locations die genau deinen Bedürfnissen entsprechen.
             </p>
           </div>
         </div>
 
-      {/* Überschrift Blockeinträge */}
+        {/* Überschrift Blockeinträge */}
 
         <h1 className="font-poppins font-bold text-[18px] text-center pt-12 text-[#000000]">
           Blog Einträge
         </h1>
         <p className="font-poppins font-medium text-[rgba(30,30,30,0.5)] text-center pt-2">
           {" "}
-          Informiere dich über aktuelle Themen rund um das Thema Barriere.
+          Informiere dich über aktuelle Themen rund um das Thema Inklusion.
         </p>
 
-      {/* erster Blockeintrag*/}
+        {/* erster Blockeintrag*/}
 
         <div className="container mx-auto w-full mt-8">
           <div className="bg-[#C1DCDC] rounded-[24px] p-4">
