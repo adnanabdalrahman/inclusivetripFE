@@ -12,6 +12,8 @@ export default function ReviewEdit() {
   const { id } = useParams();
   const [description, setDescription] = useState("");
   const [placeName, setPlaceName] = useState("");
+  const [placeId, setPlaceId] = useState("");
+  const [placeCategoryId, setPlaceCategoryId] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,6 +22,8 @@ export default function ReviewEdit() {
         const review = await fetchReviewById(id);
         setDescription(review.comment);
         setPlaceName(review.placeName);
+        setPlaceId(review.placeId);
+        setPlaceCategoryId(review.placeCategoryId);
       } catch (error) {
         console.error("Error fetching review:", error);
       }
@@ -39,6 +43,9 @@ export default function ReviewEdit() {
         `${API_URL}/reviews/${id}`,
         {
           comment: description,
+          placeName: placeName,
+          placeId: placeId,
+          placeCategoryId: placeCategoryId,
         },
         {
           headers: {
