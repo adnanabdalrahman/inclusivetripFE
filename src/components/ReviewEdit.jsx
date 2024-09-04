@@ -17,6 +17,7 @@ export default function ReviewEdit() {
   const [barrierRatings, setBarrierRatings] = useState([]);
   const [photos, setPhotos] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false); // State für das Modal
   const navigate = useNavigate();
   const stars = [1, 2, 3, 4, 5];
 
@@ -29,7 +30,6 @@ export default function ReviewEdit() {
         setPlaceName(review.placeName);
         setPlaceId(review.placeId);
         setPlaceCategoryId(review.placeCategoryId);
-        setPhotos(review.FileUploads || []);
       } catch (error) {
         console.error("Error fetching review:", error);
       }
@@ -48,8 +48,19 @@ export default function ReviewEdit() {
       }
     };
 
+    const fetchPhotos = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/reviews/${id}/photos`);
+        console.log("Photos fetched:", response.data); // Debugging
+        setPhotos(response.data || []);
+      } catch (error) {
+        console.error("Error fetching photos:", error);
+      }
+    };
+
     getReview();
     fetchBarrierRatings();
+    fetchPhotos();
   }, [id]);
 
   const openModal = (image) => {
@@ -114,6 +125,14 @@ export default function ReviewEdit() {
 
   const handleBackClick = () => {
     navigate(-1);
+  };
+
+  const openDeleteModal = () => {
+    setShowDeleteModal(true);
+  };
+
+  const closeDeleteModal = () => {
+    setShowDeleteModal(false);
   };
 
   return (
@@ -237,7 +256,7 @@ export default function ReviewEdit() {
           <button
             type="button"
             className="btn bg-yellow-400 border-black px-8 font-normal"
-            onClick={handleDelete}
+            onClick={openDeleteModal}
           >
             Löschen
           </button>
@@ -250,6 +269,38 @@ export default function ReviewEdit() {
           </button>
         </div>
       </form>
+
+      {showDeleteModal && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50"
+          onClick={closeDeleteModal}
+        >
+          <div
+            className="bg-white p-6 rounded-lg"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 className="text-xl font-semibold mb-4">
+              Bewertung wirklich löschen?
+            </h2>
+            <div className="flex justify-end space-x-4">
+              <button
+                type="button"
+                className="btn bg-gray-300 px-4 py-2 rounded"
+                onClick={closeDeleteModal}
+              >
+                Abbrechen
+              </button>
+              <button
+                type="button"
+                className="btn bg-red-500 text-white px-4 py-2 rounded"
+                onClick={handleDelete}
+              >
+                Löschen
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <ToastContainer />
     </div>
