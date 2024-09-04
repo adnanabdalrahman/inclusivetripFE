@@ -23,8 +23,6 @@ export function FetchUserRatings({ setUserRatings }) {
           },
           withCredentials: true,
         });
-
-        console.log("User ratings fetched:", response.data);
         setUserRatings(response.data);
       } catch (error) {
         console.error("Error fetching user ratings:", error);

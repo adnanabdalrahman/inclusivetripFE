@@ -25,15 +25,6 @@ const Home = () => {
       <div>
         <div className="flex flex-col md:flex-row items-center justify-center"></div>
         <div className="pb-1 container mx-auto w-full bg-[#C1DCDC] rounded-[24px] relative">
-<<<<<<< HEAD
-=======
-          <div className="w-full text-left p-8 relative">
-            <h1 className="font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black">
-              Barriere Bewertungen <br />
-              für Standorte
-            </h1>
-          </div>
->>>>>>> origin
 
           <div className="w-full text-left p-8 relative">
             <h1 className="font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black">
@@ -73,12 +64,6 @@ const Home = () => {
                   setSelectedCategory={setSelectedCategory}
                 />
               </div>
-<<<<<<< HEAD
-              <button className="btn btn-outline mt-8  bg-yellow-400" onClick={handleSearch}>Suchen</button>
-            </div>
-          </div>
-        </div>
-=======
 
               <button
                 className="btn btn-outline mt-8  bg-yellow-400"
@@ -91,7 +76,6 @@ const Home = () => {
         </div>
 
         {/* Beschreibungstext */}
->>>>>>> origin
         <p className="mt-20 p-4  font-medium font-poppins text-[rgba(30,30,30,0.5)]">
           InclusiveTRIP hilft Ihnen, öffentliche Orte wie Restaurants, Kinos,
           Geschäfte und vieles mehr hinsichtlich ihrer Barrierefreiheit zu
@@ -154,12 +138,6 @@ const Home = () => {
             </p>
           </div>
         </div>
-
-<<<<<<< HEAD
-=======
-        {/* Überschrift Blockeinträge */}
-
->>>>>>> origin
         <h1 className="font-poppins font-bold text-[18px] text-center pt-12 text-[#000000]">
           Blog Einträge
         </h1>
@@ -167,12 +145,6 @@ const Home = () => {
           {" "}
           Informiere dich über aktuelle Themen rund um das Thema Inklusion.
         </p>
-
-<<<<<<< HEAD
-=======
-        {/* erster Blockeintrag*/}
-
->>>>>>> origin
         <div className="container mx-auto w-full mt-8">
           <div className="bg-[#C1DCDC] rounded-[24px] p-4">
             <div className="w-full text-left p-8 bg-white rounded-[24px]">

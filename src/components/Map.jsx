@@ -1,5 +1,5 @@
 import React from "react";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from "react-leaflet";
 import { GeoSearchControl, OpenStreetMapProvider } from "leaflet-geosearch";
@@ -29,12 +29,12 @@ const SearchField = () => {
 
     const searchControl = new GeoSearchControl({
       provider: provider,
-      style: 'bar', // Optional: 'button' for a smaller search bar
-      showMarker: true, // Optional: Display a marker for search result
-      autoClose: true, // Optional: Close the search bar after selection
-      retainZoomLevel: false, // Optional: Keep zoom level after search
-      animateZoom: true, // Optional: Animate zoom to search result
-      keepResult: true, // Optional: Keep the search result
+      style: 'bar',
+      showMarker: true,
+      autoClose: true,
+      retainZoomLevel: false,
+      animateZoom: true,
+      keepResult: true,
     });
 
     map.addControl(searchControl);
@@ -61,7 +61,6 @@ const Map = () => {
 
   return (
     <>
-
       <div>
         <div className="flex flex-col md:flex-row items-top p-4">
           <div className="flex flex-col md:flex-row"></div>
@@ -75,7 +74,6 @@ const Map = () => {
                   Benutze die Filter, um Städte und Kategorien zu finden und klicke auf das Icon in der Karte, um dir Bewertungen anzusehen.
                 </div>
               </div>
-              {/* Bild Container */}
               <div className="flex items-center justify-center w-full md:w-1/3 mt-4 md:mt-0">
                 <img
                   src="/images//Icon_Karte.png"
@@ -104,6 +102,7 @@ const Map = () => {
           minZoom={14}
           style={{ zIndex: 9, height: "70vh", width: "100%" }}
         >
+          <SearchField />
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -112,7 +111,7 @@ const Map = () => {
           <Popup>A pretty CSS3 popup. <br /> Easily customizable.</Popup>
         </Marker> */}
           {/* <SearchField /> */}
-          <LocationMarker />
+          {/* <LocationMarker /> */}
           <NavigateMap selectedCity={selectedCity} />
           <PlacesLayer selectedCategory={selectedCategory} />
         </MapContainer >

@@ -15,11 +15,11 @@ const Ratings = () => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   const openModal = (image) => {
-    setSelectedImage(image); 
+    setSelectedImage(image);
   };
 
   const closeModal = () => {
-    setSelectedImage(null); 
+    setSelectedImage(null);
   };
 
 
@@ -53,74 +53,69 @@ const Ratings = () => {
 
   return (
     <div>
-          <div className="flex flex-col md:flex-row items-top p-4">
-            <div className="flex flex-col md:flex-row"></div>
-            <div className="container mx-auto w-full  bg-[#C1DCDC] rounded-[24px] relative">
-              <div className="flex flex-col md:flex-row w-full p-8">
-                <div className="flex flex-col w-full md:w-2/3 text-left">
-                  <h1 className="font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black">
-                    {place.name} {category.name}
-                  </h1>
+      <div className="flex flex-col md:flex-row items-top p-4">
+        <div className="flex flex-col md:flex-row"></div>
+        <div className="container mx-auto w-full  bg-[#C1DCDC] rounded-[24px] relative">
+          <div className="flex flex-col md:flex-row w-full p-8">
+            <div className="flex flex-col w-full md:w-2/3 text-left">
+              <h1 className="font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black">
+                {place.name} {category.name}
+              </h1>
 
-                  
-
-                  <div className=" text-[#1E1E1E] font-poppins font-medium text-[32px] leading-[48px] ml-16 mt-6">
-                      {placeRatings.length}
-                  </div>
-                     <div className="text-[18px] leading-[27px] mt-2 ml-8">
+              <div className=" text-[#1E1E1E] font-poppins font-medium text-[32px] leading-[48px] ml-16 mt-6">
+                {placeRatings.length}
+              </div>
+              <div className="text-[18px] leading-[27px] mt-2 ml-8">
                 Bewertungen
               </div>
-                </div>
-                {/* Bild Container */}
-                <div className="flex items-center justify-center w-full md:w-1/3 mt-4 md:mt-0">
-                  <img
-                    src="/images//Icon_Location.png"
-                    alt="Icon Karte"
-                    className="max-w-full max-h-[300px] object-cover rounded-lg"
-                    style={{ width: '200px', height: '200px' }}
-                  />
-                </div>
-              </div>
+            </div>
+            <div className="flex items-center justify-center w-full md:w-1/3 mt-4 md:mt-0">
+              <img
+                src="/images//Icon_Location.png"
+                alt="Icon Karte"
+                className="max-w-full max-h-[300px] object-cover rounded-lg"
+                style={{ width: '200px', height: '200px' }}
+              />
             </div>
           </div>
- 
+        </div>
+      </div>
 
+      <div className="flex flex-wrap justify-center items-center gap-4 p-4 ">
+        {placeRatings.map((rating, index) => (
+          rating.FileUploads.map((file, index) => (
+            <div key={index} className="w-1/5 p-2 ">
+              <img key={index} src={file.filePath}
+                alt="Photo" className="w-full h-auto object-cover rounded-lg" onClick={() => openModal(file)} />
+            </div>
+          ))
+        ))}
+      </div>
 
-
-
-        <div className="flex flex-wrap justify-center items-center gap-4 p-4 ">
-          {placeRatings.map((rating, index) => (
-            rating.FileUploads.map((file, index) => (
-              <div key={index} className="w-1/5 p-2 ">
-                <img key={index} src={file.filePath}
-                  alt="Photo" className="w-full h-auto object-cover rounded-lg" onClick={() => openModal(file)} />
-              </div>
-            ))
-          ))}
+      {selectedImage && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50" onClick={closeModal}>
+          <div className="relative">
+            <img
+              src={selectedImage}
+              alt="Selected"
+              className="max-w-full max-h-full object-contain"
+              onClick={(e) => e.stopPropagation()}
+            />
+            <button
+              className="absolute top-4 right-4 text-white text-3xl font-bold"
+              onClick={closeModal}
+            >
+              &times;
+            </button>
+          </div>
         </div>
 
-        {/* Modal */}
-        {selectedImage && (
-          <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50" onClick={closeModal}>
-            <div className="relative">
-              <img
-                src={selectedImage}
-                alt="Selected"
-                className="max-w-full max-h-full object-contain"
-                onClick={(e) => e.stopPropagation()} 
-              />
-              <button
-                className="absolute top-4 right-4 text-white text-3xl font-bold"
-                onClick={closeModal}
-              >
-                &times;
-              </button>
-            </div>
-          </div>
+      )}
+      <div className="p-4">
 
-        )}
-
-
+        <button type="button" className="mt-8 btn bg-yellow-400 border-black px-8 font-normal" onClick={handleBackClick}>
+          Zurück
+        </button>
         <button className="btn bg-[#FFD700] p-2 mt-4 h-12 min-h-2 m-2 justify-end float-right"
           onClick={() => handleCreateRate(place)}>Bewertung hinzufügen</button>
 
@@ -152,10 +147,8 @@ const Ratings = () => {
           </div>
         ))}
 
-        <button type="button" className="mt-8 btn bg-yellow-400 border-black px-8 font-normal" onClick={handleBackClick}>
-          Zurück
-        </button>
       </div>
+    </div>
 
   );
 }
