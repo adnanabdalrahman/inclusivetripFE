@@ -8,7 +8,7 @@ const Dataprotection = () => {
         <strong>1. Datenschutz auf einen Blick</strong><br />
         Wir freuen uns über Ihr Interesse an unserer Webseite. Der Schutz Ihrer persönlichen Daten ist uns ein besonderes Anliegen. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.
       </p>
-      
+
       <p className="text-gray-700 leading-relaxed mt-4">
         <strong>2. Verantwortliche Stelle</strong><br />
         Verantwortlich für die Datenverarbeitung auf dieser Webseite ist:<br />

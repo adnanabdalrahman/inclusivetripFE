@@ -6,7 +6,6 @@ import Navbar from "./Navbar";
 
 export default function Header() {
   const { userInfo, logout } = useContext(AuthContext);
-  // console.log("Navbar.jsx: userInfo: ", userInfo);
   document.querySelector("html").setAttribute("data-theme", "light");
   return (
     <header className="h-[126px] bg-white z-10">
