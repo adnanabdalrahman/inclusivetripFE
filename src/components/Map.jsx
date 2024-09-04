@@ -68,8 +68,8 @@ const Map = () => {
           <div className="container mx-auto w-full bg-[#C1DCDC] rounded-[24px] relative">
             <div className="flex flex-col md:flex-row w-full p-8">
               <div className="flex flex-col w-full md:w-2/3 text-left">
-                <h1 className="font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black">
-                  Wähle den gewünschten Standort auf der Karte aus
+                <h1 className="font-poppins font-extrabold text-3xl md:text-5xl lg:text-5xl leading-tight text-black">
+                  Wähle den gewünschten Standort <br /> auf der Karte aus 
                 </h1>
                 <div className="mt-4 text-[#1E1E1E] font-poppins font-medium text-[32px] leading-[48px]">
                   Benutze die Filter, um Städte und Kategorien zu finden und klicke auf das Icon in der Karte, um dir Bewertungen anzusehen.
