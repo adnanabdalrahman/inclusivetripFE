@@ -75,7 +75,7 @@ function User() {
                 So hast du {rating.placeName} bewertet:
               </h1>
 
-              <div className="space-x-1 rating">
+              <div className="font-poppins font-bold text-[18px] text-[#000000]">
                 {" "}
                 {new Date(rating.createdAt).toLocaleDateString()}
               </div>
