@@ -15,11 +15,11 @@ const Ratings = () => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   const openModal = (image) => {
-    setSelectedImage(image); // Setze das ausgewählte Bild
+    setSelectedImage(image); 
   };
 
   const closeModal = () => {
-    setSelectedImage(null); // Schließe das Modal
+    setSelectedImage(null); 
   };
 
 
@@ -52,29 +52,41 @@ const Ratings = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-top justify-center p-4">
-      <div>
-        <div className="container mx-auto bg-[#C1DCDC] rounded-[24px]">
-          <div className="flex w-full text-left p-8">
-            <h1 className="font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black">
-              {place.name} {category.name}
-            </h1>
-          </div>
+    <div>
+          <div className="flex flex-col md:flex-row items-top p-4">
+            <div className="flex flex-col md:flex-row"></div>
+            <div className="container mx-auto w-full  bg-[#C1DCDC] rounded-[24px] relative">
+              <div className="flex flex-col md:flex-row w-full p-8">
+                <div className="flex flex-col w-full md:w-2/3 text-left">
+                  <h1 className="font-poppins font-extrabold text-3xl md:text-5xl lg:text-6xl leading-tight text-black">
+                    {place.name} {category.name}
+                  </h1>
 
-          <div className="flex md:flex-row items-center justify-left ml-8 ">
-            <div className="flex flex-col items-center text-center p-4 w-[85px] h-[75px] font-poppins font-medium text-[32px] leading-[48px] text-[#1E1E1E]">
-              <div className="text-[32px] leading-[48px]">
-                {placeRatings.length}
-              </div>
-              <div className="text-[18px] leading-[27px] mt-2 ml-8">
+                  
+
+                  <div className=" text-[#1E1E1E] font-poppins font-medium text-[32px] leading-[48px] ml-16 mt-6">
+                      {placeRatings.length}
+                  </div>
+                     <div className="text-[18px] leading-[27px] mt-2 ml-8">
                 Bewertungen
+              </div>
+                </div>
+                {/* Bild Container */}
+                <div className="flex items-center justify-center w-full md:w-1/3 mt-4 md:mt-0">
+                  <img
+                    src="/images//Icon_Location.png"
+                    alt="Icon Karte"
+                    className="max-w-full max-h-[300px] object-cover rounded-lg"
+                    style={{ width: '200px', height: '200px' }}
+                  />
+                </div>
               </div>
             </div>
           </div>
+ 
 
-          <p className="mt-10 ml-8 mr-10 font-medium font-poppins text-[rgba(30,30,30,0.5)] pb-6">
-          </p>
-        </div>
+
+
 
         <div className="flex flex-wrap justify-center items-center gap-4 p-4 ">
           {placeRatings.map((rating, index) => (
@@ -95,7 +107,7 @@ const Ratings = () => {
                 src={selectedImage}
                 alt="Selected"
                 className="max-w-full max-h-full object-contain"
-                onClick={(e) => e.stopPropagation()} // Verhindert das Schließen des Modals, wenn auf das Bild geklickt wird
+                onClick={(e) => e.stopPropagation()} 
               />
               <button
                 className="absolute top-4 right-4 text-white text-3xl font-bold"
@@ -117,15 +129,15 @@ const Ratings = () => {
         {placeRatings.map((rating, index) => (
           <div
             key={index}
-            className="container mx-auto w-full bg-[#C1DCDC] rounded-[24px] mt-8"
+            className="container mx-auto w-full bg-[#C1DCDC] rounded-[24px] mt-16 pr-8"
           >
-            <div className="w-full text-left p-8">
+            <div className="w-full text-left  p-8">
               <div className="flex items-center justify-between">
                 <h1 className="font-poppins font-bold text-[18px] text-[#000000]">
-                  {rating.User.firstName}
+                  Bewertung von {rating.User.firstName}
                 </h1>
                 <h1 className="font-poppins font-bold text-[18px] text-[#000000]">
-                  {new Date(rating.createdAt).toLocaleDateString()}
+                  vom {new Date(rating.createdAt).toLocaleDateString()}
                 </h1>
               </div>
               <p className="mt-4 font-poppins font-medium text-[rgba(30,30,30,0.5)] text-left">
@@ -140,12 +152,11 @@ const Ratings = () => {
           </div>
         ))}
 
-        <button type="button" className="btn bg-yellow-400 border-black px-8 font-normal" onClick={handleBackClick}>
+        <button type="button" className="mt-8 btn bg-yellow-400 border-black px-8 font-normal" onClick={handleBackClick}>
           Zurück
         </button>
       </div>
 
-    </div>
   );
 }
 
