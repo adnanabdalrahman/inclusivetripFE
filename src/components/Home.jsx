@@ -174,7 +174,7 @@ const Home = () => {
               Locationsfilter
             </p>
             <p className="font-poppins font-medium text-[rgba(30,30,30,0.5)] text-center">
-              Finde Locations die deinen Bedürfnissen entsprechen.
+              Finde Locations die genau deinen Bedürfnissen entsprechen.
             </p>
           </div>
         </div>
