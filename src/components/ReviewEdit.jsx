@@ -185,7 +185,7 @@ export default function ReviewEdit() {
               >
                 <div className="w-4 h-4 bg-[#FFD700] rounded-full"></div>
                 <span className="flex-1 text-lg">
-                  {barrierRating.Barrier.name} geeignet
+                  Für {barrierRating.Barrier.name} geeignet
                 </span>
                 <div className="flex space-x-1 rating ml-auto">
                   {stars.map((star) => (
