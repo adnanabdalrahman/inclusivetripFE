@@ -9,9 +9,8 @@ export default function ReviewsCount() {
   useEffect(() => {
     async function fetchReviews() {
       try {
-        // API-Anfrage zum Abrufen aller Reviews
-        const response = await axios.get(reviewsCountUrl); // 
-        setReviews(response.data); // Setze alle Reviews in den State
+        const response = await axios.get(reviewsCountUrl);
+        setReviews(response.data.count);
       } catch (error) {
         console.error('Fehler beim Abrufen der Bewertungen:', error);
       } finally {
@@ -29,7 +28,6 @@ export default function ReviewsCount() {
         'Laden...'
       ) : (
         <div>
-
           <p>{reviews}</p>
         </div>
       )}

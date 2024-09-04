@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
-import axios from 'axios'; // Importiere axios
+import axios from 'axios';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const API_URL = import.meta.env.VITE_APP_INCLUSIVETRIPBE_URL;
-const REVIEW_ID = 38; // Beispielhafte Review-ID
 
 const DetailReview = () => {
   const API_URL = import.meta.env.VITE_APP_INCLUSIVETRIPBE_URL;
@@ -39,15 +37,12 @@ const DetailReview = () => {
   };
 
   const closeModal = () => {
-    setSelectedImage(null); // Schließe das Modal
-  };
+    setSelectedImage(null);
 
-
-  //  Funktion um auf die vorherige Seite zu kommen 
+  }
   const handleBackClick = () => {
     navigate(-1);
   };
-
   return (
     <div>
       <div className="flex flex-col md:flex-row items-top p-4">
@@ -63,7 +58,7 @@ const DetailReview = () => {
                 zu dieser Einrichtung bezüglich der Barriere Eignung.
               </div>
             </div>
-            {/* Bild Container */}
+
             <div className="flex flex-col items-center justify-center w-full md:w-1/3 mt-4 md:mt-0">
               <h1 className="font-poppins text-left font-bold text-[18px] text-[#000000]">
                 {new Date(rating.createdAt).toLocaleDateString()}
@@ -80,9 +75,7 @@ const DetailReview = () => {
       </div>
 
 
-      {/* Fotogalerie */}
       <div>
-        {/* Galerie */}
         <div className="flex flex-wrap justify-center items-center gap-4 p-4">
           {rating.FileUploads.map((image, index) => (
             <div key={index} className="w-1/4 p-2 cursor-pointer" onClick={() => openModal(image)}>
@@ -95,7 +88,6 @@ const DetailReview = () => {
           ))}
         </div>
 
-        {/* Modal */}
         {selectedImage && (
           <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50" onClick={closeModal}>
             <div className="relative">
@@ -163,6 +155,7 @@ const DetailReview = () => {
       <ToastContainer />
     </div>
   );
+
 }
 
 
