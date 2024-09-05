@@ -96,7 +96,7 @@ const Ratings = () => {
         <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50" onClick={closeModal}>
           <div className="relative">
             <img
-              src={selectedImage}
+              src={selectedImage.filePath}
               alt="Selected"
               className="max-w-full max-h-full object-contain"
               onClick={(e) => e.stopPropagation()}
@@ -109,7 +109,6 @@ const Ratings = () => {
             </button>
           </div>
         </div>
-
       )}
       <div className="p-4">
 

@@ -126,8 +126,8 @@ function CreateRating() {
     }
     toast.success("Vielen Dank, Ihre Bewertung wurde hinzugefügt!");
     setTimeout(() => {
-      navigate(`/ratings`, { state: { place: place, category: category } });
-    }, 3000);
+      navigate(`/user`);
+    }, 2000);
   };
 
   const openModal = (e) => {

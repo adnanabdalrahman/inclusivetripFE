@@ -20,7 +20,7 @@ function User() {
   const navigate = useNavigate();
 
   const handleRateClick = (rating) => {
-    navigate(`/review-edit/${rating.id}`);
+    navigate(`/review-edit/${rating.id}`, { state: { rating: rating } });
   };
 
   return (
