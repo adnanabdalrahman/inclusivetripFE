@@ -16,7 +16,7 @@ const Aboutus = () => {
 
       <h2 className="text-2xl font-semibold mb-4">Unsere Mission</h2>
       <p className="text-gray-700 leading-relaxed mb-6">
-        Unsere Mission ist es, Menschen mit unterschiedlichen Barrieren – sei es eine körperliche Einschränkung wie eine Sehbehinderung, eine Gehörlosigkeit oder die Nutzung eines Rollstuhls – dabei zu unterstützen, ihre Umgebung besser zu navigieren und sicherzustellen, dass die Orte, die sie besuchen, ihren Bedürfnissen gerecht werden. Unsere App ermöglicht es, Lokationen wie Restaurants, Kinos, Krankenhäuser, Parkplätze und vieles mehr zu bewerten und so eine Gemeinschaft zu schaffen, die sich gegenseitig hilft.
+        Unsere Mission ist es, Menschen mit unterschiedlichen Bedürfnissen – sei es eine körperliche Einschränkung wie eine Sehbehinderung, eine Gehörlosigkeit oder die Nutzung eines Rollstuhls – dabei zu unterstützen, ihre Umgebung besser zu navigieren und sicherzustellen, dass die Orte, die sie besuchen, ihren Bedürfnissen gerecht werden. Unsere App ermöglicht es, Lokationen wie Restaurants, Kinos, Krankenhäuser, Parkplätze und vieles mehr zu bewerten und so eine Gemeinschaft zu schaffen, die sich durch ihre gegenseitig hilft.
       </p>
 
       <h2 className="text-2xl font-semibold mb-4">Warum wir diese App entwickelt haben</h2>
